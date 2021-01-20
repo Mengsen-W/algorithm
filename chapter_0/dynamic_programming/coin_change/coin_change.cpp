@@ -5,7 +5,9 @@
  * @Last Modified time: 2021-01-19 16:39:24
  */
 
+#include <climits>
 #include <functional>
+#include <iostream>
 #include <unordered_map>
 #include <vector>
 
@@ -24,18 +26,18 @@ int bottom_up(std::vector<int>& coins, int amount) {
       if (subproblem == -1) continue;
       res = std::min(res, 1 + subproblem);
     }
-    dict[n] = res;
+    dict[n] = res == INT_MAX ? -1 : res;
     return dict[n];
   };
 
-  dp(amount);
+  return dp(amount);
 }
 
 int top_down(std::vector<int>& coins, int amount) {
   std::vector<int> dp(amount + 1, amount + 1);
   dp[0] = 0;
 
-  for (int i = 0; i < dp.size(); ++i) {
+  for (size_t i = 0; i < dp.size(); ++i) {
     for (int coin : coins) {
       if (i - coin < 0) continue;
       dp[i] = std::min(dp[i], dp[i - coin] + 1);
@@ -46,6 +48,11 @@ int top_down(std::vector<int>& coins, int amount) {
 }
 
 int main() {
-  int a = 0;
-  return 0;
+  // std::vector<int> coins = {1, 2, 5};
+  // int amount = 11;
+  // top_down(coins, amount);
+
+  std::vector<int> coins2 = {2};
+  int amount = 3;
+  std::cout << bottom_up(coins2, amount) << std::endl;
 }
