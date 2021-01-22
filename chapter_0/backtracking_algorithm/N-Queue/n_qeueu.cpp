@@ -2,13 +2,18 @@
  * @Author: Mengsen.Wang
  * @Date: 2021-01-20 16:54:53
  * @Last Modified by: Mengsen.Wang
- * @Last Modified time: 2021-01-20 18:00:51
+ * @Last Modified time: 2021-01-22 17:09:58
  */
 
+#include <iostream>
 #include <string>
 #include <vector>
 
 using namespace std;
+
+vector<vector<string>> solveNQueens(int n);
+void backtrack(vector<string> &board, int row);
+bool is_valid(vector<string> &board, int row, int col);
 
 vector<vector<string>> res;
 
@@ -22,7 +27,7 @@ vector<vector<string>> solveNQueens(int n) {
 // 路径：board中小于row的那些行已经成功放置了皇后
 // 选择列表：第row行的所有列都放置皇后的选择
 // 结束条件：row超过board的最后一行
-void backtrack(vector<string>& board, int row) {
+void backtrack(vector<string> &board, int row) {
   // 触发结束条件
   if (row == board.size()) {
     res.push_back(board);
@@ -32,7 +37,7 @@ void backtrack(vector<string>& board, int row) {
   int n = board[row].size();
 
   for (int col = 0; col < n; ++col) {
-    if (!isVaild(board, row, col)) continue;
+    if (!is_valid(board, row, col)) continue;
     // 做选择
     board[row][col] = 'Q';
     // 进入下一行决策
@@ -45,7 +50,7 @@ void backtrack(vector<string>& board, int row) {
 }
 
 // 是否可以放置皇后
-bool isVaild(vector<vector<string>>& board, int row, int col) {
+bool is_valid(vector<string> &board, int row, int col) {
   int n = board.size();
 
   // 检查列是否有冲突
@@ -64,6 +69,13 @@ bool isVaild(vector<vector<string>>& board, int row, int col) {
 }
 
 int main() {
-  solveNQueens(5);
+  solveNQueens(16);
+
+  for (int i = 0; i < res.size(); ++i) {
+    for (int j = 0; j < res[0].size(); ++j) {
+      cout << res[i][j] << endl;
+    }
+    cout << endl;
+  }
   return 0;
 }
