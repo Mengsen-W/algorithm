@@ -2,9 +2,10 @@
  * @Author: Mengsen.Wang
  * @Date: 2021-01-21 19:55:54
  * @Last Modified by: Mengsen.Wang
- * @Last Modified time: 2021-01-21 20:11:47
+ * @Last Modified time: 2021-01-24 22:47:35
  */
 
+#include <iostream>
 #include <queue>
 
 using namespace std;
@@ -50,4 +51,15 @@ int min_deep_dfs(TreeNode *root) {
   return min(left, right) + 1;
 }
 
-int main() { return 0; }
+int main() {
+  TreeNode root = TreeNode{3};
+  TreeNode l1 = TreeNode{2};
+  TreeNode l2 = TreeNode{1};
+  TreeNode ll1 = TreeNode{1};
+  l1.left = &ll1;
+  root.left = &l1;
+  root.right = &l2;
+  std::cout << min_deep_bfs(&root) << std::endl;
+  std::cout << min_deep_dfs(&root) << std::endl;
+  return 0;
+}

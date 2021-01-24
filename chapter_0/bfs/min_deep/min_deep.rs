@@ -2,14 +2,14 @@
  * @Author: Mengsen.Wang
  * @Date: 2021-01-21 19:56:06
  * @Last Modified by: Mengsen.Wang
- * @Last Modified time: 2021-01-21 20:21:29
+ * @Last Modified time: 2021-01-24 22:47:34
  */
 
 use std::cell::RefCell;
 use std::rc::Rc;
 
 // Definition for a binary tree node.
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub struct TreeNode {
     pub val: i32,
     pub left: Option<Rc<RefCell<TreeNode>>>,
@@ -27,10 +27,10 @@ impl TreeNode {
     }
 }
 
-fn min_depth_dfs(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
+fn min_depth_bfs(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
     match root {
         None => 0,
-        Some(mut root) => {
+        Some(root) => {
             let (mut depth, mut arr) = (1, vec![root]);
             'found: while !arr.is_empty() {
                 let mut children = Vec::new();
@@ -69,4 +69,21 @@ fn min_depth_dfs(root: Option<Rc<RefCell<TreeNode>>>) -> i32 {
     }
 }
 
-fn main() {}
+fn main() {
+    let mut root: TreeNode = TreeNode::new(3);
+    let mut l1: TreeNode = TreeNode::new(2);
+    let l2: TreeNode = TreeNode::new(1);
+    let ll1: TreeNode = TreeNode::new(1);
+    l1.left = Some(Rc::new(RefCell::new(ll1)));
+    root.left = Some(Rc::new(RefCell::new(l1)));
+    root.right = Some(Rc::new(RefCell::new(l2)));
+
+    println!(
+        "{}",
+        min_depth_bfs(Some(Rc::new(RefCell::new(root.clone())))),
+    );
+    println!(
+        "{}",
+        min_depth_dfs(Some(Rc::new(RefCell::new(root.clone()))))
+    );
+}

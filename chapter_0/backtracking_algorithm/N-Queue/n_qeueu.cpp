@@ -69,7 +69,7 @@ bool is_valid(vector<string> &board, int row, int col) {
 }
 
 int main() {
-  solveNQueens(16);
+  solveNQueens(4);
 
   for (int i = 0; i < res.size(); ++i) {
     for (int j = 0; j < res[0].size(); ++j) {
