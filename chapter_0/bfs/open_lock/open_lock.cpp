@@ -75,6 +75,28 @@ int openLock_binary(vector<string>& deadends, string target) {
   int step = 0;
   q1.insert("0000");
   q2.insert(target);
+
+  while (!q1.empty() && !q2.empty()) {
+    unordered_set<string> temp = {};
+
+    for (string cur : q1) {
+      if (deads.count(cur)) continue;
+      if (q2.count(cur)) return step;
+
+      visited.insert(cur);
+
+      for (int i = 0; i < 4; ++i) {
+        string up = plus_up(cur, i);
+        if (!visited.count(up)) temp.insert(up);
+        string down = minus_down(cur, i);
+        if (!visited.count(down)) temp.insert(down);
+      }
+    }
+
+    ++step;
+    q1 = q2;
+    q2 = temp;
+  }
 }
 
 int main() {}
