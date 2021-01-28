@@ -2,9 +2,10 @@
  * @Author: Mengsen.Wang
  * @Date: 2021-01-19 18:29:40
  * @Last Modified by: Mengsen.Wang
- * @Last Modified time: 2021-01-19 19:17:49
+ * @Last Modified time: 2021-01-28 20:29:39
  */
 
+// TODO
 fn premute(&nums: Vec<i32>) -> &Vec<Vec<i32>> {
     // 记录结果
     let res: Vec<Vec<i32>> = vec![];
