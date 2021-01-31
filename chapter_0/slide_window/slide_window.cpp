@@ -100,7 +100,7 @@ vector<int> find_anagrams(string s, string t) {
 
 int length_of_longest_substring(string s) {
   unordered_map<char, int> window;
-  int left = 0, right = 0, valid = 0, res = 0;
+  int left = 0, right = 0, res = 0;
 
   while (right < s.size()) {
     char c = s[right];
