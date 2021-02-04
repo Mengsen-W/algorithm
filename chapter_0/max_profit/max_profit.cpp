@@ -24,6 +24,7 @@ dp[i][0][1] = -INT_MAX
 不允许交易，还持有股票，表示不可能状态
 */
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -37,9 +38,10 @@ using namespace std;
 int max_profit_k_1(vector<int> prices) {
   {
     int n = prices.size();
-    vector<vector<int>> dp = (n, (2, 0));
+    vector<vector<int>> dp(n, vector<int>(2, 0));
     dp[0][0] = 0;
-    dp[0][1] = max(INT_MIN - prices[0]);
+    dp[0][1] = max(INT_MIN, -prices[0]);
+
     for (int i = 1; i < n; ++i) {
       dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
       dp[i][1] = max(dp[i - 1][1], -prices[i]);
@@ -55,6 +57,19 @@ int max_profit_k_1(vector<int> prices) {
     }
     cout << dp_i_0 << endl;
   }
+  return 0;
 }
 
-int main() {}
+// dp[i][k][0] = max (dp[i-1][k][0], dp[i-1][k][1] + prices[i])
+// dp[i][k][1] = max (dp[i-1][k][1], dp[i-1][k - 1][0] - prices[i])
+//             = max (dp[i-1][k][1], dp[i-1][k][1] - prices[i]
+// dp[i][0] = max (dp[i-1][0], dp[i-1][1] + prices[i])
+// dp[i][1] = max (dp[i-1][1], -prices[i])
+int max_profit_k_inf(vector<int> prices) {}
+
+int main() {
+  vector<int> prices = {7, 1, 5, 3, 6, 4};
+  max_profit_k_1(prices);
+  prices = {7, 6, 4, 3, 1};
+  max_profit_k_1(prices);
+}
