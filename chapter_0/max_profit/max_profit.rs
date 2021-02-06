@@ -105,6 +105,32 @@ fn max_profit_k_inf_with_fee(prices: &Vec<i32>, fee: &i32) {
     }
 }
 
+fn max_profit_k(prices: &Vec<i32>, k: &usize) {
+    let size = prices.len();
+    if *k > size / 2 {
+        return max_profit_k_inf(prices);
+    }
+    let mut dp: Vec<Vec<Vec<i32>>> = vec![vec![vec![0; size]; *k + 1]; 2];
+
+    for i in 0..size {
+        for j in 0..=*k {
+            if i == 0 {
+                dp[0][j][0] = 0;
+                dp[1][j][0] = -prices[i];
+                continue;
+            }
+            if j == 0 {
+                dp[0][0][i] = 0;
+                dp[1][0][i] = -prices[i];
+                continue;
+            }
+            dp[0][j][i] = cmp::max(dp[0][j][i - 1], dp[1][j][i - 1] + prices[i]);
+            dp[1][j][i] = cmp::max(dp[1][j][i - 1], dp[0][j - 1][i - 1] - prices[i]);
+        }
+    }
+    println!("{}", dp[0][*k][size - 1]);
+}
+
 fn main() {
     let mut prices: Vec<i32>;
     {
@@ -127,5 +153,12 @@ fn main() {
         prices = vec![1, 3, 2, 8, 4, 9];
         let fee = 2;
         max_profit_k_inf_with_fee(&prices, &fee);
+    }
+    {
+        let k: usize = 2;
+        prices = vec![2, 4, 1];
+        max_profit_k(&prices, &k);
+        prices = vec![3, 2, 6, 5, 0, 3];
+        max_profit_k(&prices, &k);
     }
 }
