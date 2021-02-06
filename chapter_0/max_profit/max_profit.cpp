@@ -152,7 +152,32 @@ int max_profit_k_inf_with_fee(vector<int>& prices, int& fee) {
 
 // dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
 // dp[i][k][1] = max(dp[i-1][k][1], dp[i-1][k-1][0] - prices[i])
-int max_profit_k(vector<int>& prices, int& k) {}
+int max_profit_k(vector<int>& prices, int& k) {
+  int size = prices.size();
+  if (k > size / 2) return max_profit_k_inf(prices);
+
+  vector<vector<vector<int>>> dp(2,
+                                 vector<vector<int>>(k + 1, vector<int>(size)));
+  for (int i = 0; i < size; i++) {
+    for (int j = 0; j <= k; j++) {
+      if (i == 0) {
+        dp[0][j][0] = 0;
+        dp[1][j][0] = -prices[i];
+        continue;
+      }
+      if (j == 0) {
+        dp[0][0][i] = 0;
+        dp[1][0][i] = -prices[i];
+        continue;
+      }
+      dp[0][j][i] = max(dp[0][j][i - 1], dp[1][j][i - 1] + prices[i]);
+      dp[1][j][i] = max(dp[1][j][i - 1], dp[0][j - 1][i - 1] - prices[i]);
+    }
+  }
+  cout << dp[0][k][size - 1] << endl;
+
+  return 0;
+}
 
 int main() {
   vector<int> prices{};
@@ -176,6 +201,13 @@ int main() {
     prices = {1, 3, 2, 8, 4, 9};
     int fee = 2;
     max_profit_k_inf_with_fee(prices, fee);
+  }
+  {
+    prices = {2, 4, 1};
+    int k = 2;
+    max_profit_k(prices, k);
+    prices = {3, 2, 6, 5, 0, 3};
+    max_profit_k(prices, k);
   }
   return 0;
 }
