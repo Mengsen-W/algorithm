@@ -5,51 +5,41 @@
  * @Last Modified time: 2021-02-21 09:12:53
  */
 
-use std::collections::BinaryHeap;
+use std::collections::VecDeque;
 
 fn longest_sub_array(nums: Vec<i32>, limit: i32) -> i32 {
+    let len = nums.len();
+    let mut min_queue = VecDeque::new();
+    let mut max_queue = VecDeque::new();
     let mut left = 0;
     let mut right = 0;
-    let mut max_heap = BinaryHeap::new();
-    let mut min_heap = BinaryHeap::new();
-    let mut max_val;
-    let mut min_val;
-    let mut max_index;
-    let mut min_index;
     let mut res = 0;
 
-    while right < nums.len() {
-        max_heap.push((nums[right], right));
-        min_heap.push((-nums[right], right));
-
-        max_val = max_heap.peek().unwrap().0;
-        min_val = -min_heap.peek().unwrap().0;
-        //println!("max_heap: {:#?}", max_heap);
-        //println!("min_heap: {:#?}", min_heap);
-
-        while (max_val - min_val).abs() > limit {
-            left += 1;
-            min_index = min_heap.peek().unwrap().1;
-            max_index = max_heap.peek().unwrap().1;
-
-            while min_index < left {
-                min_heap.pop();
-                min_index = min_heap.peek().unwrap().1;
-            }
-            while max_index < left {
-                max_heap.pop();
-                max_index = max_heap.peek().unwrap().1;
-            }
-
-            max_val = max_heap.peek().unwrap().0;
-            min_val = -min_heap.peek().unwrap().0;
+    while right < len {
+        while !max_queue.is_empty() && max_queue.back() < Some(&nums[right]) {
+            max_queue.pop_back();
         }
-        res = res.max((right - left) as i32 + 1);
+        while !min_queue.is_empty() && min_queue.back() > Some(&nums[right]) {
+            min_queue.pop_back();
+        }
+        max_queue.push_back(nums[right]);
+        min_queue.push_back(nums[right]);
 
+        while !min_queue.is_empty() && !min_queue.is_empty() && max_queue[0] - min_queue[0] > limit
+        {
+            if nums[left] == min_queue[0] {
+                min_queue.pop_front();
+            }
+            if nums[left] == max_queue[0] {
+                max_queue.pop_front();
+            }
+            left += 1;
+        }
+
+        res = res.max(right - left + 1);
         right += 1;
     }
-
-    res
+    return res as i32;
 }
 
 fn main() {
