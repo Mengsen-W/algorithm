@@ -2,7 +2,7 @@
  * @Date: 2021-06-12 09:53:22
  * @Author: Mengsen Wang
  * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-06-12 11:09:11
+ * @LastEditTime: 2021-06-13 09:23:53
  */
 
 #include <cassert>
@@ -24,12 +24,8 @@ string largestNumber(vector<int> &cost, int target) {
   }
   string ans;
   for (int i = 8, j = target; i >= 0; i--) {
-    cout << cost[i] << "and" << i << endl;
     for (int c = cost[i]; j >= c && dp[j] == dp[j - c] + 1; j -= c) {
-      cout << cost[i] << "is" << i << endl;
-      // cout << c << j << dp[j] << dp[j - c] + 1 << endl;
       ans += '1' + i;
-      // cout << ans << endl;
     }
   }
   return ans;
@@ -42,22 +38,22 @@ int main() {
     string res{"7772"};
     assert(largestNumber(cost, target) == res);
   }
-  // {
-  //   vector<int> cost{2, 4, 6, 2, 4, 6, 4, 4, 4};
-  //   int target = 5;
-  //   string res{"0"};
-  //   assert(largestNumber(cost, target) == res);
-  // }
-  // {
-  //   vector<int> cost{7, 6, 5, 5, 5, 6, 8, 7, 8};
-  //   int target = 12;
-  //   string res{"85"};
-  //   assert(largestNumber(cost, target) == res);
-  // }
-  // {
-  //   vector<int> cost{6, 10, 15, 40, 40, 40, 40, 40, 40};
-  //   int target = 47;
-  //   string res{"32211"};
-  //   assert(largestNumber(cost, target) == res);
-  // }
+  {
+    vector<int> cost{2, 4, 6, 2, 4, 6, 4, 4, 4};
+    int target = 5;
+    string res{"0"};
+    assert(largestNumber(cost, target) == res);
+  }
+  {
+    vector<int> cost{7, 6, 5, 5, 5, 6, 8, 7, 8};
+    int target = 12;
+    string res{"85"};
+    assert(largestNumber(cost, target) == res);
+  }
+  {
+    vector<int> cost{6, 10, 15, 40, 40, 40, 40, 40, 40};
+    int target = 47;
+    string res{"32211"};
+    assert(largestNumber(cost, target) == res);
+  }
 }
