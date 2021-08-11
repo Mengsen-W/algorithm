@@ -2,7 +2,7 @@
  * @Date: 2021-08-09 11:24:56
  * @Author: Mengsen Wang
  * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-08-09 11:54:33
+ * @LastEditTime: 2021-08-10 19:49:28
  */
 
 #include <cassert>
@@ -10,7 +10,6 @@
 #include <queue>
 #include <unordered_set>
 #include <vector>
-// #include <functional>
 
 using namespace std;
 
