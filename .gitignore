@@ -1,4 +1,5 @@
 .vscode
 .history
 *.exe
+*.out
 *.pdb
