@@ -72,11 +72,23 @@ int in_multi_vec_size() {
   return 0;
 }
 
+template <class T>
+string VectorToString(vector<T>& vecData) {
+  string strData;
+  for (auto data : vecData) strData += string(data) + ",";
+
+  strData = strData.substr(0, strData.size() - 1);
+  return strData;
+}
+
 int main(void) {
   // in_one_number();
   // in_vec_with_black();
   // in_vec_default();
   // in_vec_with_size();
-  in_multi_vec_size();
+  // in_multi_vec_size();
+
+  vector<string> a{"hello", "world"};
+  cout << string(VectorToString<string>(a)) << endl;
   return 0;
 }
