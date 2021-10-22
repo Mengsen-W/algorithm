@@ -1,9 +1,8 @@
 ###
-# @Date: 2021-08-25 12:07:19
-# @Author: Mengsen Wang
-# @LastEditors: Mengsen Wang
-# @LastEditTime: 2021-10-20 09:57:47
-# @FilePath: /algorithm/delete_temp_file.sh
+ # @Date: 2021-08-25 12:07:19
+ # @Author: Mengsen Wang
+ # @LastEditors: Mengsen Wang
+ # @LastEditTime: 2021-10-22 01:22:48
 ###
 
 # delete single file out binary
