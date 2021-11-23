@@ -5,42 +5,36 @@
  * @Last Modified time: 2021-03-02 16:07:08
  */
 
-use std::collections::HashSet;
-
-fn buddy_strings(a: String, b: String) -> bool {
-    if a.len() != b.len() || a.len() < 2 {
+pub fn buddy_strings(s: String, goal: String) -> bool {
+    if s.len() != goal.len() {
         return false;
     }
-
-    let mut index = [0, 0];
-    let mut count = 0;
-    let (va, vb) = (a.into_bytes(), b.into_bytes());
-    let mut set = HashSet::new();
-    let mut f = true;
-
-    for (i, (a, b)) in va.iter().zip(vb.iter()).enumerate() {
-        if count == 2 {
-            return false;
+    if s == goal {
+        let mut mp = [0; 26];
+        for &c in s.as_bytes() {
+            let idx = (c - b'a') as usize;
+            mp[idx] += 1;
+            if mp[idx] > 1 {
+                return true;
+            }
         }
-
-        if a != b {
-            index[count] = i;
-            count += 1;
-        } else if a != &va[0] {
-            f = false;
+        false
+    } else {
+        let s = s.as_bytes();
+        let goal = goal.as_bytes();
+        let (mut a, mut b) = (usize::MAX, usize::MAX);
+        for i in 0..s.len() {
+            if s[i] != goal[i] {
+                if a == usize::MAX {
+                    a = i;
+                } else if b == usize::MAX {
+                    b = i;
+                } else {
+                    return false;
+                }
+            }
         }
-
-        set.insert(a);
-    }
-
-    //println!("{:?} {:?} {:?}", f, count, va[index[0]] == vb[index[1]] && va[index[1]] == vb[index[0]]);
-    // "abab"
-    // "abab"
-    match count {
-        0 => f || set.len() < va.len(),
-        1 => false,
-        2 => va[index[0]] == vb[index[1]] && va[index[1]] == vb[index[0]],
-        _ => unreachable!(),
+        a != usize::MAX && b != usize::MAX && s[a] == goal[b] && s[b] == goal[a]
     }
 }
 
@@ -52,4 +46,5 @@ fn main() {
         "aaaaaaabc".to_string(),
         "aaaaaaacb".to_string()
     ));
+    assert!(buddy_strings("abcd".to_string(), "bacd".to_string()));
 }
