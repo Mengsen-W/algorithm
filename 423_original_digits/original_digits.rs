@@ -2,9 +2,7 @@
  * @Date: 2021-11-24 00:52:48
  * @Author: Mengsen Wang
  * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-11-24 00:59:15
- * @FilePath: /algorithm/423_original_digits/original_digits.rs
- * @Description: file content
+ * @LastEditTime: 2021-11-25 02:39:51
  */
 
 pub fn original_digits(s: String) -> String {
