@@ -2,7 +2,7 @@
  * @Date: 2021-11-21 01:41:46
  * @Author: Mengsen Wang
  * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-11-21 02:10:15
+ * @LastEditTime: 2021-11-27 00:34:10
  */
 
 #include <cassert>
@@ -46,6 +46,19 @@ class Solution {
       ans++;
     }
     return ans;
+  }
+
+  int maxDepth2(Node *root) {
+    if (root == nullptr) {
+      return 0;
+    }
+    int maxChildDepth = 0;
+    vector<Node *> children = root->children;
+    for (auto child : children) {
+      int childDepth = maxDepth(child);
+      maxChildDepth = max(maxChildDepth, childDepth);
+    }
+    return maxChildDepth + 1;
   }
 };
 
