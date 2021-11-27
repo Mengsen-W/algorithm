@@ -2,9 +2,7 @@
  * @Date: 2021-11-21 02:11:21
  * @Author: Mengsen Wang
  * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-11-21 02:21:49
- * @FilePath: /algorithm/559_max_depth/max_depth.go
- * @Description: file content
+ * @LastEditTime: 2021-11-27 00:35:02
  */
 
 package main
@@ -28,6 +26,19 @@ func maxDepth(root *Node) (ans int) {
 		ans++
 	}
 	return
+}
+
+func maxDepth2(root *Node) int {
+	if root == nil {
+		return 0
+	}
+	maxChildDepth := 0
+	for _, child := range root.Children {
+		if childDepth := maxDepth(child); childDepth > maxChildDepth {
+			maxChildDepth = childDepth
+		}
+	}
+	return maxChildDepth + 1
 }
 
 func main() {
