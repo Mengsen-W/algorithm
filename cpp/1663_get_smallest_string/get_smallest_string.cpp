@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-01-26
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-01-26
+ * @LastEditTime: 2023-01-27
  * @FilePath: /algorithm/cpp/1663_get_smallest_string/get_smallest_string.cpp
  */
 
@@ -26,14 +26,14 @@ int main() {
   {
     int n = 3;
     int k = 27;
-    string ans{"aay"};
+    string ans = "aay";
     assert(Solution().getSmallestString(n, k) == ans);
   }
 
   {
     int n = 5;
     int k = 73;
-    string ans{"aaszz"};
+    string ans = "aaszz";
     assert(Solution().getSmallestString(n, k) == ans);
   }
 }
