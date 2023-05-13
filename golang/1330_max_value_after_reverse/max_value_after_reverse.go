@@ -8,8 +8,6 @@
 // Package main ...
 package main
 
-import "fmt"
-
 func maxValueAfterReverse(nums []int) int {
 	abs := func(a int) int {
 		if a < 0 {
