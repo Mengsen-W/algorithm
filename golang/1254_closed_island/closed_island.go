@@ -10,7 +10,7 @@ package main
 import (
 	"testing"
 
-	"github.com/go-playground/assert/v2"
+	"github.com/stretchr/testify"
 )
 
 func closedIsland(grid [][]int) int {

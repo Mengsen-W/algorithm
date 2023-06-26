@@ -12,7 +12,7 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/go-playground/assert/v2"
+	"github.com/stretchr/testify"
 )
 
 func pondSizes(land [][]int) []int {

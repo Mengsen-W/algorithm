@@ -12,7 +12,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/go-playground/assert/v2"
+	"github.com/stretchr/testify"
 )
 
 func getMaxGridHappiness(m int, n int, introvertsCount int, extrovertsCount int) int {

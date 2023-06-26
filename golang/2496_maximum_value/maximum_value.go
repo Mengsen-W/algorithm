@@ -11,7 +11,7 @@ package main
 import (
 	"testing"
 
-	"github.com/go-playground/assert/v2"
+	"github.com/stretchr/testify"
 )
 
 func maximumValue(strs []string) (ans int) {
