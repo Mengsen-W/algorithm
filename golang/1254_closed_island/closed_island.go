@@ -10,7 +10,7 @@ package main
 import (
 	"testing"
 
-	"github.com/stretchr/testify"
+	"github.com/stretchr/testify/assert"
 )
 
 func closedIsland(grid [][]int) int {

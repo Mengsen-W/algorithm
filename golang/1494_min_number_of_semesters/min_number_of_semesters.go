@@ -13,7 +13,7 @@ import (
 	"math/bits"
 	"testing"
 
-	"github.com/stretchr/testify"
+	"github.com/stretchr/testify/assert"
 )
 
 func minNumberOfSemesters(n int, relations [][]int, k int) int {

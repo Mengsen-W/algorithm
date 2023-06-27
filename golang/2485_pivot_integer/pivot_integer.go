@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-06-26
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-06-26
+ * @LastEditTime: 2023-06-27
  * @FilePath: /algorithm/golang/2485_pivot_integer/pivot_integer.go
  */
 

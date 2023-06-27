@@ -11,7 +11,7 @@ package main
 import (
 	"testing"
 
-	"github.com/stretchr/testify"
+	"github.com/stretchr/testify/assert"
 )
 
 func maxSumDivThree(nums []int) int {

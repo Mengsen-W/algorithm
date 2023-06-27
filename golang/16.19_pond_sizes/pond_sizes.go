@@ -12,7 +12,7 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/stretchr/testify"
+	"github.com/stretchr/testify/assert"
 )
 
 func pondSizes(land [][]int) []int {
