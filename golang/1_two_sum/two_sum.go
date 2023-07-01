@@ -1,14 +1,17 @@
 /*
  * @Date: 2021-08-26 11:19:19
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-08-26 11:44:39
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-07-01
  */
 
+// Package main ...
 package main
 
 import (
-	"reflect"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func twoSum(nums []int, target int) []int {
@@ -23,27 +26,17 @@ func twoSum(nums []int, target int) []int {
 }
 
 func main() {
-	assert := func(a, b []int) {
-		if !reflect.DeepEqual(a, b) {
-			panic("Not Passed")
-		}
+	testMap := []struct {
+		nums   []int
+		target int
+		ans    []int
+	}{
+		{[]int{2, 7, 11, 15}, 9, []int{0, 1}},
+		{[]int{3, 2, 4}, 6, []int{1, 2}},
+		{[]int{3, 3}, 6, []int{0, 1}},
 	}
-	{
-		nums := []int{2, 7, 11, 15}
-		target := 9
-		ans := []int{0, 1}
-		assert(twoSum(nums, target), ans)
-	}
-	{
-		nums := []int{3, 2, 4}
-		target := 6
-		ans := []int{1, 2}
-		assert(twoSum(nums, target), ans)
-	}
-	{
-		nums := []int{3, 3}
-		target := 6
-		ans := []int{0, 1}
-		assert(twoSum(nums, target), ans)
+
+	for _, item := range testMap {
+		assert.Equal(&testing.T{}, twoSum(item.nums, item.target), item.ans)
 	}
 }
