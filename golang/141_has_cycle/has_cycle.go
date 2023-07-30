@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-07-29
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-07-29
+ * @LastEditTime: 2023-07-30
  * @FilePath: /algorithm/golang/141_has_cycle/has_cycle.go
  */
 
@@ -16,8 +16,8 @@ import (
 
 // Definition for singly-linked list.
 type ListNode struct {
-	Val  int
 	Next *ListNode
+	Val  int
 }
 
 func hasCycle(head *ListNode) bool {
@@ -40,7 +40,7 @@ func main() {
 		head *ListNode
 		ans  bool
 	}{
-		{&ListNode{0, nil}, false},
+		{&ListNode{nil, 0}, false},
 	}
 
 	for _, item := range tests {
