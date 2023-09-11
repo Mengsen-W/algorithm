@@ -1,8 +1,8 @@
 /*
  * @Date: 2021-12-14 05:54:56
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-12-14 05:56:14
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-09-11
  */
 
 package main
@@ -10,6 +10,9 @@ package main
 import (
 	"container/heap"
 	"sort"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func scheduleCourse(courses [][]int) int {
@@ -52,14 +55,16 @@ func (h *Heap) Pop() interface{} {
 }
 
 func main() {
-	assert := func(a, b int) {
-		if a != b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		courses [][]int
+		ans     int
+	}{
+		{[][]int{{100, 200}, {200, 1300}, {1000, 1250}, {2000, 3200}}, 3},
+		{[][]int{{1, 2}}, 1},
+		{[][]int{{3, 2}, {4, 3}}, 0},
 	}
 
-	assert(scheduleCourse([][]int{
-		{100, 200}, {200, 1300}, {1000, 1250}, {2000, 3200}}), 3)
-	assert(scheduleCourse([][]int{{1, 2}}), 1)
-	assert(scheduleCourse([][]int{{3, 2}, {4, 3}}), 0)
+	for index, item := range tests {
+		assert.Equal(&testing.T{}, item.ans, scheduleCourse(item.courses), index)
+	}
 }
