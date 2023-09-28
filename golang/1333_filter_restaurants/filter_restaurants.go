@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-09-27
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-09-27
+ * @LastEditTime: 2023-09-28
  * @FilePath: /algorithm/golang/1333_filter_restaurants/filter_restaurants.go
  */
 
@@ -16,6 +16,7 @@ import (
 )
 
 func filterRestaurants(restaurants [][]int, veganFriendly int, maxPrice int, maxDistance int) []int {
+	res := []int{}
 	filtered := [][]int{}
 	for _, r := range restaurants {
 		if r[3] <= maxPrice && r[4] <= maxDistance && (veganFriendly != 1 || r[2] != 0) {
@@ -25,7 +26,6 @@ func filterRestaurants(restaurants [][]int, veganFriendly int, maxPrice int, max
 	sort.Slice(filtered, func(i, j int) bool {
 		return filtered[i][1] > filtered[j][1] || (filtered[i][1] == filtered[j][1] && filtered[i][0] > filtered[j][0])
 	})
-	res := []int{}
 	for _, r := range filtered {
 		res = append(res, r[0])
 	}
