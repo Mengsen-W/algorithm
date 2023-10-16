@@ -1,12 +1,13 @@
 /*
  * @Date: 2021-10-30 01:12:59
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-30 01:23:50
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-10-16
  */
 
 #include <cassert>
 #include <climits>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -31,26 +32,15 @@ class Solution {
 };
 
 int main() {
-  {
-    Solution solution;
-    vector<int> nums = {1, 2, 1, 3, 2, 5};
-    vector<int> result = solution.singleNumber(nums);
-    assert(result[0] == 3);
-    assert(result[1] == 5);
+  vector<tuple<vector<int>, vector<int>>> tests{
+      {{1, 2, 1, 3, 2, 5}, {3, 5}},
+      {{-1, 0}, {-1, 0}},
+      {{0, 1}, {1, 0}},
+  };
+
+  for (auto& [nums, ans] : tests) {
+    assert(Solution().singleNumber(nums) == ans);
   }
-  {
-    Solution solution;
-    vector<int> nums = {-1, 0};
-    vector<int> result = solution.singleNumber(nums);
-    assert(result[0] == -1);
-    assert(result[1] == 0);
-  }
-  {
-    Solution solution;
-    vector<int> nums = {0, 1};
-    vector<int> result = solution.singleNumber(nums);
-    assert(result[0] == 1);
-    assert(result[1] == 0);
-  }
+
   return 0;
 }

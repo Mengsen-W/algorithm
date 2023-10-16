@@ -1,13 +1,17 @@
 /*
  * @Date: 2021-10-30 01:13:14
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-30 01:25:02
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-10-16
  */
 
 package main
 
-import "reflect"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func singleNumber(nums []int) []int {
 	xorSum := 0
@@ -27,12 +31,15 @@ func singleNumber(nums []int) []int {
 }
 
 func main() {
-	assert := func(a, b []int) {
-		if !reflect.DeepEqual(a, b) {
-			panic("NotPassed")
-		}
+	tests := []struct {
+		nums []int
+		ans  []int
+	}{
+		{[]int{1, 2, 1, 3, 2, 5}, []int{3, 5}},
+		{[]int{-1, 0}, []int{-1, 0}},
+		{[]int{0, 1}, []int{1, 0}},
 	}
-	assert(singleNumber([]int{1, 2, 1, 3, 2, 5}), []int{3, 5})
-	assert(singleNumber([]int{-1, 0}), []int{-1, 0})
-	assert(singleNumber([]int{0, 1}), []int{1, 0})
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, singleNumber(test.nums), index)
+	}
 }

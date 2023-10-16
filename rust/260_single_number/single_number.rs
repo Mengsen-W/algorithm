@@ -1,8 +1,8 @@
 /*
  * @Date: 2021-10-30 01:13:07
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-30 01:28:31
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-10-16
  */
 
 struct Solution;
@@ -24,7 +24,13 @@ impl Solution {
 }
 
 fn main() {
-    assert_eq!(Solution::single_number(vec![1, 2, 1, 3, 2, 5]), vec![3, 5]);
-    assert_eq!(Solution::single_number(vec![-1, 0]), vec![-1, 0]);
-    assert_eq!(Solution::single_number(vec![0, 1]), vec![1, 0]);
+    let tests = vec![
+        (vec![1, 2, 1, 3, 2, 5], vec![3, 5]),
+        (vec![-1, 0], vec![-1, 0]),
+        (vec![0, 1], vec![1, 0]),
+    ];
+
+    for (nums, ans) in tests {
+        assert_eq!(Solution::single_number(nums), ans);
+    }
 }
