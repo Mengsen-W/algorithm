@@ -1,30 +1,38 @@
 /*
  * @Date: 2021-07-12 08:24:46
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-07-12 08:26:22
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-10-29
  */
 
-fn h_index(mut citations: Vec<i32>) -> i32 {
-    citations.sort();
-    let len = citations.len();
-    for x in citations.iter().enumerate().map(|(i, value)| {
-        if *value as usize >= len - i {
-            return len - i;
+struct Solution;
+
+impl Solution {
+    pub fn h_index(mut citations: Vec<i32>) -> i32 {
+        citations.sort();
+        let len = citations.len();
+        for x in citations.iter().enumerate().map(|(i, value)| {
+            if *value as usize >= len - i {
+                return len - i;
+            }
+            return 99999999;
+        }) {
+            if x != 99999999 {
+                return x as i32;
+            }
         }
-        return 99999999;
-    }) {
-        if x != 99999999 {
-            return x as i32;
-        }
+        return 0;
     }
-    return 0;
 }
 
 fn main() {
-    let citations = vec![0, 1, 3, 5, 6];
-    assert_eq!(h_index(citations), 3);
+    let tests = vec![
+        (vec![3, 0, 6, 1, 5], 3),
+        (vec![1, 3, 1], 1),
+        (vec![0, 1, 3, 5, 6], 3),
+    ];
 
-    let citations = vec![1];
-    assert_eq!(h_index(citations), 1);
+    for (citations, ans) in tests {
+        assert_eq!(Solution::h_index(citations), ans);
+    }
 }

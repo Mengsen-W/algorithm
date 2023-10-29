@@ -1,11 +1,17 @@
 /*
  * @Date: 2021-07-12 08:24:51
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-07-12 08:26:54
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-10-29
  */
 
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func hIndex(citations []int) (h int) {
 	n := len(citations)
@@ -27,11 +33,16 @@ func hIndex(citations []int) (h int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed!")
-		}
+	tests := []struct {
+		citations []int
+		ans       int
+	}{
+		{[]int{3, 0, 6, 1, 5}, 3},
+		{[]int{1, 3, 1}, 1},
+		{[]int{0, 1, 3, 5, 6}, 3},
 	}
-	citations := []int{0, 1, 3, 5, 6}
-	assert(hIndex(citations) == 3)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, hIndex(test.citations), index)
+	}
 }
