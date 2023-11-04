@@ -1,11 +1,17 @@
 /*
  * @Date: 2021-05-16 09:52:02
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-05-16 10:03:05
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-11-04
  */
 
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 const highBit = 30
 
@@ -76,29 +82,18 @@ func findMaximumXOR(nums []int) (x int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed!")
-		}
+	tests := []struct {
+		nums []int
+		ans  int
+	}{
+		{[]int{3, 10, 5, 25, 2, 8}, 28},
+		{[]int{0}, 0},
+		{[]int{2, 4}, 6},
+		{[]int{8, 10, 2}, 10},
+		{[]int{14, 70, 53, 83, 49, 91, 36, 80, 92, 51, 66, 70}, 127},
 	}
-	{
-		nums := []int{3, 10, 5, 25, 2, 8}
-		assert(findMaximumXOR(nums) == 28)
-	}
-	{
-		nums := []int{0}
-		assert(findMaximumXOR(nums) == 0)
-	}
-	{
-		nums := []int{2, 4}
-		assert(findMaximumXOR(nums) == 6)
-	}
-	{
-		nums := []int{8, 10, 2}
-		assert(findMaximumXOR(nums) == 10)
-	}
-	{
-		nums := []int{14, 70, 53, 83, 49, 91, 36, 80, 92, 51, 66, 70}
-		assert(findMaximumXOR(nums) == 127)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, findMaximumXOR(test.nums), index)
 	}
 }

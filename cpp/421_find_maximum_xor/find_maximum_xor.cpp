@@ -1,12 +1,13 @@
 /*
  * @Date: 2021-05-16 09:51:48
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-05-16 09:58:22
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-11-04
  */
 
 #include <algorithm>
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -88,24 +89,34 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> nums{3, 10, 5, 25, 2, 8};
-    assert(Solution{}.findMaximumXOR(nums) == 28);
-  }
-  {
-    vector<int> nums{0};
-    assert(Solution{}.findMaximumXOR(nums) == 0);
-  }
-  {
-    vector<int> nums{2, 4};
-    assert(Solution{}.findMaximumXOR(nums) == 6);
-  }
-  {
-    vector<int> nums{8, 10, 2};
-    assert(Solution{}.findMaximumXOR(nums) == 10);
-  }
-  {
-    vector<int> nums{14, 70, 53, 83, 49, 91, 36, 80, 92, 51, 66, 70};
-    assert(Solution{}.findMaximumXOR(nums) == 127);
+  vector<tuple<vector<int>, int>> tests{
+      {
+          {3, 10, 5, 25, 2, 8},
+          28,
+      },
+      {
+          {0},
+          0,
+      },
+      {
+          {2, 4},
+          6,
+      },
+      {
+          {8, 10, 2},
+          10,
+      },
+      {
+          {8, 10, 2},
+          10,
+      },
+      {
+          {14, 70, 53, 83, 49, 91, 36, 80, 92, 51, 66, 70},
+          127,
+      },
+  };
+
+  for (auto& [nums, ans] : tests) {
+    assert(Solution().findMaximumXOR(nums) == ans);
   }
 }

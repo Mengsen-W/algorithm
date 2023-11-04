@@ -1,13 +1,12 @@
 /*
  * @Date: 2023-11-03
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-11-03
+ * @LastEditTime: 2023-11-04
  * @FilePath: /algorithm/cpp/117_connect/connect.cpp
  */
 
 // Definition for a Node.
 #include <cassert>
-#include <cstddef>
 class Node {
  public:
   int val;

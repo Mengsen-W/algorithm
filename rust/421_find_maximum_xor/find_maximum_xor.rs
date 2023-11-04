@@ -1,8 +1,8 @@
 /*
  * @Date: 2021-05-16 09:51:54
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-05-16 10:09:59
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-11-04
  */
 
 use std::cell::RefCell;
@@ -66,33 +66,28 @@ impl Trie<i32> {
     }
 }
 
-fn find_maximum_xor(nums: Vec<i32>) -> i32 {
-    let mut t = Trie::new();
-    nums.into_iter().fold(0, |ans, x| {
-        t.add(x);
-        max(ans, t.get_max(x))
-    })
+struct Solution;
+
+impl Solution {
+    pub fn find_maximum_xor(nums: Vec<i32>) -> i32 {
+        let mut t = Trie::new();
+        nums.into_iter().fold(0, |ans, x| {
+            t.add(x);
+            max(ans, t.get_max(x))
+        })
+    }
 }
 
 fn main() {
-    {
-        let nums = vec![3, 10, 5, 25, 2, 8];
-        assert_eq!(find_maximum_xor(nums), 28);
-    }
-    {
-        let nums = vec![0];
-        assert_eq!(find_maximum_xor(nums), 0);
-    }
-    {
-        let nums = vec![2, 4];
-        assert_eq!(find_maximum_xor(nums), 6);
-    }
-    {
-        let nums = vec![8, 10, 2];
-        assert_eq!(find_maximum_xor(nums), 10);
-    }
-    {
-        let nums = vec![14, 70, 53, 83, 49, 91, 36, 80, 92, 51, 66, 70];
-        assert_eq!(find_maximum_xor(nums), 127);
+    let tests = vec![
+        (vec![2, 10, 5, 25, 2, 8], 28),
+        (vec![0], 0),
+        (vec![2, 4], 6),
+        (vec![8, 10, 2], 10),
+        (vec![14, 70, 53, 83, 49, 91, 36, 80, 92, 51, 66, 70], 127),
+    ];
+
+    for (nums, ans) in tests {
+        assert_eq!(Solution::find_maximum_xor(nums), ans);
     }
 }
