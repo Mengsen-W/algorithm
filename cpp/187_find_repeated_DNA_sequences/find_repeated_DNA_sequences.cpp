@@ -1,8 +1,8 @@
 /*
  * @Date: 2021-10-08 00:08:04
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-08 11:25:42
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-11-05
  */
 
 #include <cassert>
@@ -34,14 +34,12 @@ class Solution {
 };
 
 int main() {
-  {
-    string s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT";
-    vector<string> ans{"AAAAACCCCC", "CCCCCAAAAA"};
-    assert(Solution().findRepeatedDnaSequences(s) == ans);
-  }
-  {
-    string s = "AAAAAAAAAAAAA";
-    vector<string> ans{"AAAAAAAAAA"};
+  vector<tuple<string, vector<string>>> tests{
+      {"AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT", {"AAAAACCCCC", "CCCCCAAAAA"}},
+      {"AAAAAAAAAAAAA", {"AAAAAAAAAA"}},
+  };
+
+  for (auto &[s, ans] : tests) {
     assert(Solution().findRepeatedDnaSequences(s) == ans);
   }
 }

@@ -1,13 +1,17 @@
 /*
  * @Date: 2021-10-08 00:13:26
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-08 00:16:13
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-11-05
  */
 
 package main
 
-import "reflect"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 const L = 10
 
@@ -34,19 +38,15 @@ func findRepeatedDnaSequences(s string) (ans []string) {
 }
 
 func main() {
-	assert := func(a, b []string) {
-		if !reflect.DeepEqual(a, b) {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		s   string
+		ans []string
+	}{
+		{"AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT", []string{"AAAAACCCCC", "CCCCCAAAAA"}},
+		{"AAAAAAAAAAAAA", []string{"AAAAAAAAAA"}},
 	}
-	{
-		s := "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
-		ans := []string{"AAAAACCCCC", "CCCCCAAAAA"}
-		assert(findRepeatedDnaSequences(s), ans)
-	}
-	{
-		s := "AAAAAAAAAAAAA"
-		ans := []string{"AAAAAAAAAA"}
-		assert(findRepeatedDnaSequences(s), ans)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, findRepeatedDnaSequences(test.s), index)
 	}
 }
