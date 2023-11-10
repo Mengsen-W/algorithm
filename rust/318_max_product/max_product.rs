@@ -1,8 +1,8 @@
 /*
  * @Date: 2021-11-16 23:38:52
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-11-17 00:03:10
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-11-10
  */
 
 struct Solution;
@@ -39,38 +39,16 @@ impl Solution {
 }
 
 fn main() {
-    assert_eq!(
-        Solution::max_product(vec![
-            "abcw".to_string(),
-            "baz".to_string(),
-            "foo".to_string(),
-            "bar".to_string(),
-            "xtfn".to_string(),
-            "abcdef".to_string(),
-        ]),
-        16
-    );
+    let tests = vec![
+        (vec!["abcw", "baz", "foo", "bar", "xtfn", "abcdef"], 16),
+        (vec!["a", "ab", "abc", "d", "cd", "bcd", "abcd"], 4),
+        (vec!["a", "aa", "aaa", "aaaa"], 0),
+    ];
 
-    assert_eq!(
-        Solution::max_product(vec![
-            "a".to_string(),
-            "ab".to_string(),
-            "abc".to_string(),
-            "d".to_string(),
-            "cd".to_string(),
-            "bcd".to_string(),
-            "abcd".to_string(),
-        ]),
-        4
-    );
-
-    assert_eq!(
-        Solution::max_product(vec![
-            "a".to_string(),
-            "aa".to_string(),
-            "aaa".to_string(),
-            "aaaa".to_string(),
-        ]),
-        0
-    );
+    for (words, ans) in tests {
+        assert_eq!(
+            Solution::max_product(words.iter().map(|x| x.to_string()).collect()),
+            ans
+        );
+    }
 }

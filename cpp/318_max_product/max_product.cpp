@@ -1,12 +1,13 @@
 /*
  * @Date: 2021-11-16 23:38:50
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-11-16 23:51:05
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-11-10
  */
 
 #include <cassert>
 #include <string>
+#include <tuple>
 #include <unordered_map>
 #include <vector>
 
@@ -43,9 +44,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().maxProduct(
-             {"abcw", "baz", "foo", "bar", "xtfn", "abcdef"}) == 16);
-  assert(Solution().maxProduct({"a", "ab", "abc", "d", "cd", "bcd", "abcd"}) ==
-         4);
-  assert(Solution().maxProduct({"a", "aa", "aaa", "aaaa"}) == 0);
+  vector<tuple<vector<string>, int>> tests{
+      {{"abcw", "baz", "foo", "bar", "xtfn", "abcdef"}, 16},
+      {{"a", "ab", "abc", "d", "cd", "bcd", "abcd"}, 4},
+      {{"a", "aa", "aaa", "aaaa"}, 0},
+  };
+
+  for (auto &[word, ans] : tests) {
+    assert(Solution().maxProduct(word) == ans);
+  }
 }
