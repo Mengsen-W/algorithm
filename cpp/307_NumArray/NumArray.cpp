@@ -1,9 +1,9 @@
 /*
  * @Date: 2022-04-03 23:23:04
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-04-03 23:34:03
- * @FilePath: /algorithm/307_NumArray/NumArray.cpp
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-11-13
+ * @FilePath: /algorithm/cpp/307_NumArray/NumArray.cpp
  */
 
 #include <cassert>
@@ -48,9 +48,7 @@ class NumArray {
     nums[index] = val;
   }
 
-  int sumRange(int left, int right) {
-    return prefixSum(right + 1) - prefixSum(left);
-  }
+  int sumRange(int left, int right) { return prefixSum(right + 1) - prefixSum(left); }
 };
 
 int main() {

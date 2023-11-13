@@ -1,12 +1,18 @@
 /*
  * @Date: 2022-04-03 23:23:18
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-04-03 23:38:00
- * @FilePath: /algorithm/307_NumArray/NumArray.go
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-11-13
+ * @FilePath: /algorithm/golang/307_NumArray/NumArray.go
  */
 
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 type NumArray struct {
 	nums, tree []int
@@ -44,13 +50,8 @@ func (na *NumArray) SumRange(left, right int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
-	}
 	n := Constructor([]int{1, 3, 5})
-	assert(n.SumRange(0, 2) == 9)
+	assert.Equal(&testing.T{}, 9, n.SumRange(0, 2))
 	n.Update(1, 2)
-	assert(n.SumRange(0, 2) == 8)
+	assert.Equal(&testing.T{}, 8, n.SumRange(0, 2))
 }
