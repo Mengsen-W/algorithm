@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-11-17
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-11-17
+ * @LastEditTime: 2023-11-18
  * @FilePath: /algorithm/rust/2736_maximum_sum_queries/maximum_sum_queries.rs
  */
 
