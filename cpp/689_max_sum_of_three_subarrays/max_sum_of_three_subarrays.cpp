@@ -1,11 +1,12 @@
 /*
  * @Date: 2021-12-09 04:47:32
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-12-09 04:58:11
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-11-19
  */
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -46,16 +47,12 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> nums = {1, 2, 1, 2, 6, 7, 5, 1};
-    int k = 2;
-    assert(Solution().maxSumOfThreeSubarrays(nums, k) ==
-           vector<int>({0, 3, 5}));
-  }
-  {
-    vector<int> nums = {1, 2, 1, 2, 1, 2, 1, 2, 1};
-    int k = 2;
-    assert(Solution().maxSumOfThreeSubarrays(nums, k) ==
-           vector<int>({0, 2, 4}));
+  vector<tuple<vector<int>, int, vector<int>>> tests{
+      {{1, 2, 1, 2, 6, 7, 5, 1}, 2, {0, 3, 5}},
+      {{1, 2, 1, 2, 1, 2, 1, 2, 1}, 2, {0, 2, 4}},
+  };
+
+  for (auto &[nums, k, ans] : tests) {
+    assert(Solution().maxSumOfThreeSubarrays(nums, k) == ans);
   }
 }

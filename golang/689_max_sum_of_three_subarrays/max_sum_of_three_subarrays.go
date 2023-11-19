@@ -1,13 +1,17 @@
 /*
  * @Date: 2021-12-09 04:47:36
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-12-09 05:01:50
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-11-19
  */
 
 package main
 
-import "reflect"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func maxSumOfThreeSubarrays(nums []int, k int) (ans []int) {
 	var sum1, maxSum1, maxSum1Idx int
@@ -39,12 +43,15 @@ func maxSumOfThreeSubarrays(nums []int, k int) (ans []int) {
 }
 
 func main() {
-	assert := func(a, b []int) {
-		if !reflect.DeepEqual(a, b) {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		nums []int
+		k    int
+		ans  []int
+	}{
+		{[]int{1, 2, 1, 2, 6, 7, 5, 1}, 2, []int{0, 3, 5}},
+		{[]int{1, 2, 1, 2, 1, 2, 1, 2, 1}, 2, []int{0, 2, 4}},
 	}
-
-	assert(maxSumOfThreeSubarrays([]int{1, 2, 1, 2, 6, 7, 5, 1}, 2), []int{0, 3, 5})
-	assert(maxSumOfThreeSubarrays([]int{1, 2, 1, 2, 1, 2, 1, 2, 1}, 2), []int{0, 2, 4})
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, maxSumOfThreeSubarrays(test.nums, test.k), index)
+	}
 }
