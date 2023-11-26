@@ -1,13 +1,14 @@
 /*
  * @Date: 2022-09-06
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-09-06
- * @FilePath: /algorithm/828_unique_letter_string/unique_letter_string.cpp
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-11-26
+ * @FilePath: /algorithm/cpp/828_unique_letter_string/unique_letter_string.cpp
  */
 
 #include <assert.h>
 
 #include <string>
+#include <tuple>
 #include <unordered_map>
 #include <vector>
 
@@ -33,7 +34,12 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().uniqueLetterString("ABC") == 10);
-  assert(Solution().uniqueLetterString("ABA") == 8);
-  assert(Solution().uniqueLetterString("LEETCODE") == 92);
+  vector<tuple<string, int>> tests{
+      {"ABC", 10},
+      {"ABA", 8},
+      {"LEETCODE", 92},
+  };
+  for (auto &&[s, ans] : tests) {
+    assert(Solution().uniqueLetterString(s) == ans);
+  }
 }
