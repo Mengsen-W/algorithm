@@ -1,11 +1,12 @@
 /*
  * @Date: 2022-10-28
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-10-28
- * @FilePath: /algorithm/907_sum_subarray_mins/sum_subarray_mins.CPP
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-11-27
+ * @FilePath: /algorithm/cpp/907_sum_subarray_mins/sum_subarray_mins.cpp
  */
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -41,15 +42,12 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> arr{3, 1, 2, 4};
-    int ans = 17;
-    assert(Solution().sumSubarrayMins(arr) == ans);
-  }
+  vector<tuple<vector<int>, int>> tests{
+      {{3, 1, 2, 4}, 17},
+      {{11, 81, 94, 43, 3}, 444},
+  };
 
-  {
-    vector<int> arr{11, 81, 94, 43, 3};
-    int ans = 444;
+  for (auto &[arr, ans] : tests) {
     assert(Solution().sumSubarrayMins(arr) == ans);
   }
 }

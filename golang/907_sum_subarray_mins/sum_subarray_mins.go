@@ -1,11 +1,17 @@
 /*
  * @Date: 2022-10-28
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-10-28
- * @FilePath: /algorithm/907_sum_subarray_mins/sum_subarray_mins.go
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-11-27
+ * @FilePath: /algorithm/golang/907_sum_subarray_mins/sum_subarray_mins.go
  */
 
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func sumSubarrayMins(arr []int) (ans int) {
 	const mod int = 1e9 + 7
@@ -43,20 +49,15 @@ func sumSubarrayMins(arr []int) (ans int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
-	}
-	{
-		arr := []int{3, 1, 2, 4}
-		ans := 17
-		assert(sumSubarrayMins(arr) == ans)
+	tests := []struct {
+		arr []int
+		ans int
+	}{
+		{[]int{11, 81, 94, 43, 3}, 444},
+		{[]int{3, 1, 2, 4}, 17},
 	}
 
-	{
-		arr := []int{11, 81, 94, 43, 3}
-		ans := 444
-		assert(sumSubarrayMins(arr) == ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, sumSubarrayMins(test.arr), index)
 	}
 }
