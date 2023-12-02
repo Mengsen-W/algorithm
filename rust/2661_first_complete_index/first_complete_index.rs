@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-12-01
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-12-01
+ * @LastEditTime: 2023-12-02
  * @FilePath: /algorithm/rust/2661_first_complete_index/first_complete_index.rs
  */
 
