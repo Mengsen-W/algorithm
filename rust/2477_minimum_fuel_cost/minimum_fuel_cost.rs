@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-12-05
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-12-05
+ * @LastEditTime: 2023-12-06
  * @FilePath: /algorithm/rust/2477_minimum_fuel_cost/minimum_fuel_cost.rs
  */
 
