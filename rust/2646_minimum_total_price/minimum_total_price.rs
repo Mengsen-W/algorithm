@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-12-06
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-12-06
+ * @LastEditTime: 2023-12-07
  * @FilePath: /algorithm/rust/2646_minimum_total_price/minimum_total_price.rs
  */
 
