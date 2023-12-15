@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-12-14
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-12-14
+ * @LastEditTime: 2023-12-15
  * @FilePath: /algorithm/golang/2132_possible_to_stamp/possible_to_stamp.go
  */
 
