@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-12-15
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-12-15
+ * @LastEditTime: 2023-12-16
  * @FilePath: /algorithm/rust/2415_reverse_odd_levels/reverse_odd_levels.rs
  */
 
