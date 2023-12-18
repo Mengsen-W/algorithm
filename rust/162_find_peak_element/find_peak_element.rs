@@ -37,14 +37,9 @@ impl Solution {
 }
 
 fn main() {
-    {
-        let nums = vec![1, 2, 3, 1];
-        let ans = 2;
-        assert_eq!(Solution::find_peak_element(nums), ans);
-    }
-    {
-        let nums = vec![1, 2, 1, 3, 5, 6, 4];
-        let ans = 5;
+    let tests = vec![(vec![1, 2, 3, 1], 2), (vec![1, 2, 1, 3, 5, 6, 4], 5)];
+
+    for (nums, ans) in tests {
         assert_eq!(Solution::find_peak_element(nums), ans);
     }
 }

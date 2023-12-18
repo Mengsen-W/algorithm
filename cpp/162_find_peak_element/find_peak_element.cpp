@@ -1,11 +1,12 @@
 /*
  * @Date: 2021-09-15 08:41:29
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-09-15 08:45:12
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-12-18
  */
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 using namespace std;
 
@@ -41,14 +42,12 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> nums{1, 2, 3, 1};
-    int ans = 2;
-    assert(Solution().findPeakElement(nums) == ans);
-  }
-  {
-    vector<int> nums{1, 2, 1, 3, 5, 6, 4};
-    int ans = 5;
+  vector<tuple<vector<int>, int>> tests{
+      {{1, 2, 3, 1}, 2},
+      {{1, 2, 1, 3, 5, 6, 4}, 5},
+  };
+
+  for (auto& [nums, ans] : tests) {
     assert(Solution().findPeakElement(nums) == ans);
   }
 }

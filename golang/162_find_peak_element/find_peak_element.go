@@ -1,14 +1,17 @@
 /*
  * @Date: 2021-09-15 08:45:54
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-09-15 08:47:15
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-12-18
  */
 
 package main
 
 import (
 	"math"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func findPeakElement(nums []int) int {
@@ -38,19 +41,15 @@ func findPeakElement(nums []int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		nums []int
+		ans  int
+	}{
+		{[]int{1, 2, 3, 1}, 2},
+		{[]int{1, 2, 1, 3, 5, 6, 4}, 5},
 	}
-	{
-		nums := []int{1, 2, 3, 4}
-		ans := 3
-		assert(findPeakElement(nums) == ans)
-	}
-	{
-		nums := []int{1, 2, 1, 3, 5, 6, 4}
-		ans := 5
-		assert(findPeakElement(nums) == ans)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, findPeakElement(test.nums), index)
 	}
 }
