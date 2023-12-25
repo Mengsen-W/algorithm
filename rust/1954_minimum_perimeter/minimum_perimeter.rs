@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-12-24
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-12-24
+ * @LastEditTime: 2023-12-25
  * @FilePath: /algorithm/rust/1954_minimum_perimeter/minimum_perimeter.rs
  */
 
