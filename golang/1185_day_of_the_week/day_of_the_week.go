@@ -1,16 +1,24 @@
 /*
  * @Date: 2022-01-03 01:10:44
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-01-03 01:45:41
- * @FilePath: /algorithm/1185_day_of_the_week/day_of_the_week.go
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-12-30
+ * @FilePath: /algorithm/golang/1185_day_of_the_week/day_of_the_week.go
  * @Description: file content
  */
 
 package main
 
-var week = []string{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"}
-var monthDays = []int{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30}
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
+var (
+	week      = []string{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"}
+	monthDays = []int{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30}
+)
 
 func dayOfTheWeek(day, month, year int) string {
 	days := 0
@@ -29,14 +37,19 @@ func dayOfTheWeek(day, month, year int) string {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		day   int
+		month int
+		year  int
+		ans   string
+	}{
+		{31, 8, 2019, "Saturday"},
+		{18, 7, 1999, "Sunday"},
+		{15, 8, 1993, "Sunday"},
+		{29, 2, 2016, "Monday"},
 	}
 
-	assert(dayOfTheWeek(31, 8, 2019) == "Saturday")
-	assert(dayOfTheWeek(18, 7, 1999) == "Sunday")
-	assert(dayOfTheWeek(15, 8, 1993) == "Sunday")
-	assert(dayOfTheWeek(29, 2, 2016) == "Monday")
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, dayOfTheWeek(test.day, test.month, test.year), index)
+	}
 }
