@@ -1,13 +1,19 @@
 /*
  * @Date: 2021-12-21 01:20:51
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-12-21 01:49:25
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-12-31
  */
 
+// Package main ...
 package main
 
-import "strconv"
+import (
+	"strconv"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func dayOfYear(date string) int {
 	year, _ := strconv.Atoi(date[:4])
@@ -27,14 +33,17 @@ func dayOfYear(date string) int {
 }
 
 func main() {
-	assert := func(a, b int) {
-		if a != b {
-			panic("assert failed")
-		}
+	tests := []struct {
+		date string
+		ans  int
+	}{
+		{"2019-01-09", 9},
+		{"2019-02-10", 41},
+		{"2003-03-01", 60},
+		{"2004-03-01", 61},
 	}
 
-	assert(dayOfYear("2019-01-09"), 9)
-	assert(dayOfYear("2019-02-10"), 41)
-	assert(dayOfYear("2003-03-01"), 60)
-	assert(dayOfYear("2004-03-01"), 61)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, dayOfYear(test.date), index)
+	}
 }

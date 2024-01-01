@@ -1,11 +1,17 @@
 /*
  * @Date: 2023-03-05
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-03-05
+ * @LastEditTime: 2024-01-01
  * @FilePath: /algorithm/golang/1599_min_operations_max_profit/min_operations_max_profit.go
  */
 
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func minOperationsMaxProfit(customers []int, boardingCost, runningCost int) int {
 	ans := -1
@@ -55,33 +61,18 @@ func minOperationsMaxProfit(customers []int, boardingCost, runningCost int) int 
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		customers    []int
+		boardingCost int
+		runningCost  int
+		ans          int
+	}{
+		{[]int{8, 3}, 5, 6, 3},
+		{[]int{10, 9, 6}, 6, 4, 7},
+		{[]int{3, 4, 0, 5, 1}, 1, 92, -1},
 	}
 
-	{
-		customers := []int{8, 3}
-		boardingCost := 5
-		runningCost := 6
-		ans := 3
-		assert(minOperationsMaxProfit(customers, boardingCost, runningCost) == ans)
-	}
-
-	{
-		customers := []int{10, 9, 6}
-		boardingCost := 6
-		runningCost := 4
-		ans := 7
-		assert(minOperationsMaxProfit(customers, boardingCost, runningCost) == ans)
-	}
-
-	{
-		customers := []int{3, 4, 0, 5, 1}
-		boardingCost := 1
-		runningCost := 92
-		ans := -1
-		assert(minOperationsMaxProfit(customers, boardingCost, runningCost) == ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, minOperationsMaxProfit(test.customers, test.boardingCost, test.runningCost), index)
 	}
 }

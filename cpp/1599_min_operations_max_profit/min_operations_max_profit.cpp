@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-03-05
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-03-05
+ * @LastEditTime: 2024-01-01
  * @FilePath: /algorithm/cpp/1599_min_operations_max_profit/min_operations_max_profit.cpp
  */
 
@@ -59,27 +59,13 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> customers{8, 3};
-    int boardingCost = 5;
-    int runningCost = 6;
-    int ans = 3;
-    assert(Solution().minOperationsMaxProfit(customers, boardingCost, runningCost) == ans);
-  }
+  vector<tuple<vector<int>, int, int, int>> tests{
+      {{8, 3}, 5, 6, 3},
+      {{10, 9, 6}, 6, 4, 7},
+      {{3, 4, 0, 5, 1}, 1, 92, -1},
+  };
 
-  {
-    vector<int> customers{10,9,6};
-    int boardingCost = 6;
-    int runningCost = 4;
-    int ans = 7;
-    assert(Solution().minOperationsMaxProfit(customers, boardingCost, runningCost) == ans);
-  }
-
-  {
-    vector<int> customers{3,4,0,5,1};
-    int boardingCost = 1;
-    int runningCost = 92;
-    int ans = -1;
+  for (auto& [customers, boardingCost, runningCost, ans] : tests) {
     assert(Solution().minOperationsMaxProfit(customers, boardingCost, runningCost) == ans);
   }
 }

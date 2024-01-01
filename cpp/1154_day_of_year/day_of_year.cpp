@@ -1,12 +1,14 @@
 /*
  * @Date: 2021-12-21 01:20:46
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-12-21 01:45:21
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2023-12-31
  */
 
 #include <cassert>
 #include <string>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -31,8 +33,14 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().dayOfYear("2019-01-09") == 9);
-  assert(Solution().dayOfYear("2019-02-10") == 41);
-  assert(Solution().dayOfYear("2003-03-01") == 60);
-  assert(Solution().dayOfYear("2004-03-01") == 61);
+  vector<tuple<string, int>> tests{
+      {"2019-01-09", 9},
+      {"2019-02-10", 41},
+      {"2003-03-01", 60},
+      {"2004-03-01", 61},
+  };
+
+  for (auto& [date, ans] : tests) {
+    assert(Solution().dayOfYear(date) == ans);
+  }
 }
