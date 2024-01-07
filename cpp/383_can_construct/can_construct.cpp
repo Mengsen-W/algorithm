@@ -1,12 +1,13 @@
 /*
  * @Date: 2021-12-04 05:35:54
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-12-04 05:40:45
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-01-07
  */
 
 #include <cassert>
 #include <string>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -28,7 +29,12 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().canConstruct("a", "b") == false);
-  assert(Solution().canConstruct("aa", "ab") == false);
-  assert(Solution().canConstruct("aa", "aab") == true);
+  vector<tuple<string, string, bool>> tests{
+      {"a", "b", false},
+      {"aa", "ab", false},
+      {"aa", "aab", true},
+  };
+  for (auto& [ransomNote, magazine, ans] : tests) {
+    assert(Solution().canConstruct(ransomNote, magazine) == ans);
+  }
 }

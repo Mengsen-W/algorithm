@@ -1,11 +1,17 @@
 /*
  * @Date: 2021-12-04 05:41:55
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-12-04 05:43:13
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-01-07
  */
 
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func canConstruct(ransomNote, magazine string) bool {
 	if len(ransomNote) > len(magazine) {
@@ -25,13 +31,17 @@ func canConstruct(ransomNote, magazine string) bool {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		ransomNote string
+		magazine   string
+		ans        bool
+	}{
+		{"a", "b", false},
+		{"aa", "ab", false},
+		{"aa", "aab", true},
 	}
 
-	assert(canConstruct("a", "b") == false)
-	assert(canConstruct("aa", "ab") == false)
-	assert(canConstruct("aa", "aab") == true)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, canConstruct(test.ransomNote, test.magazine), index)
+	}
 }
