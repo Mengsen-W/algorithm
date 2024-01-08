@@ -1,8 +1,8 @@
 /*
  * @Date: 2021-09-13 08:20:54
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-09-13 08:37:09
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-01-08
  */
 
 struct Solution;
@@ -25,19 +25,13 @@ impl Solution {
 }
 
 fn main() {
-    {
-        let points = vec![vec![0, 0], vec![1, 0], vec![2, 0]];
-        let ans = 2;
-        assert_eq!(Solution::number_of_boomerangs(points), ans);
-    }
-    {
-        let points = vec![vec![1, 1], vec![2, 2], vec![3, 3]];
-        let ans = 2;
-        assert_eq!(Solution::number_of_boomerangs(points), ans);
-    }
-    {
-        let points = vec![vec![1, 1]];
-        let ans = 0;
+    let tests = vec![
+        (vec![vec![0, 0], vec![1, 0], vec![2, 0]], 2),
+        (vec![vec![1, 1], vec![2, 2], vec![3, 3]], 2),
+        (vec![vec![1, 1]], 0),
+    ];
+
+    for (points, ans) in tests {
         assert_eq!(Solution::number_of_boomerangs(points), ans);
     }
 }

@@ -1,11 +1,17 @@
 /*
  * @Date: 2021-09-13 08:20:58
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-09-13 08:27:24
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-01-08
  */
 
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func numberOfBoomerangs(points [][]int) (ans int) {
 	for _, p := range points {
@@ -22,24 +28,16 @@ func numberOfBoomerangs(points [][]int) (ans int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		points [][]int
+		ans    int
+	}{
+		{[][]int{{0, 0}, {1, 0}, {2, 0}}, 2},
+		{[][]int{{1, 1}, {2, 2}, {3, 3}}, 2},
+		{[][]int{{1, 1}}, 0},
 	}
-	{
-		points := [][]int{{0, 0}, {1, 0}, {2, 0}}
-		ans := 2
-		assert(numberOfBoomerangs(points) == ans)
-	}
-	{
-		points := [][]int{{1, 1}, {2, 2}, {3, 3}}
-		ans := 2
-		assert(numberOfBoomerangs(points) == ans)
-	}
-	{
-		points := [][]int{{1, 1}}
-		ans := 0
-		assert(numberOfBoomerangs(points) == ans)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, numberOfBoomerangs(test.points), index)
 	}
 }

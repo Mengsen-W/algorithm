@@ -1,11 +1,12 @@
 /*
  * @Date: 2021-09-13 08:20:50
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-09-13 08:31:34
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-01-08
  */
 
 #include <cassert>
+#include <tuple>
 #include <unordered_map>
 #include <vector>
 
@@ -28,19 +29,13 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<vector<int>> points{{0, 0}, {1, 0}, {2, 0}};
-    int ans = 2;
-    assert(Solution{}.numberOfBoomerangs(points) == ans);
-  }
-  {
-    vector<vector<int>> points{{1, 1}, {2, 2}, {3, 3}};
-    int ans = 2;
-    assert(Solution{}.numberOfBoomerangs(points) == ans);
-  }
-  {
-    vector<vector<int>> points{{1, 1}};
-    int ans = 0;
-    assert(Solution{}.numberOfBoomerangs(points) == ans);
+  vector<tuple<vector<vector<int>>, int>> tests{
+      {{{0, 0}, {1, 0}, {2, 0}}, 2},
+      {{{1, 1}, {2, 2}, {3, 3}}, 2},
+      {{{1, 1}}, 0},
+  };
+
+  for (auto &[points, ans] : tests) {
+    assert(Solution().numberOfBoomerangs(points) == ans);
   }
 }
