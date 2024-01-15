@@ -1,11 +1,13 @@
 /*
  * @Date: 2021-03-25 09:05:32
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-03-26 09:04:28
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-01-15
  */
 
-#include <iostream>
+#include <cassert>
+#include <tuple>
+#include <vector>
 
 struct ListNode {
   int val;
@@ -15,44 +17,59 @@ struct ListNode {
   ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
-ListNode* delete_duplicates(ListNode* head) {
-  if (!head) return head;
-  ListNode* dummy = new ListNode(0, head);
-  ListNode* cur = dummy;
+class Solution {
+ public:
+  ListNode* delete_duplicates(ListNode* head) {
+    if (!head) return head;
+    ListNode* dummy = new ListNode(0, head);
+    ListNode* cur = dummy;
 
-  while (cur->next && cur->next->next) {
-    if (cur->next->val == cur->next->next->val) {
-      int temp = cur->next->val;
-      while (cur->next && cur->next->val == temp) {
-        cur->next = cur->next->next;
-      }
-    } else
-      cur = cur->next;
+    while (cur->next && cur->next->next) {
+      if (cur->next->val == cur->next->next->val) {
+        int temp = cur->next->val;
+        while (cur->next && cur->next->val == temp) {
+          cur->next = cur->next->next;
+        }
+      } else
+        cur = cur->next;
+    }
+    return dummy->next;
   }
-  return dummy->next;
+};
+
+bool is_same_list(ListNode* l1, ListNode* l2) {
+  while (l1 != NULL && l2 != NULL) {
+    if (l1->val != l2->val) {
+      return false;
+    }
+    l1 = l1->next;
+    l2 = l2->next;
+  }
+
+  // 如果其中一个链表遍历完了，但另一个链表还没有遍历完，那么它们不相等。
+  if (l1 != NULL || l2 != NULL) {
+    return false;
+  }
+
+  return true;
 }
 
 int main() {
-  ListNode* head = new ListNode(
-      1,
-      new ListNode(
-          2,
+  std::vector<std::tuple<ListNode*, ListNode*>> tests{
+      {
           new ListNode(
-              3, new ListNode(
-                     3, new ListNode(4, new ListNode(4, new ListNode(5)))))));
-  ListNode* cur = delete_duplicates(head);
-  while (cur) {
-    std::cout << cur->val << ", ";
-    cur = cur->next;
-  }
-  std::cout << std::endl;
+              1, new ListNode(2, new ListNode(3, new ListNode(3, new ListNode(4, new ListNode(4, new ListNode(5))))))),
+          new ListNode(1, new ListNode(2, new ListNode(5))),
+      },
+      {
+          new ListNode(1, new ListNode(1, new ListNode(1, new ListNode(2, new ListNode(3))))),
+          new ListNode(2, new ListNode(3)),
+      },
+  };
 
-  head = new ListNode(
-      1, new ListNode(1, new ListNode(1, new ListNode(2, new ListNode(3)))));
-  cur = delete_duplicates(head);
-  while (cur) {
-    std::cout << cur->val << ", ";
-    cur = cur->next;
+  for (auto& [l, ans] : tests) {
+    assert(is_same_list(Solution().delete_duplicates(l), ans) == true);
   }
+
   return 0;
 }
