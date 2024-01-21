@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-01-20
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2024-01-20
+ * @LastEditTime: 2024-01-21
  * @FilePath: /algorithm/rust/2788_split_words_by_separator/split_words_by_separator.rs
  */
 
