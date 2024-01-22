@@ -1,13 +1,18 @@
 /*
  * @Date: 2022-09-13
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-09-13
- * @FilePath: /algorithm/670_maximum_swap/maximum_swap.go
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-01-22
+ * @FilePath: /algorithm/golang/670_maximum_swap/maximum_swap.go
  */
 
 package main
 
-import "strconv"
+import (
+	"strconv"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func maximumSwap(num int) int {
 	s := []byte(strconv.Itoa(num))
@@ -29,13 +34,15 @@ func maximumSwap(num int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		num int
+		ans int
+	}{
+		{2736, 7236},
+		{9973, 9973},
 	}
 
-	assert(maximumSwap(2736) == 7236)
-	assert(maximumSwap(9973) == 9973)
-
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, maximumSwap(test.num), index)
+	}
 }

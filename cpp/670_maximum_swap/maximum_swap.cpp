@@ -1,13 +1,14 @@
 /*
  * @Date: 2022-09-13
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-09-13
- * @FilePath: /algorithm/670_maximum_swap/maximum_swap.cpp
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-01-22
+ * @FilePath: /algorithm/cpp/670_maximum_swap/maximum_swap.cpp
  */
 
-#include <assert.h>
-
+#include <cassert>
 #include <string>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -36,6 +37,12 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().maximumSwap(2736) == 7236);
-  assert(Solution().maximumSwap(9973) == 9973);
+  vector<tuple<int, int>> tests{
+      {2736, 7236},
+      {9973, 9973},
+  };
+
+  for (auto& [num, ans] : tests) {
+    assert(Solution().maximumSwap(num) == ans);
+  }
 }
