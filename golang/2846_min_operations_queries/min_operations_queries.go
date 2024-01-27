@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-01-26
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2024-01-26
+ * @LastEditTime: 2024-01-27
  * @FilePath: /algorithm/golang/2846_min_operations_queries/min_operations_queries.go
  */
 
