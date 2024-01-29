@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-01-28
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2024-01-28
+ * @LastEditTime: 2024-01-29
  * @FilePath: /algorithm/rust/366_can_measure_water/can_measure_water.rs
  */
 
