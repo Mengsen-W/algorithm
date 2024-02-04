@@ -1,11 +1,13 @@
 /*
  * @Date: 2021-09-18 08:41:38
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-09-18 08:42:40
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-02-04
  */
 
 #include <cassert>
+#include <tuple>
+#include <vector>
 
 class Solution {
  public:
@@ -13,7 +15,13 @@ class Solution {
 };
 
 int main() {
-  assert(!Solution().canWinNim(4));
-  assert(Solution().canWinNim(1));
-  assert(Solution().canWinNim(2));
+  std::vector<std::tuple<int, bool>> tests{
+      {4, false},
+      {1, true},
+      {2, true},
+  };
+
+  for (auto [n, ans] : tests) {
+    assert(Solution().canWinNim(n) == ans);
+  }
 }

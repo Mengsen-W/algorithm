@@ -14,7 +14,9 @@ impl Solution {
 }
 
 fn main() {
-    assert!(!Solution::can_win_nim(4));
-    assert!(Solution::can_win_nim(1));
-    assert!(Solution::can_win_nim(2));
+    let tests = vec![(4, false), (1, true), (2, true)];
+
+    for (n, ans) in tests {
+        assert_eq!(Solution::can_win_nim(n), ans);
+    }
 }
