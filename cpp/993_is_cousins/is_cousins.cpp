@@ -1,13 +1,15 @@
 /*
  * @Date: 2021-05-17 08:36:11
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-05-17 08:44:34
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-02-08
  */
 
 #include <cassert>
 #include <queue>
+#include <tuple>
 #include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -17,8 +19,7 @@ struct TreeNode {
   TreeNode *right;
   TreeNode() : val(0), left(nullptr), right(nullptr) {}
   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-  TreeNode(int x, TreeNode *left, TreeNode *right)
-      : val(x), left(left), right(right) {}
+  TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
 class Solution {
@@ -59,8 +60,7 @@ class Solution1 {
   bool isCousins(TreeNode *root, int x, int y) {
     assert(root && "Unexpected empty tree!");
     dfs(root, x, y, 0);
-    return (child2Parent[x] != child2Parent[y] &&
-            node2level[x] == node2level[y]);
+    return (child2Parent[x] != child2Parent[y] && node2level[x] == node2level[y]);
   }
 
  private:
@@ -88,24 +88,33 @@ class Solution1 {
 };
 
 int main() {
+  vector<tuple<TreeNode *, int, int, bool>> tests{
+      {new TreeNode{1, new TreeNode{2, new TreeNode{4, nullptr, nullptr}, nullptr}, new TreeNode{3, nullptr, nullptr}},
+       4, 3, false},
+      {new TreeNode{1, new TreeNode{2, nullptr, new TreeNode{4, nullptr, nullptr}},
+                    new TreeNode{3, nullptr, new TreeNode{5, nullptr, nullptr}}},
+       5, 4, true},
+      {new TreeNode{1, new TreeNode{2, nullptr, new TreeNode{4, nullptr, nullptr}}, new TreeNode{3, nullptr, nullptr}},
+       2, 3, false},
+  };
+  for (auto &[root, x, y, ans] : tests) {
+    assert(Solution().isCousins(root, x, y) == ans);
+  }
   {
-    TreeNode *root = new TreeNode{
-        1, new TreeNode{2, new TreeNode{4, nullptr, nullptr}, nullptr},
-        new TreeNode{3, nullptr, nullptr}};
+    TreeNode *root =
+        new TreeNode{1, new TreeNode{2, new TreeNode{4, nullptr, nullptr}, nullptr}, new TreeNode{3, nullptr, nullptr}};
     assert(!Solution{}.isCousins(root, 4, 3));
     assert(!Solution1{}.isCousins(root, 4, 3));
   }
   {
-    TreeNode *root = new TreeNode{
-        1, new TreeNode{2, nullptr, new TreeNode{4, nullptr, nullptr}},
-        new TreeNode{3, nullptr, new TreeNode{5, nullptr, nullptr}}};
+    TreeNode *root = new TreeNode{1, new TreeNode{2, nullptr, new TreeNode{4, nullptr, nullptr}},
+                                  new TreeNode{3, nullptr, new TreeNode{5, nullptr, nullptr}}};
     assert(Solution{}.isCousins(root, 5, 4));
     assert(Solution1{}.isCousins(root, 5, 4));
   }
   {
-    TreeNode *root = new TreeNode{
-        1, new TreeNode{2, nullptr, new TreeNode{4, nullptr, nullptr}},
-        new TreeNode{3, nullptr, nullptr}};
+    TreeNode *root =
+        new TreeNode{1, new TreeNode{2, nullptr, new TreeNode{4, nullptr, nullptr}}, new TreeNode{3, nullptr, nullptr}};
     assert(!Solution{}.isCousins(root, 2, 3));
     assert(!Solution1{}.isCousins(root, 2, 3));
   }

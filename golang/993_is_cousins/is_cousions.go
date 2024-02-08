@@ -1,11 +1,17 @@
 /*
  * @Date: 2021-05-17 08:36:26
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-05-17 08:53:58
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-02-08
  */
 
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 type TreeNode struct {
 	Val   int
@@ -86,6 +92,21 @@ func isCousins_bfs(root *TreeNode, x, y int) bool {
 }
 
 func main() {
+	tests := []struct {
+		root *TreeNode
+		x    int
+		y    int
+		ans  bool
+	}{
+		{&TreeNode{1, &TreeNode{2, &TreeNode{4, nil, nil}, nil}, &TreeNode{3, nil, nil}}, 4, 3, false},
+		{&TreeNode{1, &TreeNode{2, nil, &TreeNode{4, nil, nil}}, &TreeNode{3, nil, &TreeNode{5, nil, nil}}}, 5, 4, true},
+		{&TreeNode{1, &TreeNode{2, nil, &TreeNode{4, nil, nil}}, &TreeNode{3, nil, nil}}, 2, 3, false},
+	}
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, isCousins_bfs(test.root, test.x, test.y), index)
+	}
+
 	assert := func(b bool) {
 		if !b {
 			panic("Not Passed!")

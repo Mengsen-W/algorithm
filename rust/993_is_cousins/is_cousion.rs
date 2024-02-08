@@ -1,8 +1,8 @@
 /*
  * @Date: 2021-05-17 08:36:19
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-05-17 09:07:23
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-02-08
  */
 
 #[derive(Debug, PartialEq, Eq)]
@@ -94,6 +94,84 @@ fn is_cousins_dfs(root: Option<Rc<RefCell<TreeNode>>>, x: i32, y: i32) -> bool {
 }
 
 fn main() {
+    let tests = vec![
+        (
+            Some(Rc::new(RefCell::new(TreeNode {
+                val: 1,
+                left: Some(Rc::new(RefCell::new(TreeNode {
+                    val: 2,
+                    left: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 4,
+                        left: None,
+                        right: None,
+                    }))),
+                    right: None,
+                }))),
+                right: Some(Rc::new(RefCell::new(TreeNode {
+                    val: 3,
+                    left: None,
+                    right: None,
+                }))),
+            }))),
+            4,
+            3,
+            false,
+        ),
+        (
+            Some(Rc::new(RefCell::new(TreeNode {
+                val: 1,
+                left: Some(Rc::new(RefCell::new(TreeNode {
+                    val: 2,
+                    left: None,
+                    right: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 4,
+                        left: None,
+                        right: None,
+                    }))),
+                }))),
+                right: Some(Rc::new(RefCell::new(TreeNode {
+                    val: 3,
+                    left: None,
+                    right: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 5,
+                        left: None,
+                        right: None,
+                    }))),
+                }))),
+            }))),
+            5,
+            4,
+            true,
+        ),
+        (
+            Some(Rc::new(RefCell::new(TreeNode {
+                val: 1,
+                left: Some(Rc::new(RefCell::new(TreeNode {
+                    val: 2,
+                    left: None,
+                    right: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 4,
+                        left: None,
+                        right: None,
+                    }))),
+                }))),
+                right: Some(Rc::new(RefCell::new(TreeNode {
+                    val: 3,
+                    left: None,
+                    right: None,
+                }))),
+            }))),
+            2,
+            3,
+            false,
+        ),
+    ];
+
+    for (root, x, y, ans) in tests {
+        assert_eq!(is_cousins_bfs(root.clone(), x, y), ans);
+        // assert_eq!(is_cousins_dfs(root.clone(), x, y), ans);
+    }
+
     {
         let root = Some(Rc::new(RefCell::new(TreeNode {
             val: 1,
