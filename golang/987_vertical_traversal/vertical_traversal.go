@@ -1,16 +1,18 @@
 /*
  * @Date: 2021-07-31 00:49:44
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-07-31 01:44:30
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-02-13
  */
 
 package main
 
 import (
 	"math"
-	"reflect"
 	"sort"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 type TreeNode struct {
@@ -51,24 +53,25 @@ func verticalTraversal(root *TreeNode) (ans [][]int) {
 }
 
 func main() {
-	assert := func(a, b [][]int) {
-		if !reflect.DeepEqual(a, b) {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		root *TreeNode
+		ans  [][]int
+	}{
+		{
+			&TreeNode{3, &TreeNode{9, nil, nil}, &TreeNode{20, &TreeNode{15, nil, nil}, &TreeNode{7, nil, nil}}},
+			[][]int{{9}, {3, 15}, {20}, {7}},
+		},
+		{
+			&TreeNode{1, &TreeNode{2, &TreeNode{4, nil, nil}, &TreeNode{5, nil, nil}}, &TreeNode{3, &TreeNode{6, nil, nil}, &TreeNode{7, nil, nil}}},
+			[][]int{{4}, {2}, {1, 5, 6}, {3}, {7}},
+		},
+		{
+			&TreeNode{1, &TreeNode{2, &TreeNode{4, nil, nil}, &TreeNode{6, nil, nil}}, &TreeNode{3, &TreeNode{5, nil, nil}, &TreeNode{7, nil, nil}}},
+			[][]int{{4}, {2}, {1, 5, 6}, {3}, {7}},
+		},
 	}
-	{
-		root := &TreeNode{3, &TreeNode{9, nil, nil}, &TreeNode{20, &TreeNode{15, nil, nil}, &TreeNode{7, nil, nil}}}
-		ans := [][]int{{9}, {3, 15}, {20}, {7}}
-		assert(verticalTraversal(root), ans)
-	}
-	{
-		root := &TreeNode{1, &TreeNode{2, &TreeNode{4, nil, nil}, &TreeNode{5, nil, nil}}, &TreeNode{3, &TreeNode{6, nil, nil}, &TreeNode{7, nil, nil}}}
-		ans := [][]int{{4}, {2}, {1, 5, 6}, {3}, {7}}
-		assert(verticalTraversal(root), ans)
-	}
-	{
-		root := &TreeNode{1, &TreeNode{2, &TreeNode{4, nil, nil}, &TreeNode{6, nil, nil}}, &TreeNode{3, &TreeNode{5, nil, nil}, &TreeNode{7, nil, nil}}}
-		ans := [][]int{{4}, {2}, {1, 5, 6}, {3}, {7}}
-		assert(verticalTraversal(root), ans)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, verticalTraversal(test.root), index)
 	}
 }

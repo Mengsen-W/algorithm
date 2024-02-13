@@ -1,8 +1,8 @@
 /*
  * @Date: 2021-07-31 00:49:38
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-07-31 11:31:08
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-02-13
  */
 
 use std::cell::RefCell;
@@ -63,95 +63,98 @@ impl Solution {
 }
 
 fn main() {
-    {
-        let root = Some(Rc::new(RefCell::new(TreeNode {
-            val: 3,
-            left: Some(Rc::new(RefCell::new(TreeNode {
-                val: 9,
-                left: None,
-                right: None,
-            }))),
-            right: Some(Rc::new(RefCell::new(TreeNode {
-                val: 20,
-                left: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 15,
-                    left: None,
-                    right: None,
-                }))),
-                right: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 7,
-                    left: None,
-                    right: None,
-                }))),
-            }))),
-        })));
-        let ans = vec![vec![9], vec![3, 15], vec![20], vec![7]];
-        assert_eq!(Solution::vertical_traversal(root), ans);
-    }
-    {
-        let root = Some(Rc::new(RefCell::new(TreeNode {
-            val: 1,
-            left: Some(Rc::new(RefCell::new(TreeNode {
-                val: 2,
-                left: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 4,
-                    left: None,
-                    right: None,
-                }))),
-                right: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 5,
-                    left: None,
-                    right: None,
-                }))),
-            }))),
-            right: Some(Rc::new(RefCell::new(TreeNode {
+    let tests = vec![
+        (
+            Some(Rc::new(RefCell::new(TreeNode {
                 val: 3,
                 left: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 6,
+                    val: 9,
                     left: None,
                     right: None,
                 }))),
                 right: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 7,
-                    left: None,
-                    right: None,
+                    val: 20,
+                    left: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 15,
+                        left: None,
+                        right: None,
+                    }))),
+                    right: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 7,
+                        left: None,
+                        right: None,
+                    }))),
                 }))),
             }))),
-        })));
-        let ans = vec![vec![4], vec![2], vec![1, 5, 6], vec![3], vec![7]];
-        assert_eq!(Solution::vertical_traversal(root), ans);
-    }
-    {
-        let root = Some(Rc::new(RefCell::new(TreeNode {
-            val: 1,
-            left: Some(Rc::new(RefCell::new(TreeNode {
-                val: 2,
+            vec![vec![9], vec![3, 15], vec![20], vec![7]],
+        ),
+        (
+            Some(Rc::new(RefCell::new(TreeNode {
+                val: 1,
                 left: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 4,
-                    left: None,
-                    right: None,
+                    val: 2,
+                    left: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 4,
+                        left: None,
+                        right: None,
+                    }))),
+                    right: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 5,
+                        left: None,
+                        right: None,
+                    }))),
                 }))),
                 right: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 6,
-                    left: None,
-                    right: None,
+                    val: 3,
+                    left: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 6,
+                        left: None,
+                        right: None,
+                    }))),
+                    right: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 7,
+                        left: None,
+                        right: None,
+                    }))),
                 }))),
             }))),
-            right: Some(Rc::new(RefCell::new(TreeNode {
-                val: 3,
+            vec![vec![4], vec![2], vec![1, 5, 6], vec![3], vec![7]],
+        ),
+        (
+            Some(Rc::new(RefCell::new(TreeNode {
+                val: 1,
                 left: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 5,
-                    left: None,
-                    right: None,
+                    val: 2,
+                    left: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 4,
+                        left: None,
+                        right: None,
+                    }))),
+                    right: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 6,
+                        left: None,
+                        right: None,
+                    }))),
                 }))),
                 right: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 7,
-                    left: None,
-                    right: None,
+                    val: 3,
+                    left: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 5,
+                        left: None,
+                        right: None,
+                    }))),
+                    right: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 7,
+                        left: None,
+                        right: None,
+                    }))),
                 }))),
             }))),
-        })));
-        let ans = vec![vec![4], vec![2], vec![1, 5, 6], vec![3], vec![7]];
+            vec![vec![4], vec![2], vec![1, 5, 6], vec![3], vec![7]],
+        ),
+    ];
+
+    for (root, ans) in tests {
         assert_eq!(Solution::vertical_traversal(root), ans);
     }
 }
