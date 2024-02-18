@@ -1,9 +1,9 @@
 /*
  * @Date: 2022-03-10 02:37:37
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-03-10 03:00:31
- * @FilePath: /algorithm/589_ntree_preorder/ntree_preorder.cpp
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-02-18
+ * @FilePath: /algorithm/cpp/589_ntree_preorder/ntree_preorder.cpp
  */
 
 #include <cassert>
@@ -39,8 +39,7 @@ class Solution {
       Node* node = st.top();
       st.pop();
       res.emplace_back(node->val);
-      for (auto it = node->children.rbegin(); it != node->children.rend();
-           it++) {
+      for (auto it = node->children.rbegin(); it != node->children.rend(); it++) {
         st.emplace(*it);
       }
     }
@@ -68,7 +67,6 @@ int main() {
     child[2]->children[0]->children = {new Node{12}};
     child[3]->children[0]->children = {new Node{13}};
     root->children = child;
-    assert((Solution().preorder(root) ==
-            vector<int>{1, 2, 3, 6, 7, 11, 14, 4, 8, 12, 5, 9, 13, 10}));
+    assert((Solution().preorder(root) == vector<int>{1, 2, 3, 6, 7, 11, 14, 4, 8, 12, 5, 9, 13, 10}));
   }
 }
