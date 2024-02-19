@@ -1,9 +1,9 @@
 /*
  * @Date: 2022-03-12 02:01:09
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-03-12 02:12:01
- * @FilePath: /algorithm/590_ntree_postorder/ntree_postorder.cpp
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-02-19
+ * @FilePath: /algorithm/cpp/590_ntree_postorder/ntree_postorder.cpp
  */
 
 #include <cassert>
@@ -69,7 +69,6 @@ int main() {
     child[2]->children[0]->children = {new Node{12}};
     child[3]->children[0]->children = {new Node{13}};
     root->children = child;
-    assert((Solution().postorder(root) ==
-            vector<int>{2, 6, 14, 11, 7, 3, 12, 8, 4, 13, 9, 10, 5, 1}));
+    assert((Solution().postorder(root) == vector<int>{2, 6, 14, 11, 7, 3, 12, 8, 4, 13, 9, 10, 5, 1}));
   }
 }

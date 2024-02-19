@@ -1,9 +1,9 @@
 /*
  * @Date: 2022-03-10 02:37:43
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-03-10 03:16:21
- * @FilePath: /algorithm/589_ntree_preorder/ntree_preorder.go
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-02-18
+ * @FilePath: /algorithm/golang/589_ntree_preorder/ntree_preorder.go
  */
 
 package main
