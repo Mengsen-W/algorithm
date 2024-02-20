@@ -1,9 +1,9 @@
 /*
  * @Date: 2022-03-12 02:01:14
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-03-12 02:22:23
- * @FilePath: /algorithm/590_ntree_postorder/ntree_postorder.go
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-02-19
+ * @FilePath: /algorithm/golang/590_ntree_postorder/ntree_postorder.go
  */
 
 package main
