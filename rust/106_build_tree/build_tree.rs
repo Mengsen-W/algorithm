@@ -1,8 +1,8 @@
 /*
  * @Date: 2024-02-20
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2024-02-20
- * @FilePath: /algorithm/rust/105_build_tree/build_tree.rs
+ * @LastEditTime: 2024-02-21
+ * @FilePath: /algorithm/rust/106_build_tree/build_tree.rs
  */
 
 struct Solution;
@@ -31,7 +31,7 @@ use std::collections::HashMap;
 use std::rc::Rc;
 
 impl Solution {
-    pub fn build_tree(inorder: Vec<i32>, postorder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
+    pub fn build_tree(inorder: Vec<i32>, postouder: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
         let n = inorder.len();
         let mut index = HashMap::with_capacity(n);
         for (i, &x) in inorder.iter().enumerate() {
