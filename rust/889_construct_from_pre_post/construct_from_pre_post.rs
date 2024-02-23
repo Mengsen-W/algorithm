@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-02-22
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2024-02-22
+ * @LastEditTime: 2024-02-23
  * @FilePath: /algorithm/rust/889_construct_from_pre_post/construct_from_pre_post.rs
  */
 struct Solution;
