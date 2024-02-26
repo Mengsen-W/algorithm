@@ -1,8 +1,8 @@
 /*
  * @Date: 2021-04-27 08:38:25
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-04-27 09:23:01
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-02-26
  */
 
 use std::cell::RefCell;
@@ -22,6 +22,33 @@ impl TreeNode {
             left: None,
             right: None,
         }
+    }
+}
+
+struct Solution;
+
+impl Solution {
+    pub fn range_sum_bst(root: Option<Rc<RefCell<TreeNode>>>, low: i32, high: i32) -> i32 {
+        let mut sum = 0;
+        let mut stack = vec![root];
+        while !stack.is_empty() {
+            if let Some(node) = stack.pop() {
+                if let Some(node) = node {
+                    let left = node.borrow_mut().left.take();
+                    if left.is_some() {
+                        stack.push(Some(node));
+                        stack.push(left);
+                    } else {
+                        let val = node.borrow().val;
+                        if val <= high && val >= low {
+                            sum += val;
+                        }
+                        stack.push(node.borrow_mut().right.take());
+                    }
+                }
+            }
+        }
+        sum
     }
 }
 
@@ -61,72 +88,78 @@ fn range_sum_bst_bfs(root: Option<Rc<RefCell<TreeNode>>>, low: i32, high: i32) -
 }
 
 fn main() {
-    {
-        let root = Some(Rc::new(RefCell::new(TreeNode {
-            val: 10,
-            left: Some(Rc::new(RefCell::new(TreeNode {
-                val: 5,
+    let tests = vec![
+        (
+            Some(Rc::new(RefCell::new(TreeNode {
+                val: 10,
                 left: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 3,
-                    left: None,
-                    right: None,
-                }))),
-                right: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 7,
-                    left: None,
-                    right: None,
-                }))),
-            }))),
-            right: Some(Rc::new(RefCell::new(TreeNode {
-                val: 15,
-                left: None,
-                right: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 18,
-                    left: None,
-                    right: None,
-                }))),
-            }))),
-        })));
-        let low = 7;
-        let high = 15;
-        assert_eq!(range_sum_bst_dfs(root, low, high), 32);
-    }
-    {
-        let root = Some(Rc::new(RefCell::new(TreeNode {
-            val: 10,
-            left: Some(Rc::new(RefCell::new(TreeNode {
-                val: 5,
-                left: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 3,
+                    val: 5,
                     left: Some(Rc::new(RefCell::new(TreeNode {
-                        val: 1,
+                        val: 3,
                         left: None,
                         right: None,
                     }))),
-                    right: None,
-                }))),
-                right: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 7,
-                    left: Some(Rc::new(RefCell::new(TreeNode {
-                        val: 6,
+                    right: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 7,
                         left: None,
                         right: None,
                     }))),
-                    right: None,
                 }))),
-            }))),
-            right: Some(Rc::new(RefCell::new(TreeNode {
-                val: 15,
-                left: None,
                 right: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 18,
+                    val: 15,
                     left: None,
-                    right: None,
+                    right: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 18,
+                        left: None,
+                        right: None,
+                    }))),
                 }))),
             }))),
-        })));
-        let low = 6;
-        let high = 10;
-        assert_eq!(range_sum_bst_bfs(root, low, high), 23);
+            7,
+            15,
+            32,
+        ),
+        (
+            Some(Rc::new(RefCell::new(TreeNode {
+                val: 10,
+                left: Some(Rc::new(RefCell::new(TreeNode {
+                    val: 5,
+                    left: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 3,
+                        left: Some(Rc::new(RefCell::new(TreeNode {
+                            val: 1,
+                            left: None,
+                            right: None,
+                        }))),
+                        right: None,
+                    }))),
+                    right: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 7,
+                        left: Some(Rc::new(RefCell::new(TreeNode {
+                            val: 6,
+                            left: None,
+                            right: None,
+                        }))),
+                        right: None,
+                    }))),
+                }))),
+                right: Some(Rc::new(RefCell::new(TreeNode {
+                    val: 15,
+                    left: None,
+                    right: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 18,
+                        left: None,
+                        right: None,
+                    }))),
+                }))),
+            }))),
+            6,
+            10,
+            23,
+        ),
+    ];
+
+    for (root, low, high, ans) in tests {
+        assert_eq!(Solution::range_sum_bst(root, low, high), ans);
     }
 }
