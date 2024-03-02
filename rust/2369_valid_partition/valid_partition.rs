@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-03-01
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2024-03-01
+ * @LastEditTime: 2024-03-02
  * @FilePath: /algorithm/rust/2369_valid_partition/valid_partition.rs
  */
 
