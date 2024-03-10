@@ -1,12 +1,13 @@
 /*
  * @Date: 2021-11-08 00:08:29
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-11-08 00:12:43
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-03-10
  */
 
 #include <cassert>
 #include <string>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -33,8 +34,14 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().getHint("1807", "7810") == "1A3B");
-  assert(Solution().getHint("1123", "0111") == "1A1B");
-  assert(Solution().getHint("1", "0") == "0A0B");
-  assert(Solution().getHint("1", "1") == "1A0B");
+  vector<tuple<string, string, string>> tests{
+      {"1807", "7810", "1A3B"},
+      {"1123", "0111", "1A1B"},
+      {"1", "0", "0A0B"},
+      {"1", "1", "1A0B"},
+  };
+
+  for (auto &[secret, guess, ans] : tests) {
+    assert(Solution().getHint(secret, guess) == ans);
+  }
 }

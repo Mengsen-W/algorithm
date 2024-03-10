@@ -1,8 +1,8 @@
 /*
  * @Date: 2021-11-08 00:08:44
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-11-08 00:27:38
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-03-10
  */
 
 struct Solution;
@@ -30,20 +30,16 @@ impl Solution {
 }
 
 fn main() {
-    assert_eq!(
-        Solution::get_hint("1807".to_string(), "7810".to_string()),
-        "1A3B".to_string()
-    );
-    assert_eq!(
-        Solution::get_hint("1123".to_string(), "0111".to_string()),
-        "1A1B".to_string()
-    );
-    assert_eq!(
-        Solution::get_hint("1".to_string(), "0".to_string()),
-        "0A0B".to_string()
-    );
-    assert_eq!(
-        Solution::get_hint("1".to_string(), "1".to_string()),
-        "1A0B".to_string()
-    );
+    let tests = vec![
+        ("1807", "7810", "1A3B"),
+        ("1123", "0111", "1A1B"),
+        ("1", "0", "0A0B"),
+        ("1", "1", "1A0B"),
+    ];
+    for (secret, guess, ans) in tests {
+        assert_eq!(
+            Solution::get_hint(secret.to_string(), guess.to_string()),
+            ans.to_string()
+        );
+    }
 }
