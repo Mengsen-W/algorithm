@@ -1,13 +1,14 @@
 /*
  * @Date: 2022-04-06 11:08:29
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-04-06 11:26:33
- * @FilePath: /algorithm/310_find_min_height_trees/find_min_height_trees.cpp
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-03-20
+ * @FilePath: /algorithm/cpp/310_find_min_height_trees/find_min_height_trees.cpp
  */
 
 #include <cassert>
 #include <queue>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -56,9 +57,12 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().findMinHeightTrees(
-             4, vector<vector<int>>{{1, 0}, {1, 2}, {1, 3}}) == vector<int>{1});
-  assert((Solution().findMinHeightTrees(
-             6, vector<vector<int>>{{3, 0}, {3, 1}, {3, 2}, {3, 4}, {5, 4}}) ==
-         vector<int>{3, 4}));
+  vector<tuple<int, vector<vector<int>>, vector<int>>> tests{
+      {4, {{1, 0}, {1, 2}, {1, 3}}, {1}},
+      {6, {{3, 0}, {3, 1}, {3, 2}, {3, 4}, {5, 4}}, {3, 4}},
+  };
+
+  for (auto& [n, edges, ans] : tests) {
+    assert(Solution().findMinHeightTrees(n, edges) == ans);
+  }
 }

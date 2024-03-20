@@ -1,14 +1,18 @@
 /*
  * @Date: 2022-04-06 11:08:38
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-04-06 11:24:42
- * @FilePath: /algorithm/310_find_min_height_trees/find_min_height_trees.go
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-03-20
+ * @FilePath: /algorithm/golang/310_find_min_height_trees/find_min_height_trees.go
  */
 
 package main
 
-import "reflect"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func findMinHeightTrees(n int, edges [][]int) []int {
 	if n == 1 {
@@ -50,12 +54,16 @@ func findMinHeightTrees(n int, edges [][]int) []int {
 }
 
 func main() {
-	assert := func(a, b []int) {
-		if !reflect.DeepEqual(a, b) {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		n     int
+		edges [][]int
+		ans   []int
+	}{
+		{4, [][]int{{1, 0}, {1, 2}, {1, 3}}, []int{1}},
+		{6, [][]int{{3, 0}, {3, 1}, {3, 2}, {3, 4}, {5, 4}}, []int{3, 4}},
 	}
 
-	assert(findMinHeightTrees(4, [][]int{{1, 0}, {1, 2}, {1, 3}}), []int{1})
-	assert(findMinHeightTrees(6, [][]int{{3, 0}, {3, 1}, {3, 2}, {3, 4}, {5, 4}}), []int{3, 4})
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, findMinHeightTrees(test.n, test.edges), index)
+	}
 }
