@@ -1,12 +1,18 @@
 /*
  * @Date: 2024-03-21
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2024-03-21
+ * @LastEditTime: 2024-03-22
  * @FilePath: /algorithm/golang/2671_FrequencyTracker/FrequencyTracker.go
  */
 
 // Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 type FrequencyTracker struct {
 	freq     map[int]int
@@ -38,9 +44,23 @@ func (this *FrequencyTracker) HasFrequency(frequency int) bool {
 
 func main() {
 	{
+		frequencyTracker := Constructor()
+		frequencyTracker.Add(3)
+		frequencyTracker.Add(3)
+		assert.Equal(&testing.T{}, true, frequencyTracker.HasFrequency(2))
 	}
+
 	{
+		frequencyTracker := Constructor()
+		frequencyTracker.Add(1)
+		frequencyTracker.DeleteOne(1)
+		assert.Equal(&testing.T{}, false, frequencyTracker.HasFrequency(1))
 	}
+
 	{
+		frequencyTracker := Constructor()
+		assert.Equal(&testing.T{}, false, frequencyTracker.HasFrequency(1))
+		frequencyTracker.Add(3)
+		assert.Equal(&testing.T{}, true, frequencyTracker.HasFrequency(1))
 	}
 }

@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-03-21
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2024-03-21
+ * @LastEditTime: 2024-03-22
  * @FilePath: /algorithm/cpp/2671_FrequencyTracker/FrequencyTracker.cpp
  */
 
@@ -54,8 +54,8 @@ int main() {
 
   {
     FrequencyTracker* frequencyTracker = new FrequencyTracker();
-    frequencyTracker->hasFrequency(2);                  // 返回 false ，因为数据结构为空
-    frequencyTracker->add(3);                           // 数据结构现在包含 [3]
-    assert(frequencyTracker->hasFrequency(1) == true);  // 返回 true ，因为 3 出现 1 次
+    assert(frequencyTracker->hasFrequency(2) == false);  // 返回 false ，因为数据结构为空
+    frequencyTracker->add(3);                            // 数据结构现在包含 [3]
+    assert(frequencyTracker->hasFrequency(1) == true);   // 返回 true ，因为 3 出现 1 次
   }
 }

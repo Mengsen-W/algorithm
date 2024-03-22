@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-03-21
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2024-03-21
+ * @LastEditTime: 2024-03-22
  * @FilePath: /algorithm/rust/2671_FrequencyTracker/FrequencyTracker.rs
  */
 
@@ -39,5 +39,28 @@ impl FrequencyTracker {
 
     fn has_frequency(&self, frequency: i32) -> bool {
         self.freq_cnt.get(&frequency).unwrap_or(&0) > &0
+    }
+}
+
+fn main() {
+    {
+        let mut f = FrequencyTracker::new();
+        f.add(3);
+        f.add(3);
+        assert_eq!(f.has_frequency(2), true);
+    }
+
+    {
+        let mut f = FrequencyTracker::new();
+        f.add(1);
+        f.delete_one(1);
+        assert_eq!(f.has_frequency(1), false);
+    }
+
+    {
+        let mut f = FrequencyTracker::new();
+        assert_eq!(f.has_frequency(1), false);
+        f.add(3);
+        assert_eq!(f.has_frequency(1), true);
     }
 }
