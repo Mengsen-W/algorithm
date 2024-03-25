@@ -1,40 +1,35 @@
 /*
  * @Date: 2021-06-10 09:11:42
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-06-10 09:14:36
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-03-25
  */
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 using namespace std;
 
-int change(int amount, vector<int>& coins) {
-  // dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 5]
-  vector<int> dp(amount + 1, 0);  // dp[i]表示金额i的组合数
-  dp[0] = 1;
-  for (int coin : coins)
-    for (int i = coin; i <= amount; ++i) dp[i] += dp[i - coin];
-  return dp[amount];
-}
+class Solution {
+ public:
+  int change(int amount, vector<int>& coins) {
+    // dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 5]
+    vector<int> dp(amount + 1, 0);  // dp[i]表示金额i的组合数
+    dp[0] = 1;
+    for (int coin : coins)
+      for (int i = coin; i <= amount; ++i) dp[i] += dp[i - coin];
+    return dp[amount];
+  }
+};
 
 int main() {
-  {
-    int amount = 5;
-    vector<int> coins{1, 2, 5};
-    int ans = 4;
-    assert(change(amount, coins) == ans);
-  }
-  {
-    int amount = 3;
-    vector<int> coins{2};
-    int ans = 0;
-    assert(change(amount, coins) == ans);
-  }
-  {
-    int amount = 10;
-    vector<int> coins{10};
-    int ans = 1;
-    assert(change(amount, coins) == ans);
+  vector<tuple<int, vector<int>, int>> tests{
+      {5, {1, 2, 5}, 4},
+      {3, {2}, 0},
+      {10, {10}, 1},
+  };
+
+  for (auto& [amount, coins, ans] : tests) {
+    assert(Solution().change(amount, coins) == ans);
   }
 }

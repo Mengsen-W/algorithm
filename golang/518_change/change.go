@@ -1,11 +1,18 @@
 /*
  * @Date: 2021-06-10 09:11:57
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-06-10 09:17:38
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-03-25
  */
 
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func change(amount int, coins []int) int {
 	dp := make([]int, amount+1)
@@ -16,31 +23,20 @@ func change(amount int, coins []int) int {
 		}
 	}
 	return dp[amount]
-
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed!")
-		}
+	tests := []struct {
+		amount int
+		coins  []int
+		ans    int
+	}{
+		{5, []int{1, 2, 5}, 4},
+		{3, []int{2}, 0},
+		{10, []int{10}, 1},
 	}
-	{
-		amount := 5
-		coins := []int{1, 2, 5}
-		ans := 4
-		assert(change(amount, coins) == ans)
-	}
-	{
-		amount := 3
-		coins := []int{2}
-		ans := 0
-		assert(change(amount, coins) == ans)
-	}
-	{
-		amount := 10
-		coins := []int{10}
-		ans := 1
-		assert(change(amount, coins) == ans)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, change(test.amount, test.coins), index)
 	}
 }
