@@ -1,53 +1,50 @@
 /*
  * @Date: 2023-06-12
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-06-12
+ * @LastEditTime: 2024-04-06
  * @FilePath: /algorithm/golang/1483_TreeAncestor/TreeAncestor.go
  */
 
 // Package main ...
 package main
 
+const kLog = 16
+
 type TreeAncestor struct {
-	p [][18]int
+	ancestors [][]int
 }
 
 func Constructor(n int, parent []int) TreeAncestor {
-	p := make([][18]int, n)
-	for i, fa := range parent {
-		p[i][0] = fa
-		for j := 1; j < 18; j++ {
-			p[i][j] = -1
+	var this TreeAncestor
+	this.ancestors = make([][]int, n)
+	for i := 0; i < n; i++ {
+		this.ancestors[i] = make([]int, kLog)
+		for j := 0; j < kLog; j++ {
+			this.ancestors[i][j] = -1
 		}
+		this.ancestors[i][0] = parent[i]
 	}
-	for i := range p {
-		for j := 1; j < 18; j++ {
-			if p[i][j-1] == -1 {
-				continue
+	for j := 1; j < kLog; j++ {
+		for i := 0; i < n; i++ {
+			if this.ancestors[i][j-1] != -1 {
+				this.ancestors[i][j] = this.ancestors[this.ancestors[i][j-1]][j-1]
 			}
-			p[i][j] = p[p[i][j-1]][j-1]
 		}
 	}
-	return TreeAncestor{p}
+	return this
 }
 
 func (this *TreeAncestor) GetKthAncestor(node int, k int) int {
-	for i := 17; i >= 0; i-- {
-		if k>>i&1 == 1 {
-			node = this.p[node][i]
+	for j := 0; j < kLog; j++ {
+		if (k>>j)&1 != 0 {
+			node = this.ancestors[node][j]
 			if node == -1 {
-				break
+				return -1
 			}
 		}
 	}
 	return node
 }
-
-/**
- * Your TreeAncestor object will be instantiated and called as such:
- * obj := Constructor(n, parent);
- * param_1 := obj.GetKthAncestor(node,k);
- */
 
 func main() {
 	assert := func(b bool) {
