@@ -1,12 +1,14 @@
 /*
  * @Date: 2023-04-06
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-04-06
+ * @LastEditTime: 2024-04-28
  * @FilePath: /algorithm/cpp/1017_base_neg2/base_neg2.cpp
  */
 
 #include <cassert>
 #include <string>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -28,21 +30,12 @@ class Solution {
 };
 
 int main() {
-  {
-    int n = 2;
-    string ans = "110";
-    assert(Solution().baseNeg2(n) == ans);
-  }
-
-  {
-    int n = 3;
-    string ans = "111";
-    assert(Solution().baseNeg2(n) == ans);
-  }
-
-  {
-    int n = 4;
-    string ans = "100";
+  vector<tuple<int, string>> tests{
+      {2, "110"},
+      {3, "111"},
+      {4, "100"},
+  };
+  for (auto &[n, ans] : tests) {
     assert(Solution().baseNeg2(n) == ans);
   }
 }

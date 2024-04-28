@@ -1,12 +1,18 @@
 /*
  * @Date: 2023-04-06
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-04-06
+ * @LastEditTime: 2024-04-28
  * @FilePath: /algorithm/golang/1017_base_neg2/base_neg2.go
  */
 
 // Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func baseNeg2(n int) string {
 	val := 0x55555555 ^ (0x55555555 - n)
@@ -25,26 +31,16 @@ func baseNeg2(n int) string {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
-	}
-	{
-		n := 2
-		ans := "110"
-		assert(baseNeg2(n) == ans)
+	tests := []struct {
+		n   int
+		ans string
+	}{
+		{2, "110"},
+		{3, "111"},
+		{4, "100"},
 	}
 
-	{
-		n := 3
-		ans := "111"
-		assert(baseNeg2(n) == ans)
-	}
-
-	{
-		n := 4
-		ans := "100"
-		assert(baseNeg2(n) == ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, baseNeg2(test.n), index)
 	}
 }
