@@ -1,16 +1,20 @@
 /*
  * @Date: 2022-09-11
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-09-11
- * @FilePath: /algorithm/857_mincost_to_hire_workers/mincost_to_hire_workers.go
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-05-02
+ * @FilePath: /algorithm/golang/857_mincost_to_hire_workers/mincost_to_hire_workers.go
  */
 
 package main
 
 import (
 	"container/heap"
+	"fmt"
 	"math"
 	"sort"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func mincostToHireWorkers(quality, wage []int, k int) float64 {
@@ -52,25 +56,17 @@ func (h *hp) Pop() interface{} {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		quality []int
+		wage    []int
+		k       int
+		ans     float64
+	}{
+		{[]int{10, 20, 5}, []int{70, 50, 30}, 2, 105.00000},
+		{[]int{3, 1, 10, 10, 1}, []int{4, 8, 2, 2, 7}, 3, 30.6666666666666666666667},
 	}
 
-	{
-		quality := []int{10, 20, 5}
-		wage := []int{70, 50, 30}
-		k := 2
-		ans := 105.00000
-		assert(mincostToHireWorkers(quality, wage, k) == ans)
-	}
-
-	{
-		quality := []int{3, 1, 10, 10, 1}
-		wage := []int{4, 8, 2, 2, 7}
-		k := 3
-		ans := mincostToHireWorkers(quality, wage, k)
-		assert(mincostToHireWorkers(quality, wage, k) == ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, mincostToHireWorkers(test.quality, test.wage, test.k), fmt.Sprintf("%f %d", mincostToHireWorkers(test.quality, test.wage, test.k), index))
 	}
 }

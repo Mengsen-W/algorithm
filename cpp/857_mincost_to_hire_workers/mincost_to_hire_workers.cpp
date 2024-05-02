@@ -1,8 +1,8 @@
 /*
  * @Date: 2022-09-11
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-09-11
- * @FilePath: /algorithm/857_mincost_to_hire_workers/mincost_to_hire_workers.cpp
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-05-02
+ * @FilePath: /algorithm/cpp/857_mincost_to_hire_workers/mincost_to_hire_workers.cpp
  */
 
 #include <assert.h>
@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <numeric>
 #include <queue>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -42,19 +43,12 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> quality{10, 20, 5};
-    vector<int> wage{70, 50, 30};
-    int k = 2;
-    double ans{105.00000};
-    assert(Solution().mincostToHireWorkers(quality, wage, k) == ans);
-  }
+  vector<tuple<vector<int>, vector<int>, int, double>> tests{
+      {{10, 20, 5}, {70, 50, 30}, 2, 105.00000},
+      {{3, 1, 10, 10, 1}, {4, 8, 2, 2, 7}, 3, 30.6666666666666666666667},
+  };
 
-  {
-    vector<int> quality{3, 1, 10, 10, 1};
-    vector<int> wage{4, 8, 2, 2, 7};
-    int k = 3;
-    double ans = Solution().mincostToHireWorkers(quality, wage, k);
+  for (auto& [quality, wage, k, ans] : tests) {
     assert(Solution().mincostToHireWorkers(quality, wage, k) == ans);
   }
 }
