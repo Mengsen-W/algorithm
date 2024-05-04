@@ -1,11 +1,12 @@
 /*
  * @Date: 2022-10-22
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-10-22
- * @FilePath: /algorithm/1235_job_scheduling/job_scheduling.cpp
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-05-04
+ * @FilePath: /algorithm/cpp/1235_job_scheduling/job_scheduling.cpp
  */
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -32,27 +33,13 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> start_time{1, 2, 3, 3};
-    vector<int> end_time{3, 4, 5, 6};
-    vector<int> profit{50, 10, 40, 70};
-    int ans = 120;
-    assert(Solution().jobScheduling(start_time, end_time, profit) == ans);
-  }
+  vector<tuple<vector<int>, vector<int>, vector<int>, int>> tests{
+      {{1, 2, 3, 3}, {3, 4, 5, 6}, {50, 10, 40, 70}, 120},
+      {{1, 2, 3, 4, 6}, {3, 5, 10, 6, 9}, {20, 20, 100, 70, 60}, 150},
+      {{1, 1, 1}, {2, 3, 4}, {5, 6, 4}, 6},
+  };
 
-  {
-    vector<int> start_time{1, 2, 3, 4, 6};
-    vector<int> end_time{3, 5, 10, 6, 9};
-    vector<int> profit{20, 20, 100, 70, 60};
-    int ans = 150;
-    assert(Solution().jobScheduling(start_time, end_time, profit) == ans);
-  }
-
-  {
-    vector<int> start_time{1, 1, 1};
-    vector<int> end_time{2, 3, 4};
-    vector<int> profit{5, 6, 4};
-    int ans = 6;
-    assert(Solution().jobScheduling(start_time, end_time, profit) == ans);
+  for (auto &[startTime, endTime, profit, ans] : tests) {
+    assert(Solution().jobScheduling(startTime, endTime, profit) == ans);
   }
 }

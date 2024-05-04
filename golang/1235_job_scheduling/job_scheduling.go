@@ -1,13 +1,18 @@
 /*
  * @Date: 2022-10-22
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-10-22
- * @FilePath: /algorithm/1235_job_scheduling/job_scheduling.go
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-05-04
+ * @FilePath: /algorithm/golang/1235_job_scheduling/job_scheduling.go
  */
 
 package main
 
-import "sort"
+import (
+	"sort"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func jobScheduling(startTime, endTime, profit []int) int {
 	n := len(startTime)
@@ -32,33 +37,18 @@ func jobScheduling(startTime, endTime, profit []int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		startTime []int
+		endTime   []int
+		profit    []int
+		ans       int
+	}{
+		{[]int{1, 2, 3, 3}, []int{3, 4, 5, 6}, []int{50, 10, 40, 70}, 120},
+		{[]int{1, 2, 3, 4, 6}, []int{3, 5, 10, 6, 9}, []int{20, 20, 100, 70, 60}, 150},
+		{[]int{1, 1, 1}, []int{2, 3, 4}, []int{5, 6, 4}, 6},
 	}
 
-	{
-		startTime := []int{1, 2, 3, 3}
-		endTime := []int{3, 4, 5, 6}
-		profit := []int{50, 10, 40, 70}
-		ans := 120
-		assert(jobScheduling(startTime, endTime, profit) == ans)
-	}
-
-	{
-		startTime := []int{1, 2, 3, 4, 6}
-		endTime := []int{3, 5, 10, 6, 9}
-		profit := []int{20, 20, 100, 70, 60}
-		ans := 150
-		assert(jobScheduling(startTime, endTime, profit) == ans)
-	}
-
-	{
-		startTime := []int{1, 1, 1}
-		endTime := []int{2, 3, 4}
-		profit := []int{5, 6, 4}
-		ans := 6
-		assert(jobScheduling(startTime, endTime, profit) == ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, jobScheduling(test.startTime, test.endTime, test.profit), index)
 	}
 }
