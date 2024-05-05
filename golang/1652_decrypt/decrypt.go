@@ -1,13 +1,17 @@
 /*
  * @Date: 2022-09-24
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-09-24
- * @FilePath: /algorithm/1652_decrypt/decrypt.go
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-05-05
+ * @FilePath: /algorithm/golang/1652_decrypt/decrypt.go
  */
 
 package main
 
-import "reflect"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func decrypt(code []int, k int) []int {
 	n := len(code)
@@ -34,30 +38,17 @@ func decrypt(code []int, k int) []int {
 }
 
 func main() {
-	assert := func(a, b []int) {
-		if !reflect.DeepEqual(a, b) {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		code []int
+		k    int
+		ans  []int
+	}{
+		{[]int{5, 7, 1, 4}, 3, []int{12, 10, 16, 13}},
+		{[]int{1, 2, 3, 4}, 0, []int{0, 0, 0, 0}},
+		{[]int{2, 4, 9, 3}, -2, []int{12, 5, 6, 13}},
 	}
 
-	{
-		code := []int{5, 7, 1, 4}
-		k := 3
-		ans := []int{12, 10, 16, 13}
-		assert(decrypt(code, k), ans)
-	}
-
-	{
-		code := []int{1, 2, 3, 4}
-		k := 0
-		ans := []int{0, 0, 0, 0}
-		assert(decrypt(code, k), ans)
-	}
-
-	{
-		code := []int{2, 4, 9, 3}
-		k := -2
-		ans := []int{12, 5, 6, 13}
-		assert(decrypt(code, k), ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, decrypt(test.code, test.k), index)
 	}
 }

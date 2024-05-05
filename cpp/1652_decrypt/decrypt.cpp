@@ -1,12 +1,13 @@
 /*
  * @Date: 2022-09-24
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-09-24
- * @FilePath: /algorithm/1652_decrypt/decrypt.cpp
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-05-05
+ * @FilePath: /algorithm/cpp/1652_decrypt/decrypt.cpp
  */
 
 #include <assert.h>
 
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -38,24 +39,13 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> code{5, 7, 1, 4};
-    int k = 3;
-    vector<int> ans{12, 10, 16, 13};
-    assert(Solution().decrypt(code, k) == ans);
-  }
+  vector<tuple<vector<int>, int, vector<int>>> tests{
+      {{5, 7, 1, 4}, 3, {12, 10, 16, 13}},
+      {{1, 2, 3, 4}, 0, {0, 0, 0, 0}},
+      {{2, 4, 9, 3}, -2, {12, 5, 6, 13}},
+  };
 
-  {
-    vector<int> code{1, 2, 3, 4};
-    int k = 0;
-    vector<int> ans{0, 0, 0, 0};
-    assert(Solution().decrypt(code, k) == ans);
-  }
-
-  {
-    vector<int> code{2, 4, 9, 3};
-    int k = -2;
-    vector<int> ans{12, 5, 6, 13};
+  for (auto& [code, k, ans] : tests) {
     assert(Solution().decrypt(code, k) == ans);
   }
 }
