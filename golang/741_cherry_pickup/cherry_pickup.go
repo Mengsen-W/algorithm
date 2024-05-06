@@ -1,13 +1,18 @@
 /*
  * @Date: 2022-07-10
- * @LastEditors: mengsenwang mengsen_wang@163.com
- * @LastEditTime: 2022-07-10
- * @FilePath: /algorithm/741_cherry_pickup/cherry_pickup.go
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-05-06
+ * @FilePath: /algorithm/golang/741_cherry_pickup/cherry_pickup.go
  */
 
 package main
 
-import "math"
+import (
+	"math"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func cherryPickup(grid [][]int) int {
 	n := len(grid)
@@ -62,10 +67,15 @@ func cherryPickup(grid [][]int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		grid [][]int
+		ans  int
+	}{
+		{[][]int{{0, 1, -1}, {1, 0, -1}, {1, 1, 1}}, 5},
+		{[][]int{{1, 1, -1}, {1, -1, 1}, {-1, 1, 1}}, 0},
 	}
-	assert(cherryPickup([][]int{{0, 1, -1}, {1, 0, -1}, {1, 1, 1}}) == 5)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, cherryPickup(test.grid), index)
+	}
 }

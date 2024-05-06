@@ -1,11 +1,12 @@
 /*
  * @Date: 2022-07-10
- * @LastEditors: mengsenwang mengsen_wang@163.com
- * @LastEditTime: 2022-07-10
- * @FilePath: /algorithm/741_cherry_pickup/cherry_pickup.cpp
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-05-06
+ * @FilePath: /algorithm/cpp/741_cherry_pickup/cherry_pickup.cpp
  */
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -46,4 +47,13 @@ class Solution {
   }
 };
 
-int main() { assert(Solution().cherryPickup(vector<vector<int>>{{0, 1, -1}, {1, 0, -1}, {1, 1, 1}}) == 5); }
+int main() {
+  vector<tuple<vector<vector<int>>, int>> tests{
+      {{{0, 1, -1}, {1, 0, -1}, {1, 1, 1}}, 5},
+      {{{1, 1, -1}, {1, -1, 1}, {-1, 1, 1}}, 0},
+  };
+
+  for (auto &[grid, ans] : tests) {
+    assert(Solution().cherryPickup(grid) == ans);
+  }
+}
