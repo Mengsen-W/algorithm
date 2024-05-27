@@ -7,7 +7,12 @@
 
 package main
 
-import "math/rand"
+import (
+	"math/rand"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func quickSelect(a []int, k int) int {
 	rand.Shuffle(len(a), func(i, j int) { a[i], a[j] = a[j], a[i] })
@@ -52,13 +57,18 @@ func kthLargestValue(matrix [][]int, k int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed!")
-		}
+	tests := []struct {
+		matrix [][]int
+		k      int
+		ans    int
+	}{
+		{[][]int{{5, 2}, {1, 6}}, 1, 7},
+		{[][]int{{5, 2}, {1, 6}}, 2, 5},
+		{[][]int{{5, 2}, {1, 6}}, 3, 4},
+		{[][]int{{5, 2}, {1, 6}}, 4, 0},
 	}
-	assert(kthLargestValue([][]int{{5, 2}, {1, 6}}, 1) == 7)
-	assert(kthLargestValue([][]int{{5, 2}, {1, 6}}, 2) == 5)
-	assert(kthLargestValue([][]int{{5, 2}, {1, 6}}, 3) == 4)
-	assert(kthLargestValue([][]int{{5, 2}, {1, 6}}, 4) == 0)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, kthLargestValue(test.matrix, test.k), index)
+	}
 }

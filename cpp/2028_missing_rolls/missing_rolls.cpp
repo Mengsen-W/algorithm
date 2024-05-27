@@ -1,12 +1,13 @@
 /*
  * @Date: 2022-03-27 02:44:59
  * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-03-27 02:53:14
- * @FilePath: /algorithm/2028_missing_rolls/missing_rolls.cpp
+ * @LastEditors: 854284842@qq.com
+ * @LastEditTime: 2024-05-27
+ * @FilePath: /algorithm/cpp/2028_missing_rolls/missing_rolls.cpp
  */
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -33,35 +34,14 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> rolls{3, 2, 4, 3};
-    int mean = 4;
-    int n = 2;
-    vector<int> ans{6, 6};
-    assert(Solution().missingRolls(rolls, mean, n) == ans);
-  }
+  vector<tuple<vector<int>, int, int, vector<int>>> tests{
+      {{3, 2, 4, 3}, 4, 2, {6, 6}},
+      {{1, 5, 6}, 3, 4, {3, 2, 2, 2}},
+      {{1, 2, 3, 4}, 5, 4, {}},
+      {{1}, 3, 1, {5}},
+  };
 
-  {
-    vector<int> rolls{1, 5, 6};
-    int mean = 3;
-    int n = 4;
-    vector<int> ans{3, 2, 2, 2};
-    assert(Solution().missingRolls(rolls, mean, n) == ans);
-  }
-
-  {
-    vector<int> rolls{1, 2, 3, 4};
-    int mean = 5;
-    int n = 4;
-    vector<int> ans{};
-    assert(Solution().missingRolls(rolls, mean, n) == ans);
-  }
-
-  {
-    vector<int> rolls{1};
-    int mean = 3;
-    int n = 1;
-    vector<int> ans{5};
+  for (auto& [rolls, mean, n, ans] : tests) {
     assert(Solution().missingRolls(rolls, mean, n) == ans);
   }
 }

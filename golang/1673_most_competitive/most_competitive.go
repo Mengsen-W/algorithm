@@ -1,7 +1,7 @@
 /*
  * @Date: 2024-05-24
  * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2024-05-24
+ * @LastEditTime: 2024-05-26
  * @FilePath: /algorithm/golang/1673_most_competitive/most_competitive.go
  */
 
