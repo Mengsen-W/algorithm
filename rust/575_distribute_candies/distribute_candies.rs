@@ -7,9 +7,9 @@
 
 struct Solution;
 
-use std::collections::HashSet;
 impl Solution {
     pub fn distribute_candies(candy_type: Vec<i32>) -> i32 {
+        use std::collections::HashSet;
         candy_type
             .iter()
             .map(|&i| i)
@@ -20,6 +20,9 @@ impl Solution {
 }
 
 fn main() {
-    assert_eq!(Solution::distribute_candies(vec![1, 1, 2, 2, 3, 3]), 3);
-    assert_eq!(Solution::distribute_candies(vec![1, 1, 2, 3]), 2);
+    let tests = vec![(vec![1, 1, 2, 2, 3, 3], 3), (vec![1, 1, 2, 3], 2)];
+
+    for (candy_type, ans) in tests {
+        assert_eq!(Solution::distribute_candies(candy_type), ans);
+    }
 }

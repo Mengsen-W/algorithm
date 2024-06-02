@@ -7,6 +7,12 @@
 
 package main
 
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
 func distributeCandies(candyType []int) int {
 	set := map[int]struct{}{}
 	for _, t := range candyType {
@@ -20,11 +26,15 @@ func distributeCandies(candyType []int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		candyType []int
+		ans       int
+	}{
+		{[]int{1, 1, 2, 2, 3, 3}, 3},
+		{[]int{1, 1, 2, 3}, 2},
 	}
-	assert(distributeCandies([]int{1, 1, 2, 2, 3, 3}) == 3)
-	assert(distributeCandies([]int{1, 1, 2, 3}) == 2)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, distributeCandies(test.candyType), index)
+	}
 }

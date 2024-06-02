@@ -6,6 +6,7 @@
  */
 
 #include <cassert>
+#include <tuple>
 #include <unordered_set>
 #include <vector>
 
@@ -14,12 +15,17 @@ using namespace std;
 class Solution {
  public:
   int distributeCandies(vector<int> candyType) {
-    return min(unordered_set<int>(candyType.begin(), candyType.end()).size(),
-               candyType.size() / 2);
+    return min(unordered_set<int>(candyType.begin(), candyType.end()).size(), candyType.size() / 2);
   }
 };
 
 int main() {
-  assert(Solution().distributeCandies(vector<int>{1, 1, 2, 2, 3, 3}) == 3);
-  assert(Solution().distributeCandies(vector<int>{1, 1, 2, 3}) == 2);
+  vector<tuple<vector<int>, int>> tests{
+      {{1, 1, 2, 2, 3, 3}, 3},
+      {{1, 1, 2, 3}, 2},
+  };
+
+  for (auto &[candyType, ans] : tests) {
+    assert(Solution().distributeCandies(candyType) == ans);
+  }
 }
