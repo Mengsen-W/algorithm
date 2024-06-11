@@ -7,6 +7,12 @@
 
 package main
 
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
 func countBattleships(board [][]byte) (ans int) {
 	for i, row := range board {
 		for j, ch := range row {
@@ -19,12 +25,15 @@ func countBattleships(board [][]byte) (ans int) {
 }
 
 func main() {
-	assert := func(a, b int) {
-		if a != b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		board [][]byte
+		ans   int
+	}{
+		{[][]byte{{'X', '.', '.', 'X'}, {'.', '.', '.', 'X'}, {'.', '.', '.', 'X'}}, 2},
+		{[][]byte{{'.'}}, 0},
 	}
 
-	assert(countBattleships([][]byte{{'X', '.', '.', 'X'}, {'.', '.', '.', 'X'}, {'.', '.', '.', 'X'}}), 2)
-	assert(countBattleships([][]byte{{'.'}}), 0)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, countBattleships(test.board), index)
+	}
 }

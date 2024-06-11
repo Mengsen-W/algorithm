@@ -6,6 +6,7 @@
  */
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -34,13 +35,12 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<vector<char>> board{
-        {'X', '.', '.', 'X'}, {'.', '.', '.', 'X'}, {'.', '.', '.', 'X'}};
-    assert(Solution().countBattleships(board) == 2);
-  }
-  {
-    vector<vector<char>> board{{'.'}};
-    assert(Solution().countBattleships(board) == 0);
+  vector<tuple<vector<vector<char>>, int>> tests{
+      {{{'X', '.', '.', 'X'}, {'.', '.', '.', 'X'}, {'.', '.', '.', 'X'}}, 2},
+      {{{'.'}}, 0},
+  };
+
+  for (auto& [board, ans] : tests) {
+    assert(Solution().countBattleships(board) == ans);
   }
 }
