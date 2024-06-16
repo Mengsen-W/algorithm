@@ -8,18 +8,24 @@
 
 #include <cassert>
 #include <string>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
 class Solution {
  public:
-  int findLUSlength(string a, string b) {
-    return a == b ? -1 : max(a.length(), b.length());
-  }
+  int findLUSlength(string a, string b) { return a == b ? -1 : max(a.length(), b.length()); }
 };
 
 int main() {
-  assert(Solution().findLUSlength("aba", "cdc") == 3);
-  assert(Solution().findLUSlength("aaa", "bbb") == 3);
-  assert(Solution().findLUSlength("aaa", "aaa") == -1);
+  vector<tuple<string, string, int>> tests{
+      {"aba", "cdc", 3},
+      {"aaa", "bbb", 3},
+      {"aaa", "aaa", -1},
+  };
+
+  for (auto &[a, b, ans] : tests) {
+    assert(Solution().findLUSlength(a, b) == ans);
+  }
 }

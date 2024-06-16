@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
 func findLUSlength(a, b string) int {
 	if a != b {
 		return func(a, b int) int {
@@ -21,13 +27,17 @@ func findLUSlength(a, b string) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		a   string
+		b   string
+		ans int
+	}{
+		{"aba", "cdc", 3},
+		{"aaa", "bbb", 3},
+		{"aaa", "aaa", -1},
 	}
 
-	assert(findLUSlength("aba", "cdc") == 3)
-	assert(findLUSlength("aaa", "bbb") == 3)
-	assert(findLUSlength("aaa", "aaa") == -1)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, findLUSlength(test.a, test.b), index)
+	}
 }
