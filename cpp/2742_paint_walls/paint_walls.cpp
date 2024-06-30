@@ -20,7 +20,7 @@ class Solution {
           g[j - 1] = min(g[j - 1], f[j]);
         }
       }
-      f = move(g);
+      f = std::move(g);
     }
     return *min_element(f.begin() + n, f.end());
   }

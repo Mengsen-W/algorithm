@@ -1,11 +1,11 @@
-/*
- * @Date: 2021-06-07 08:26:29
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-06-07 08:36:06
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func findTargetSumWays(nums []int, target int) int {
 	sum := 0
@@ -28,21 +28,16 @@ func findTargetSumWays(nums []int, target int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed!")
-		}
+	tests := []struct {
+		nums   []int
+		target int
+		ans    int
+	}{
+		{[]int{1, 1, 1, 1, 1}, 3, 5},
+		{[]int{1}, 1, 1},
 	}
-	{
-		nums := []int{1, 1, 1, 1, 1}
-		target := 3
-		ans := 5
-		assert(findTargetSumWays(nums, target) == ans)
-	}
-	{
-		nums := []int{1}
-		target := 1
-		ans := 1
-		assert(findTargetSumWays(nums, target) == ans)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, findTargetSumWays(test.nums, test.target), index)
 	}
 }

@@ -7,36 +7,40 @@
 
 #include <cassert>
 #include <cstring>
+#include <tuple>
 #include <vector>
 using namespace std;
 
-int findTargetSumWays(vector<int> &nums, int S) {
-  long sum = 0;
-  for (const int &it : nums) sum += it;
-  if ((S + sum) % 2 == 1 || S > sum) return 0;
-  S = (S + sum) / 2;
-  int *dp = new int[S + 1];
-  memset(dp, 0, (S + 1) * sizeof(int));
-  dp[0] = 1;
-  for (const int &it : nums) {
-    for (int j = S; j >= it; j--) dp[j] += dp[j - it];
+class Solution {
+ public:
+  int findTargetSumWays(vector<int>& nums, int target) {
+    int sum = 0;
+    for (int& num : nums) {
+      sum += num;
+    }
+    int diff = sum - target;
+    if (diff < 0 || diff % 2 != 0) {
+      return 0;
+    }
+    int neg = diff / 2;
+    vector<int> dp(neg + 1);
+    dp[0] = 1;
+    for (int& num : nums) {
+      for (int j = neg; j >= num; j--) {
+        dp[j] += dp[j - num];
+      }
+    }
+    return dp[neg];
   }
-  int ans = dp[S];
-  delete[] dp;
-  return ans;
-}
+};
 
 int main() {
-  {
-    vector<int> nums{1, 1, 1, 1, 1};
-    int target = 3;
-    int ans = 5;
-    assert(findTargetSumWays(nums, target) == ans);
-  }
-  {
-    vector<int> nums{1};
-    int target = 1;
-    int ans = 1;
-    assert(findTargetSumWays(nums, target) == ans);
+  vector<tuple<vector<int>, int, int>> tests{
+      {{1, 1, 1, 1, 1}, 3, 5},
+      {{1}, 1, 1},
+  };
+
+  for (auto& [nums, target, ans] : tests) {
+    assert(Solution().findTargetSumWays(nums, target) == ans);
   }
 }
