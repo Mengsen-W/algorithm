@@ -7,7 +7,27 @@
 
 package main
 
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
 func maxIncreaseKeepingSkyline(grid [][]int) (ans int) {
+	max := func(a, b int) int {
+		if b > a {
+			return b
+		}
+		return a
+	}
+
+	min := func(a, b int) int {
+		if a > b {
+			return b
+		}
+		return a
+	}
+
 	n := len(grid)
 	rowMax := make([]int, n)
 	colMax := make([]int, n)
@@ -25,26 +45,16 @@ func maxIncreaseKeepingSkyline(grid [][]int) (ans int) {
 	return
 }
 
-func max(a, b int) int {
-	if b > a {
-		return b
-	}
-	return a
-}
-
-func min(a, b int) int {
-	if a > b {
-		return b
-	}
-	return a
-}
-
 func main() {
-	assert := func(a, b int) {
-		if a != b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		grid [][]int
+		ans  int
+	}{
+		{[][]int{{3, 0, 8, 4}, {2, 4, 5, 7}, {9, 2, 6, 3}, {0, 3, 1, 0}}, 35},
+		{[][]int{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}, 0},
 	}
 
-	assert(maxIncreaseKeepingSkyline([][]int{{3, 0, 8, 4}, {2, 4, 5, 7}, {9, 2, 6, 3}, {0, 3, 1, 0}}), 35)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, maxIncreaseKeepingSkyline(test.grid), index)
+	}
 }

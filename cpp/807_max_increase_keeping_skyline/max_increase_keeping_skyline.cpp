@@ -6,6 +6,7 @@
  */
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -30,6 +31,12 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().maxIncreaseKeepingSkyline(vector<vector<int>>{
-             {3, 0, 8, 4}, {2, 4, 5, 7}, {9, 2, 6, 3}, {0, 3, 1, 0}}) == 35);
+  vector<tuple<vector<vector<int>>, int>> tests{
+      {{{3, 0, 8, 4}, {2, 4, 5, 7}, {9, 2, 6, 3}, {0, 3, 1, 0}}, 35},
+      {{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}, 0},
+  };
+
+  for (auto &[grid, ans] : tests) {
+    assert(Solution().maxIncreaseKeepingSkyline(grid) == ans);
+  }
 }
