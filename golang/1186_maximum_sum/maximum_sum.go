@@ -1,10 +1,3 @@
-/*
- * @Date: 2023-06-27
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-06-27
- * @FilePath: /algorithm/golang/1186_maximum_sum/maximum_sum.go
- */
-
 // Package main ...
 package main
 
@@ -30,7 +23,7 @@ func maximumSum(arr []int) int {
 }
 
 func main() {
-	testMap := []struct {
+	tests := []struct {
 		arr []int
 		ans int
 	}{
@@ -39,7 +32,7 @@ func main() {
 		{[]int{-1, -1, -1, -1}, -1},
 	}
 
-	for _, item := range testMap {
+	for _, item := range tests {
 		assert.Equal(&testing.T{}, maximumSum(item.arr), item.ans)
 	}
 }

@@ -1,10 +1,3 @@
-/*
- * @Date: 2023-06-27
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-06-27
- * @FilePath: /algorithm/cpp/1186_maximum_sum/maximum_sum.cpp
- */
-
 #include <cassert>
 #include <tuple>
 #include <vector>
@@ -25,12 +18,12 @@ class Solution {
 };
 
 int main() {
-  vector<tuple<vector<int>, int>> testMap{
+  vector<tuple<vector<int>, int>> tests{
       {vector<int>{1, -2, 0, 3}, 4},
       {vector<int>{1, -2, -2, 3}, 3},
       {vector<int>{-1, -1, -1, -1}, -1},
   };
-  for (auto& [arr, ans] : testMap) {
+  for (auto& [arr, ans] : tests) {
     assert(Solution().maximumSum(arr) == ans);
   }
 }
