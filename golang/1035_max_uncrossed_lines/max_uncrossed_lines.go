@@ -7,6 +7,12 @@
 
 package main
 
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
 func maxUncrossedLines(nums1, nums2 []int) int {
 	max := func(a, b int) int {
 		if a > b {
@@ -32,12 +38,17 @@ func maxUncrossedLines(nums1, nums2 []int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed!")
-		}
+	tests := []struct {
+		nums1 []int
+		nums2 []int
+		ans   int
+	}{
+		{[]int{1, 4, 2}, []int{1, 2, 4}, 2},
+		{[]int{2, 5, 1, 2, 5}, []int{10, 5, 2, 1, 5, 2}, 3},
+		{[]int{1, 3, 7, 1, 7, 5}, []int{1, 9, 2, 5, 1}, 2},
 	}
-	assert(maxUncrossedLines([]int{1, 4, 2}, []int{1, 2, 4}) == 2)
-	assert(maxUncrossedLines([]int{2, 5, 1, 2, 5}, []int{10, 5, 2, 1, 5, 2}) == 3)
-	assert(maxUncrossedLines([]int{1, 3, 7, 1, 7, 5}, []int{1, 9, 2, 5, 1}) == 2)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, maxUncrossedLines(test.nums1, test.nums2), index)
+	}
 }
