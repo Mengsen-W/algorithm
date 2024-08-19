@@ -26,8 +26,7 @@ class Solution {
     return ret;
   }
 
-  vector<vector<long>> multiply(vector<vector<long>> a,
-                                vector<vector<long>> b) {
+  vector<vector<long>> multiply(vector<vector<long>> a, vector<vector<long>> b) {
     int rows = a.size(), columns = b[0].size(), temp = b.size();
     vector<vector<long>> c(rows, vector<long>(columns));
     for (int i = 0; i < rows; i++) {
@@ -42,9 +41,8 @@ class Solution {
   }
 
   int checkRecord(int n) {
-    vector<vector<long>> mat = {{1, 1, 0, 1, 0, 0}, {1, 0, 1, 1, 0, 0},
-                                {1, 0, 0, 1, 0, 0}, {0, 0, 0, 1, 1, 0},
-                                {0, 0, 0, 1, 0, 1}, {0, 0, 0, 1, 0, 0}};
+    vector<vector<long>> mat = {{1, 1, 0, 1, 0, 0}, {1, 0, 1, 1, 0, 0}, {1, 0, 0, 1, 0, 0},
+                                {0, 0, 0, 1, 1, 0}, {0, 0, 0, 1, 0, 1}, {0, 0, 0, 1, 0, 0}};
     vector<vector<long>> res = pow(mat, n);
     long sum = accumulate(res[0].begin(), res[0].end(), 0ll);
     return (int)(sum % MOD);
