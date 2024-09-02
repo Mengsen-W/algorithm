@@ -7,6 +7,8 @@
 
 #include <cassert>
 #include <string>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -26,13 +28,18 @@ class Solution {
   }
 
   int maxConsecutiveAnswers(string answerKey, int k) {
-    return max(maxConsecutiveChar(answerKey, k, 'T'),
-               maxConsecutiveChar(answerKey, k, 'F'));
+    return max(maxConsecutiveChar(answerKey, k, 'T'), maxConsecutiveChar(answerKey, k, 'F'));
   }
 };
 
 int main() {
-  assert(Solution().maxConsecutiveAnswers("TTFF", 2) == 4);
-  assert(Solution().maxConsecutiveAnswers("TFFT", 1) == 3);
-  assert(Solution().maxConsecutiveAnswers("TTFTTFTT", 1) == 5);
+  vector<tuple<string, int, int>> tests{
+      {"TTFF", 2, 4},
+      {"TFFT", 1, 3},
+      {"TTFTTFTT", 1, 5},
+  };
+
+  for (auto& [answerKey, k, ans] : tests) {
+    assert(Solution().maxConsecutiveAnswers(answerKey, k) == ans);
+  }
 }
