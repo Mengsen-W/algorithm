@@ -5,9 +5,15 @@
  * @LastEditTime: 2021-06-28 08:56:15
  */
 
+// Package main ...
 package main
 
-import "math"
+import (
+	"math"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func numBusesToDestination(routes [][]int, source, target int) int {
 	if source == target {
@@ -63,21 +69,17 @@ func numBusesToDestination(routes [][]int, source, target int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed!")
-		}
+	tests := []struct {
+		routes [][]int
+		source int
+		target int
+		ans    int
+	}{
+		{[][]int{{1, 2, 7}, {3, 6, 7}}, 1, 6, 2},
+		{[][]int{{7, 12}, {4, 5, 15}, {6}, {15, 19}, {9, 12, 13}}, 15, 12, -1},
 	}
-	{
-		routes := [][]int{{1, 2, 7}, {3, 6, 7}}
-		source := 1
-		target := 6
-		assert(numBusesToDestination(routes, source, target) == 2)
-	}
-	{
-		routes := [][]int{{7, 12}, {4, 5, 15}, {6}, {15, 19}, {9, 12, 13}}
-		source := 15
-		target := 12
-		assert(numBusesToDestination(routes, source, target) == -1)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, numBusesToDestination(test.routes, test.source, test.target), index)
 	}
 }
