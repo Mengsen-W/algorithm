@@ -1,34 +1,37 @@
 struct Solution;
 
 impl Solution {
-    pub fn latest_time_catch_the_bus(buses: Vec<i32>, passengers: Vec<i32>, capacity: i32) -> i32 {
-        let mut buses = buses;
-        let mut passengers = passengers;
-        buses.sort();
-        passengers.sort();
-        let mut pos = 0;
-        let mut space = 0;
+    pub fn latest_time_catch_the_bus(
+        mut buses: Vec<i32>,
+        mut passengers: Vec<i32>,
+        capacity: i32,
+    ) -> i32 {
+        buses.sort_unstable();
+        passengers.sort_unstable();
 
-        for &arrive in &buses {
-            space = capacity;
-            while space > 0 && pos < passengers.len() && passengers[pos] <= arrive {
-                space -= 1;
-                pos += 1;
+        // 模拟乘客上车
+        let mut j = 0;
+        let mut c = 0;
+        for &t in &buses {
+            c = capacity;
+            while c > 0 && j < passengers.len() && passengers[j] <= t {
+                j += 1;
+                c -= 1;
             }
         }
 
-        pos -= 1;
-        let mut last_catch_time = if space > 0 {
+        // 寻找插队时机
+        j -= 1;
+        let mut ans = if c > 0 {
             *buses.last().unwrap()
         } else {
-            passengers[pos]
+            passengers[j]
         };
-        while pos >= 0 && passengers[pos as usize] == last_catch_time {
-            pos -= 1;
-            last_catch_time -= 1;
+        while j < passengers.len() && ans == passengers[j] {
+            ans -= 1; // 往前找没人到达的时刻
+            j -= 1;
         }
-
-        last_catch_time
+        ans
     }
 }
 
