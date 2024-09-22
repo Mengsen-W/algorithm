@@ -6,6 +6,7 @@
  */
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -28,10 +29,15 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().findJudge(2, {{1, 2}}) == 2);
-  assert(Solution().findJudge(3, {{1, 3}, {2, 3}}) == 3);
-  assert(Solution().findJudge(3, {{1, 3}, {2, 3}, {3, 1}}) == -1);
-  assert(Solution().findJudge(3, {{1, 2}, {2, 3}}) == -1);
-  assert(Solution().findJudge(4, {{1, 3}, {1, 4}, {2, 3}, {2, 4}, {4, 3}}) ==
-         3);
+  vector<tuple<int, vector<vector<int>>, int>> tests{
+      {2, {{1, 2}}, 2},
+      {3, {{1, 3}, {2, 3}}, 3},
+      {3, {{1, 3}, {2, 3}, {3, 1}}, -1},
+      {3, {{1, 2}, {2, 3}}, -1},
+      {4, {{1, 3}, {1, 4}, {2, 3}, {2, 4}, {4, 3}}, 3},
+  };
+
+  for (auto& [n, trust, ans] : tests) {
+    assert(Solution().findJudge(n, trust) == ans);
+  }
 }
