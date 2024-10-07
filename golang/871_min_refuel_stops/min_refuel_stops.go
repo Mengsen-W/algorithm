@@ -1,15 +1,12 @@
-/*
- * @Date: 2022-07-04
- * @LastEditors: mengsenwang mengsen_wang@163.com
- * @LastEditTime: 2022-07-04
- * @FilePath: /algorithm/871_min_refuel_stops/min_refuel_stops.go
- */
-
+// Package main ...
 package main
 
 import (
 	"container/heap"
 	"sort"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func minRefuelStops(target, startFuel int, stations [][]int) (ans int) {
@@ -47,24 +44,18 @@ func (h *hp) Pop() interface{} {
 }
 
 func main() {
-	assert := func(a, b int) {
-		if a != b {
-			panic("Not Passed")
-		}
-	}
-	{
-		stations := [][]int{}
-		assert(minRefuelStops(1, 1, stations), 0)
-	}
-
-	{
-		stations := [][]int{{10, 100}}
-		assert(minRefuelStops(100, 1, stations), -1)
+	tests := []struct {
+		target    int
+		startFuel int
+		stations  [][]int
+		ans       int
+	}{
+		{1, 1, [][]int{}, 0},
+		{100, 1, [][]int{{10, 100}}, -1},
+		{100, 10, [][]int{{10, 60}, {20, 30}, {30, 30}, {60, 40}}, 2},
 	}
 
-	{
-
-		stations := [][]int{{10, 60}, {20, 30}, {30, 30}, {60, 40}}
-		assert(minRefuelStops(100, 10, stations), 2)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, minRefuelStops(test.target, test.startFuel, test.stations), index)
 	}
 }

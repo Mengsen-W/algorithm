@@ -1,12 +1,6 @@
-/*
- * @Date: 2022-07-04
- * @LastEditors: mengsenwang mengsen_wang@163.com
- * @LastEditTime: 2022-07-04
- * @FilePath: /algorithm/871_min_refuel_stops/min_refuel_stops.cpp
- */
-
 #include <cassert>
 #include <queue>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -38,19 +32,13 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<vector<int>> stations{};
-    assert(Solution().minRefuelStops(1, 1, stations) == 0);
-  }
+  vector<tuple<int, int, vector<vector<int>>, int>> tests{
+      {1, 1, {}, 0},
+      {100, 1, {{10, 100}}, -1},
+      {100, 10, {{10, 60}, {20, 30}, {30, 30}, {60, 40}}, 2},
+  };
 
-  {
-    vector<vector<int>> stations{{10, 100}};
-    assert(Solution().minRefuelStops(100, 1, stations) == -1);
-  }
-
-  {
-
-    vector<vector<int>> stations{{10,60},{20,30},{30,30},{60,40}};
-    assert(Solution().minRefuelStops(100, 10, stations) == 2);
+  for (auto &[target, startFuel, stations, ans] : tests) {
+    assert(Solution().minRefuelStops(target, startFuel, stations) == ans);
   }
 }
