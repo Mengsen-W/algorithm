@@ -1,11 +1,10 @@
-/*
- * @Date: 2021-10-01 09:39:56
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-01 09:57:02
- */
-
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func destCity(paths [][]string) string {
 	citiesA := map[string]bool{}
@@ -21,19 +20,12 @@ func destCity(paths [][]string) string {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
-	}
-	{
-		paths := [][]string{{"London", "New York"}, {"New York", "Lima"}, {"Lima", "Sao Paulo"}}
-		ans := "Sao Paulo"
-		assert(destCity(paths) == ans)
-	}
-	{
-		paths := [][]string{{"B", "C"}, {"D", "B"}, {"C", "A"}}
-		ans := "A"
-		assert(destCity(paths) == ans)
+	tests := []struct {
+		paths [][]string
+		ans   string
+	}{}
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, destCity(test.paths), index)
 	}
 }

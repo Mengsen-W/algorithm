@@ -1,11 +1,5 @@
-/*
- * @Date: 2021-10-01 09:39:35
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-01 10:10:53
- */
-
 struct Solution;
+
 impl Solution {
     pub fn dest_city(paths: Vec<Vec<String>>) -> String {
         use std::collections::HashSet;
@@ -23,24 +17,27 @@ impl Solution {
 }
 
 fn main() {
-    {
-        let paths: Vec<Vec<String>> = [
-            ["London", "New York"],
-            ["New York", "Lima"],
-            ["Lima", "Sao Paulo"],
-        ]
-        .iter()
-        .map(|path| path.iter().map(|s| s.to_string()).collect())
-        .collect();
-        let ans = "Sao Paulo".to_string();
-        assert_eq!(Solution::dest_city(paths), ans);
-    }
-    {
-        let paths: Vec<Vec<String>> = [["B", "C"], ["D", "B"], ["C", "A"]]
-            .iter()
-            .map(|path| path.iter().map(|s| s.to_string()).collect())
-            .collect();
-        let ans = "A".to_string();
-        assert_eq!(Solution::dest_city(paths), ans);
+    let tests = vec![
+        (
+            [
+                ["London", "New York"],
+                ["New York", "Lima"],
+                ["Lima", "Sao Paulo"],
+            ],
+            "Sao Paulo",
+        ),
+        ([["B", "C"], ["D", "B"], ["C", "A"]], "A"),
+    ];
+
+    for (paths, ans) in tests {
+        assert_eq!(
+            Solution::dest_city(
+                paths
+                    .iter()
+                    .map(|path| path.iter().map(|s| s.to_string()).collect())
+                    .collect()
+            ),
+            ans.to_string()
+        );
     }
 }

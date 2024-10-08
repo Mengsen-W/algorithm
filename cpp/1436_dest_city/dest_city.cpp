@@ -7,10 +7,12 @@
 
 #include <cassert>
 #include <string>
+#include <tuple>
 #include <unordered_set>
 #include <vector>
 
 using namespace std;
+
 class Solution {
  public:
   string destCity(vector<vector<string>> &paths) {
@@ -25,15 +27,12 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<vector<string>> paths = {
-        {"London", "New York"}, {"New York", "Lima"}, {"Lima", "Sao Paulo"}};
-    string ans = "Sao Paulo";
-    assert(Solution().destCity(paths) == ans);
-  }
-  {
-    vector<vector<string>> paths = {{"B", "C"}, {"D", "B"}, {"C", "A"}};
-    string ans = "A";
+  vector<tuple<vector<vector<string>>, string>> tests{
+      {{{"London", "New York"}, {"New York", "Lima"}, {"Lima", "Sao Paulo"}}, "Sao Paulo"},
+      {{{"B", "C"}, {"D", "B"}, {"C", "A"}}, "A"},
+  };
+
+  for (auto &[paths, ans] : tests) {
     assert(Solution().destCity(paths) == ans);
   }
 }
