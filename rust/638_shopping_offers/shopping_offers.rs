@@ -7,9 +7,9 @@
 
 struct Solution;
 
+use std::collections::HashMap;
 impl Solution {
     pub fn shopping_offers(price: Vec<i32>, mut special: Vec<Vec<i32>>, needs: Vec<i32>) -> i32 {
-        use std::collections::HashMap;
         let mut cache = HashMap::new();
         cache.insert(vec![0; needs.len()], 0);
 
