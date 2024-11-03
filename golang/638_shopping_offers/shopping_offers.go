@@ -8,6 +8,13 @@
 package main
 
 func shoppingOffers(price []int, special [][]int, needs []int) int {
+	min := func(a, b int) int {
+		if a > b {
+			return b
+		}
+		return a
+	}
+
 	n := len(price)
 
 	// 过滤不需要计算的大礼包，只保留需要计算的大礼包
@@ -53,13 +60,6 @@ func shoppingOffers(price []int, special [][]int, needs []int) int {
 		curNeeds[i] = byte(need)
 	}
 	return dfs(curNeeds)
-}
-
-func min(a, b int) int {
-	if a > b {
-		return b
-	}
-	return a
 }
 
 func main() {

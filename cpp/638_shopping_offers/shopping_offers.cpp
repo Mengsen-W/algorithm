@@ -15,8 +15,7 @@ class Solution {
  public:
   map<vector<int>, int> memo;
 
-  int shoppingOffers(vector<int>& price, vector<vector<int>>& special,
-                     vector<int>& needs) {
+  int shoppingOffers(vector<int>& price, vector<vector<int>>& special, vector<int>& needs) {
     int n = price.size();
 
     // 过滤不需要计算的大礼包，只保留需要计算的大礼包
@@ -34,8 +33,8 @@ class Solution {
   }
 
   // 记忆化搜索计算满足购物清单所需花费的最低价格
-  int dfs(vector<int> price, const vector<vector<int>>& special,
-          vector<int> curNeeds, vector<vector<int>>& filterSpecial, int n) {
+  int dfs(vector<int> price, const vector<vector<int>>& special, vector<int> curNeeds,
+          vector<vector<int>>& filterSpecial, int n) {
     if (!memo.count(curNeeds)) {
       int minPrice = 0;
       for (int i = 0; i < n; ++i) minPrice += curNeeds[i] * price[i];
@@ -53,9 +52,7 @@ class Solution {
         }
         if ((int)nxtNeeds.size() == n)
           // 大礼包可以购买
-          minPrice =
-              min(minPrice, dfs(price, special, nxtNeeds, filterSpecial, n) +
-                                specialPrice);
+          minPrice = min(minPrice, dfs(price, special, nxtNeeds, filterSpecial, n) + specialPrice);
       }
       memo[curNeeds] = minPrice;
     }
@@ -72,8 +69,8 @@ int main() {
   }
   {
     vector<int> price{2, 3, 4};
-    vector<vector<int>> special{{1,1, 0, 4}, {2, 2, 1,9}};
-    vector<int> needs{1, 2,1};
+    vector<vector<int>> special{{1, 1, 0, 4}, {2, 2, 1, 9}};
+    vector<int> needs{1, 2, 1};
     assert(Solution().shoppingOffers(price, special, needs) == 11);
   }
 }
