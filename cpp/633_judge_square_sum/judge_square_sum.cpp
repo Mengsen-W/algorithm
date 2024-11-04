@@ -7,42 +7,36 @@
 
 #include <cassert>
 #include <cmath>
+#include <tuple>
+#include <vector>
 
-bool judge_square_sum(int c) {
-  long left = 0;
-  long right = (int)sqrt(c);
-  while (left <= right) {
-    long sum = left * left + right * right;
-    if (sum > c)
-      --right;
-    else if (sum < c)
-      ++left;
-    else
-      return true;
+class Solution {
+ public:
+  bool judgeSquareSum(int c) {
+    long left = 0;
+    long right = (int)sqrt(c);
+    while (left <= right) {
+      long sum = left * left + right * right;
+      if (sum > c)
+        --right;
+      else if (sum < c)
+        ++left;
+      else
+        return true;
+    }
+    return false;
   }
-  return false;
-}
+};
 
 int main() {
-  {
-    int c = 5;
-    assert(judge_square_sum(c));
+  std::vector<std::tuple<int, bool>> tests{
+      {5, true},
+      {3, false},
+  };
+
+  for (auto &[c, ans] : tests) {
+    assert(Solution().judgeSquareSum(c) == ans);
   }
-  {
-    int c = 3;
-    assert(!judge_square_sum(c));
-  }
-  {
-    int c = 4;
-    assert(judge_square_sum(c));
-  }
-  {
-    int c = 2;
-    assert(judge_square_sum(c));
-  }
-  {
-    int c = 1;
-    assert(judge_square_sum(c));
-  }
+
   return 0;
 }
