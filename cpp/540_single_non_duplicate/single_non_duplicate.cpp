@@ -7,6 +7,7 @@
  */
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -29,6 +30,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().singleNonDuplicate({1, 1, 2, 3, 3, 4, 4, 8, 8}) == 2);
-  assert(Solution().singleNonDuplicate({3, 3, 7, 7, 10, 11, 11}) == 10);
+  vector<tuple<vector<int>, int>> tests{
+      {{1, 1, 2, 3, 3, 4, 4, 8, 8}, 2},
+      {{3, 3, 7, 7, 10, 11, 11}, 10},
+  };
+
+
+  for (auto &[nums,ans] : tests) {
+    assert(Solution().singleNonDuplicate(nums) == ans);
+  }
 }

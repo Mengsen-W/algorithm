@@ -8,6 +8,12 @@
 
 package main
 
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
 func singleNonDuplicate(nums []int) int {
 	low, high := 0, len(nums)-1
 	for low < high {
@@ -23,12 +29,15 @@ func singleNonDuplicate(nums []int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		nums []int
+		ans  int
+	}{
+		{[]int{1, 1, 2, 3, 3, 4, 4, 8, 8}, 2},
+		{[]int{3, 3, 7, 7, 10, 11, 11}, 10},
 	}
 
-	assert(singleNonDuplicate([]int{1, 1, 2, 3, 3, 4, 4, 8, 8}) == 2)
-	assert(singleNonDuplicate([]int{3, 3, 7, 7, 10, 11, 11}) == 10)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, singleNonDuplicate(test.nums), index)
+	}
 }
