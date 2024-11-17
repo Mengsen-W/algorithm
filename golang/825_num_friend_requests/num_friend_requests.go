@@ -7,6 +7,12 @@
 
 package main
 
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
 func numFriendRequests(ages []int) (ans int) {
 	const mx = 121
 	var cnt, pre [mx]int
@@ -26,12 +32,16 @@ func numFriendRequests(ages []int) (ans int) {
 }
 
 func main() {
-	assert := func(a, b int) {
-		if a != b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		ages []int
+		ans  int
+	}{
+		{[]int{16, 16}, 2},
+		{[]int{16, 17, 18}, 2},
+		{[]int{20, 30, 100, 110, 120}, 3},
 	}
-	assert(numFriendRequests([]int{16, 16}), 2)
-	assert(numFriendRequests([]int{16, 17, 18}), 2)
-	assert(numFriendRequests([]int{20, 30, 100, 110, 120}), 3)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, numFriendRequests(test.ages), index)
+	}
 }

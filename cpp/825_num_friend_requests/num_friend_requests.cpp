@@ -6,6 +6,7 @@
  */
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -33,7 +34,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().numFriendRequests({16, 16}) == 2);
-  assert(Solution().numFriendRequests({16, 17, 18}) == 2);
-  assert(Solution().numFriendRequests({20, 30, 100, 110, 120}) == 3);
+  vector<tuple<vector<int>, int>> tests{
+      {{16, 16}, 2},
+      {{16, 17, 18}, 2},
+      {{20, 30, 100, 110, 120}, 3},
+  };
+
+  for (auto &[ages, ans] : tests) {
+    assert(Solution().numFriendRequests(ages) == ans);
+  }
 }

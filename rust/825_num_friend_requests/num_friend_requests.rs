@@ -23,10 +23,13 @@ impl Solution {
 }
 
 fn main() {
-    assert_eq!(Solution::num_friend_requests(&vec![16, 16]), 2);
-    assert_eq!(Solution::num_friend_requests(&vec![16, 17, 18]), 2);
-    assert_eq!(
-        Solution::num_friend_requests(&vec![20, 30, 100, 110, 120]),
-        3
-    );
+    let tests = vec![
+        (vec![16, 16], 2),
+        (vec![16, 17, 18], 2),
+        (vec![20, 30, 100, 110, 120], 3),
+    ];
+
+    for (ages, ans) in tests {
+        assert_eq!(Solution::num_friend_requests(ages), ans);
+    }
 }
