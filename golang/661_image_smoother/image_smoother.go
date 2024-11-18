@@ -8,7 +8,11 @@
 
 package main
 
-import "reflect"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func imageSmoother(img [][]int) [][]int {
 	min := func(a, b int) int {
@@ -42,11 +46,15 @@ func imageSmoother(img [][]int) [][]int {
 }
 
 func main() {
-	assert := func(a, b [][]int) {
-		if !reflect.DeepEqual(a, b) {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		img [][]int
+		ans [][]int
+	}{
+		{[][]int{{1, 1, 1}, {1, 0, 1}, {1, 1, 1}}, [][]int{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}},
+		{[][]int{{100, 200, 100}, {200, 50, 200}, {100, 200, 100}}, [][]int{{137, 141, 137}, {141, 138, 141}, {137, 141, 137}}},
 	}
-	assert(imageSmoother([][]int{{1, 1, 1}, {1, 0, 1}, {1, 1, 1}}), [][]int{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}})
-	assert(imageSmoother([][]int{{100, 200, 100}, {200, 50, 200}, {100, 200, 100}}), [][]int{{137, 141, 137}, {141, 138, 141}, {137, 141, 137}})
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, imageSmoother(test.img), index)
+	}
 }

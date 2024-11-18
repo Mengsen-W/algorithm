@@ -7,6 +7,7 @@
  */
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -35,11 +36,12 @@ class Solution {
 };
 
 int main() {
-  assert((Solution().imageSmoother(
-              vector<vector<int>>{{1, 1, 1}, {1, 0, 1}, {1, 1, 1}}) ==
-          vector<vector<int>>{{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}));
-  assert(
-      (Solution().imageSmoother(vector<vector<int>>{
-           {100, 200, 100}, {200, 50, 200}, {100, 200, 100}}) ==
-       vector<vector<int>>{{137, 141, 137}, {141, 138, 141}, {137, 141, 137}}));
+  vector<tuple<vector<vector<int>>, vector<vector<int>>>> tests{
+      {{{1, 1, 1}, {1, 0, 1}, {1, 1, 1}}, {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}},
+      {{{100, 200, 100}, {200, 50, 200}, {100, 200, 100}}, {{137, 141, 137}, {141, 138, 141}, {137, 141, 137}}},
+  };
+
+  for (auto &[img, ans] : tests) {
+    assert(Solution().imageSmoother(img) == ans);
+  }
 }
