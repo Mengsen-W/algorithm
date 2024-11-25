@@ -1,14 +1,11 @@
-/*
- * @Date: 2021-08-02 09:53:58
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-08-02 15:53:25
- */
-
+// Package main ...
 package main
 
 import (
 	"math"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func networkDelayTime_Dijkstra(times [][]int, n int, k int) int {
@@ -58,9 +55,8 @@ func networkDelayTime_Dijkstra(times [][]int, n int, k int) int {
 	}
 	if ret == 10010 {
 		return -1
-	} else {
-		return ret
 	}
+	return ret
 }
 
 func networkDelayTime_floyd(times [][]int, n int, k int) int {
@@ -96,40 +92,24 @@ func networkDelayTime_floyd(times [][]int, n int, k int) int {
 	}
 	if ret == 10010 {
 		return -1
-	} else {
-		return ret
 	}
+	return ret
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		times [][]int
+		n     int
+		k     int
+		ans   int
+	}{
+		{[][]int{{2, 1, 1}, {2, 3, 1}, {3, 4, 1}}, 4, 2, 2},
+		{[][]int{{1, 2, 1}}, 2, 1, 1},
+		{[][]int{{1, 2, 1}}, 2, 2, -1},
 	}
 
-	{
-		times := [][]int{{2, 1, 1}, {2, 3, 1}, {3, 4, 1}}
-		n := 4
-		k := 2
-		ans := 2
-		assert(networkDelayTime_Dijkstra(times, n, k) == ans)
-		assert(networkDelayTime_floyd(times, n, k) == ans)
-	}
-	{
-		times := [][]int{{1, 2, 1}}
-		n := 2
-		k := 1
-		ans := 1
-		assert(networkDelayTime_Dijkstra(times, n, k) == ans)
-		assert(networkDelayTime_floyd(times, n, k) == ans)
-	}
-	{
-		times := [][]int{{1, 2, 1}}
-		n := 2
-		k := 2
-		ans := -1
-		assert(networkDelayTime_Dijkstra(times, n, k) == ans)
-		assert(networkDelayTime_floyd(times, n, k) == ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, networkDelayTime_Dijkstra(test.times, test.n, test.k), index)
+		assert.Equal(&testing.T{}, test.ans, networkDelayTime_floyd(test.times, test.n, test.k), index)
 	}
 }
