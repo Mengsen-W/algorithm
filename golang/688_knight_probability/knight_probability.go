@@ -1,14 +1,14 @@
-/*
- * @Date: 2022-02-17 01:46:34
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-02-17 02:12:22
- */
-
+// Package main ...
 package main
 
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
 func knightProbability(n, k, row, column int) float64 {
-	var dirs = []struct{ i, j int }{{-2, -1}, {-2, 1}, {2, -1}, {2, 1}, {-1, -2}, {-1, 2}, {1, -2}, {1, 2}}
+	dirs := []struct{ i, j int }{{-2, -1}, {-2, 1}, {2, -1}, {2, 1}, {-1, -2}, {-1, 2}, {1, -2}, {1, 2}}
 	dp := make([][][]float64, k+1)
 	for step := range dp {
 		dp[step] = make([][]float64, n)
@@ -31,11 +31,15 @@ func knightProbability(n, k, row, column int) float64 {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		n, k, row, column int
+		ans               float64
+	}{
+		{3, 2, 0, 0, 0.0625},
+		{1, 0, 0, 0, 1.0},
 	}
-	assert(knightProbability(3, 2, 0, 0) == 0.0625)
-	assert(knightProbability(1, 0, 0, 0) == 1.0)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, knightProbability(test.n, test.k, test.row, test.column), index)
+	}
 }

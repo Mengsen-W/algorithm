@@ -1,23 +1,15 @@
-/*
- * @Date: 2022-02-17 01:46:27
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-02-17 01:49:16
- */
-
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
 
 class Solution {
  public:
-  vector<vector<int>> dirs = {{-2, -1}, {-2, 1}, {2, -1}, {2, 1},
-                              {-1, -2}, {-1, 2}, {1, -2}, {1, 2}};
+  vector<vector<int>> dirs = {{-2, -1}, {-2, 1}, {2, -1}, {2, 1}, {-1, -2}, {-1, 2}, {1, -2}, {1, 2}};
 
   double knightProbability(int n, int k, int row, int column) {
-    vector<vector<vector<double>>> dp(
-        k + 1, vector<vector<double>>(n, vector<double>(n)));
+    vector<vector<vector<double>>> dp(k + 1, vector<vector<double>>(n, vector<double>(n)));
     for (int step = 0; step <= k; step++) {
       for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
@@ -38,8 +30,13 @@ class Solution {
   }
 };
 
-
 int main() {
-  assert(Solution().knightProbability(3, 2, 0, 0) == 0.0625);
-  assert(Solution().knightProbability(1, 0, 0, 0) == 1.0);
+  vector<tuple<int, int, int, int, double>> tests{
+      {3, 2, 0, 0, 0.0625},
+      {1, 0, 0, 0, 1.0},
+  };
+
+  for (auto& [n, k, row, column, ans] : tests) {
+    assert(Solution().knightProbability(n, k, row, column) == ans);
+  }
 }
