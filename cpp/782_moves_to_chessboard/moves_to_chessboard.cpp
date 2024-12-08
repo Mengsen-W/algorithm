@@ -1,12 +1,6 @@
-/*
- * @Date: 2022-08-23
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-08-23
- * @FilePath: /algorithm/782_moves_to_chessboard/moves_to_chessboard.cpp
- */
-
 #include <algorithm>
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -81,19 +75,14 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<vector<int>> board{{0, 1, 1, 0}, {0, 1, 1, 0}, {1, 0, 0, 1}, {1, 0, 0, 1}};
-    int ans = 2;
-    assert(Solution().movesToChessboard(board) == ans);
-  }
-  {
-    vector<vector<int>> board{{0, 1}, {1, 0}};
-    int ans = 0;
-    assert(Solution().movesToChessboard(board) == ans);
-  }
-  {
-    vector<vector<int>> board{{1, 0}, {1, 0}};
-    int ans = -1;
+  vector<tuple<vector<vector<int>>, int>> tests{
+      {{{0, 1, 1, 0}, {0, 1, 1, 0}, {1, 0, 0, 1}, {1, 0, 0, 1}}, 2},
+      {{{0, 1}, {1, 0}}, 0},
+      {{{1, 0}, {1, 0}}, -1},
+  };
+
+
+  for (auto &[board, ans] : tests) {
     assert(Solution().movesToChessboard(board) == ans);
   }
 }

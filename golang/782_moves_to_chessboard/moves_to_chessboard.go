@@ -1,13 +1,12 @@
-/*
- * @Date: 2022-08-23
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-08-23
- * @FilePath: /algorithm/782_moves_to_chessboard/moves_to_chessboard.go
- */
-
+// Package main ...
 package main
 
-import "math/bits"
+import (
+	"math/bits"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func getMoves(mask uint, count, n int) int {
 	abs := func(x int) int {
@@ -87,24 +86,16 @@ func movesToChessboard(board [][]int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		board [][]int
+		ans   int
+	}{
+		{[][]int{{0, 1, 1, 0}, {0, 1, 1, 0}, {1, 0, 0, 1}, {1, 0, 0, 1}}, 2},
+		{[][]int{{0, 1}, {1, 0}}, 0},
+		{[][]int{{1, 0}, {1, 0}}, -1},
 	}
-	{
-		board := [][]int{{0, 1, 1, 0}, {0, 1, 1, 0}, {1, 0, 0, 1}, {1, 0, 0, 1}}
-		ans := 2
-		assert(movesToChessboard(board) == ans)
-	}
-	{
-		board := [][]int{{0, 1}, {1, 0}}
-		ans := 0
-		assert(movesToChessboard(board) == ans)
-	}
-	{
-		board := [][]int{{1, 0}, {1, 0}}
-		ans := -1
-		assert(movesToChessboard(board) == ans)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, movesToChessboard(test.board), index)
 	}
 }
