@@ -1,17 +1,16 @@
-/*
- * @Date: 2022-12-08
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-12-08
- * @FilePath: /algorithm/1812_square_is_white/square_is_white.rs
- */
+struct Solution;
 
-pub fn square_is_white(coordinates: String) -> bool {
-    let v = coordinates.as_bytes();
-    v[0] % 2 != v[1] % 2
+impl Solution {
+    pub fn square_is_white(coordinates: String) -> bool {
+        let v = coordinates.as_bytes();
+        v[0] % 2 != v[1] % 2
+    }
 }
 
 fn main() {
-    assert!(!square_is_white(String::from("a1")));
-    assert!(square_is_white(String::from("h3")));
-    assert!(!square_is_white(String::from("c7")));
+    let tests = vec![("a1", false), ("h3", true), ("c7", false)];
+
+    for (coordinates, ans) in tests {
+        assert_eq!(Solution::square_is_white(coordinates.to_string()), ans);
+    }
 }

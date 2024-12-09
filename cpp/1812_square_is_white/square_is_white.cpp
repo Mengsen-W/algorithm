@@ -1,12 +1,7 @@
-/*
- * @Date: 2022-12-08
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-12-08
- * @FilePath: /algorithm/1812_square_is_white/square_is_white.cpp
- */
-
 #include <cassert>
 #include <string>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -16,7 +11,13 @@ class Solution {
 };
 
 int main() {
-  assert(!Solution().squareIsWhite("a1"));
-  assert(Solution().squareIsWhite("h3"));
-  assert(!Solution().squareIsWhite("c7"));
+  vector<tuple<string, bool>> tests{
+      {"a1", false},
+      {"h3", true},
+      {"c7", false},
+  };
+
+  for (auto &[coordinates, ans] : tests) {
+    assert(Solution().squareIsWhite(coordinates) == ans);
+  }
 }
