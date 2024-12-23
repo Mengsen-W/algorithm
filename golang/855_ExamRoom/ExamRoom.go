@@ -1,11 +1,10 @@
-/*
- * @Date: 2022-12-30
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-12-30
- * @FilePath: /algorithm/855_ExamRoom/ExamRoom.go
- */
-
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 type ExamRoom struct {
 	n int
@@ -56,17 +55,12 @@ func (this *ExamRoom) Leave(p int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
-	}
-
 	e := Constructor(10)
-	assert(e.Seat() == 0)
-	assert(e.Seat() == 9)
-	assert(e.Seat() == 4)
-	assert(e.Seat() == 2)
+	t := &testing.T{}
+	assert.Equal(t, e.Seat(), 0)
+	assert.Equal(t, e.Seat(), 9)
+	assert.Equal(t, e.Seat(), 4)
+	assert.Equal(t, e.Seat(), 2)
 	e.Leave(4)
-	assert(e.Seat() == 5)
+	assert.Equal(t, e.Seat(), 5)
 }

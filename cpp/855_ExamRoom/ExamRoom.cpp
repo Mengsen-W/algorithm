@@ -1,10 +1,3 @@
-/*
- * @Date: 2022-12-30
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-12-30
- * @FilePath: /algorithm/855_ExamRoom/ExamRoom.cpp
- */
-
 #include <cassert>
 #include <queue>
 #include <set>
