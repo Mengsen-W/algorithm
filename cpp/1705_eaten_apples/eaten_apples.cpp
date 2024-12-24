@@ -1,20 +1,13 @@
-/*
- * @Date: 2021-12-24 01:16:00
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-12-24 01:38:17
- */
-
 #include <cassert>
-#include <iostream>
 #include <queue>
+#include <tuple>
 #include <vector>
 
 using namespace std;
 
-typedef pair<int, int> pii;
-
 class Solution {
+  typedef pair<int, int> pii;
+
  public:
   int eatenApples(vector<int> apples, vector<int> days) {
     int ans = 0;
@@ -59,6 +52,12 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().eatenApples({1, 2, 3, 5, 2}, {3, 2, 1, 4, 2}) == 7);
-  assert(Solution().eatenApples({3, 0, 0, 0, 0, 2}, {3, 0, 0, 0, 0, 2}) == 7);
+  vector<tuple<vector<int>, vector<int>, int>> tests{
+      {{1, 2, 3, 5, 2}, {3, 2, 1, 4, 2}, 7},
+      {{3, 0, 0, 0, 0, 2}, {3, 0, 0, 0, 0, 2}, 5},
+  };
+
+  for (auto &[apples, days, ans] : tests) {
+    assert(Solution().eatenApples(apples, days) == ans);
+  }
 }

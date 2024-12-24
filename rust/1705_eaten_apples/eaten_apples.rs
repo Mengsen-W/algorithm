@@ -1,10 +1,3 @@
-/*
- * @Date: 2021-12-24 01:16:04
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-12-24 02:22:36
- */
-
 struct Solution;
 
 impl Solution {
@@ -37,12 +30,12 @@ impl Solution {
 }
 
 fn main() {
-    assert_eq!(
-        Solution::eaten_apples(vec![1, 2, 3, 5, 2], vec![3, 2, 1, 4, 2]),
-        7
-    );
-    assert_eq!(
-        Solution::eaten_apples(vec![3, 0, 0, 0, 0, 2], vec![3, 0, 0, 0, 0, 2]),
-        5
-    );
+    let tests = vec![
+        (vec![1, 2, 3, 5, 2], vec![3, 2, 1, 4, 2], 7),
+        (vec![3, 0, 0, 0, 0, 2], vec![3, 0, 0, 0, 0, 2], 5),
+    ];
+
+    for (apples, days, ans) in tests {
+        assert_eq!(Solution::eaten_apples(apples, days), ans);
+    }
 }
