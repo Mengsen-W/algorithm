@@ -6,6 +6,7 @@
  */
 
 #include <cassert>
+#include <tuple>
 #include <unordered_set>
 #include <vector>
 
@@ -30,7 +31,14 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().containsNearbyDuplicate({1, 2, 3, 1}, 3) == true);
-  assert(Solution().containsNearbyDuplicate({1, 0, 1, 1}, 1) == true);
-  assert(Solution().containsNearbyDuplicate({1, 2, 3, 1, 2, 3}, 2) == false);
+  vector<tuple<vector<int>, int, bool>> tests{
+      {{1, 2, 3, 1}, 3, true},
+      {{1, 0, 1, 1}, 1, true},
+      {{1, 2, 3, 1, 2, 3}, 2, false},
+  };
+  
+
+  for (auto &[nums, k, ans] : tests) {
+    assert(Solution().containsNearbyDuplicate(nums, k) == ans);
+  }
 }
