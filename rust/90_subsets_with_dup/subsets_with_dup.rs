@@ -1,37 +1,48 @@
-/*
- * @Date: 2021-04-04 18:39:22
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-04-04 18:50:03
- */
+struct Solution;
 
-fn dfs(ret: &mut Vec<Vec<i32>>, nums: &Vec<i32>, cur: &mut Vec<i32>, start: usize) {
-    ret.push(cur.clone());
-    for i in start..nums.len() {
-        if i > start && nums[i] == nums[i - 1] {
-            continue;
+impl Solution {
+    pub fn subsets_with_dup(nums: Vec<i32>) -> Vec<Vec<i32>> {
+        let mut nums = nums;
+        nums.sort();
+        let mut ans = vec![];
+        let n = nums.len();
+        for mask in 0..(1 << n) {
+            let mut t = vec![];
+            let mut flag = true;
+            for i in 0..n {
+                if (mask & (1 << i)) != 0 {
+                    if i > 0 && (mask & (1 << (i - 1))) == 0 && nums[i] == nums[i - 1] {
+                        flag = false;
+                        break;
+                    }
+                    t.push(nums[i]);
+                }
+            }
+            if flag {
+                ans.push(t);
+            }
         }
-        cur.push(nums[i]);
-        dfs(ret, nums, cur, i + 1);
-        cur.pop();
+        ans
     }
-}
-
-fn subsets_with_dup(mut nums: Vec<i32>) -> Vec<Vec<i32>> {
-    nums.sort_unstable();
-    let mut cur = vec![];
-    let mut ret = vec![];
-    dfs(&mut ret, &nums, &mut cur, 0);
-    ret
 }
 
 fn main() {
-    {
-        let nums = vec![1, 2, 2];
-        println!("{:?}", subsets_with_dup(nums));
-    }
-    {
-        let nums = vec![0];
-        println!("{:?}", subsets_with_dup(nums));
+    let tests = vec![
+        (
+            vec![1, 2, 2],
+            vec![
+                vec![],
+                vec![1],
+                vec![2],
+                vec![1, 2],
+                vec![2, 2],
+                vec![1, 2, 2],
+            ],
+        ),
+        (vec![0], vec![vec![], vec![0]]),
+    ];
+
+    for (nums, ans) in tests {
+        assert_eq!(Solution::subsets_with_dup(nums), ans);
     }
 }
