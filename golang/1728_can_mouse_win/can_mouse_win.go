@@ -1,12 +1,11 @@
-/*
- * @Date: 2022-05-10 09:25:05
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-05-10 09:44:39
- * @FilePath: /algorithm/1728_can_mouse_win/can_mouse_win.go
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 const (
 	MouseTurn = 0
@@ -187,44 +186,20 @@ func canMouseWin(grid []string, catJump int, mouseJump int) bool {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		grid      []string
+		catJump   int
+		mouseJump int
+		ans       bool
+	}{
+		{[]string{"####F", "#C...", "M...."}, 1, 2, true},
+		{[]string{"M.C...F"}, 1, 4, true},
+		{[]string{"M.C...F"}, 1, 3, false},
+		{[]string{"C...#", "...#F", "....#", "M...."}, 2, 5, false},
+		{[]string{".M...", "..#..", "#..#.", "C#.#.", "...#F"}, 3, 1, true},
 	}
 
-	{
-		grid := []string{"####F", "#C...", "M...."}
-		catJump := 1
-		mouseJump := 2
-		assert(canMouseWin(grid, catJump, mouseJump) == true)
-	}
-
-	{
-		grid := []string{"M.C...F"}
-		catJump := 1
-		mouseJump := 4
-		assert(canMouseWin(grid, catJump, mouseJump) == true)
-	}
-
-	{
-		grid := []string{"M.C...F"}
-		catJump := 1
-		mouseJump := 3
-		assert(canMouseWin(grid, catJump, mouseJump) == false)
-	}
-
-	{
-		grid := []string{"C...#", "...#F", "....#", "M...."}
-		catJump := 2
-		mouseJump := 5
-		assert(canMouseWin(grid, catJump, mouseJump) == false)
-	}
-
-	{
-		grid := []string{".M...", "..#..", "#..#.", "C#.#.", "...#F"}
-		catJump := 3
-		mouseJump := 1
-		assert(canMouseWin(grid, catJump, mouseJump) == true)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, canMouseWin(test.grid, test.catJump, test.mouseJump), index)
 	}
 }

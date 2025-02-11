@@ -1,14 +1,7 @@
-/*
- * @Date: 2022-05-10 09:24:59
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-05-10 09:40:06
- * @FilePath: /algorithm/1728_can_mouse_win/can_mouse_win.cpp
- */
-
 #include <cassert>
 #include <queue>
 #include <string>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -177,33 +170,15 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<string> grid{"####F", "#C...", "M...."};
-    int catJump = 1, mouseJump = 2;
-    assert(Solution().canMouseWin(grid, catJump, mouseJump) == true);
-  }
+  vector<tuple<vector<string>, int, int, bool>> tests{
+      {{"####F", "#C...", "M...."}, 1, 2, true},
+      {{"M.C...F"}, 1, 4, true},
+      {{"M.C...F"}, 1, 3, false},
+      {{"C...#", "...#F", "....#", "M...."}, 2, 5, false},
+      {{".M...", "..#..", "#..#.", "C#.#.", "...#F"}, 3, 1, true},
+  };
 
-  {
-    vector<string> grid{"M.C...F"};
-    int catJump = 1, mouseJump = 4;
-    assert(Solution().canMouseWin(grid, catJump, mouseJump) == true);
-  }
-
-  {
-    vector<string> grid{"M.C...F"};
-    int catJump = 1, mouseJump = 3;
-    assert(Solution().canMouseWin(grid, catJump, mouseJump) == false);
-  }
-
-  {
-    vector<string> grid{"C...#", "...#F", "....#", "M...."};
-    int catJump = 2, mouseJump = 5;
-    assert(Solution().canMouseWin(grid, catJump, mouseJump) == false);
-  }
-
-  {
-    vector<string> grid{".M...", "..#..", "#..#.", "C#.#.", "...#F"};
-    int catJump = 3, mouseJump = 1;
-    assert(Solution().canMouseWin(grid, catJump, mouseJump) == true);
+  for (auto& [grid, catJump, mouseJump, ans] : tests) {
+    assert(Solution().canMouseWin(grid, catJump, mouseJump) == ans);
   }
 }
