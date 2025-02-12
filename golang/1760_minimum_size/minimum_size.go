@@ -1,13 +1,12 @@
-/*
- * @Date: 2022-12-20
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-12-20
- * @FilePath: /algorithm/1760_minimum_size/minimum_size.go
- */
-
+// Package main ...
 package main
 
-import "sort"
+import (
+	"sort"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func minimumSize(nums []int, maxOperations int) int {
 	max := 0
@@ -29,30 +28,17 @@ func minimumSize(nums []int, maxOperations int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		nums          []int
+		maxOperations int
+		ans           int
+	}{
+		{[]int{9}, 2, 3},
+		{[]int{2, 4, 8, 2}, 4, 2},
+		{[]int{7, 17}, 2, 7},
 	}
 
-	{
-		nums := []int{9}
-		maxOperations := 2
-		ans := 3
-		assert(minimumSize(nums, maxOperations) == ans)
-	}
-
-	{
-		nums := []int{2, 4, 8, 2}
-		maxOperations := 4
-		ans := 2
-		assert(minimumSize(nums, maxOperations) == ans)
-	}
-
-	{
-		nums := []int{7, 17}
-		maxOperations := 2
-		ans := 7
-		assert(minimumSize(nums, maxOperations) == ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, minimumSize(test.nums, test.maxOperations), index)
 	}
 }
