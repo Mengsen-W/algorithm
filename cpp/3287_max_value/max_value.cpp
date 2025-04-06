@@ -43,7 +43,8 @@ int main() {
       {{4, 2, 5, 6, 7}, 2, 2},
   };
 
-  for (auto &[nums, k, ans] : tests) {
+
+  for (auto& [nums, k, ans] : tests) {
     assert(Solution().maxValue(nums, k) == ans);
   }
 }

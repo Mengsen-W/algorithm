@@ -1,5 +1,4 @@
 #include <cassert>
-#include <functional>
 #include <numeric>
 #include <vector>
 
