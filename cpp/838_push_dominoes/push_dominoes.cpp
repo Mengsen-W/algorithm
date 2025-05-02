@@ -1,12 +1,7 @@
-/*
- * @Date: 2022-02-21 00:58:25
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-02-21 01:04:56
- */
-
 #include <cassert>
 #include <string>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -43,6 +38,12 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().pushDominoes("RR.L") == "RR.L");
-  assert(Solution().pushDominoes(".L.R...LR..L..") == "LL.RR.LLRRLL..");
+  vector<tuple<string, string>> tests {
+    {"RR.L", "RR.L"},
+    {".L.R...LR..L..", "LL.RR.LLRRLL.."},
+  };
+
+  for (auto &[dominoes, ans] : tests) {
+    assert(Solution().pushDominoes(dominoes) == ans);
+  }
 }
