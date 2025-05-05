@@ -1,11 +1,11 @@
-/*
- * @Date: 2022-11-12
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-11-12
- * @FilePath: /algorithm/790_num_tilings/num_tilings.go
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 const mod int = 1e9 + 7
 
@@ -48,11 +48,15 @@ func numTilings(n int) int {
 }
 
 func main() {
-	assert := func(a, b int) {
-		if a != b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		n   int
+		ans int
+	}{
+		{1, 1},
+		{3, 5},
 	}
-	assert(numTilings(1), 1)
-	assert(numTilings(3), 5)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, numTilings(test.n), index)
+	}
 }
