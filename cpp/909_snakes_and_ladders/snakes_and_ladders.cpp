@@ -1,12 +1,6 @@
-/*
- * @Date: 2021-06-27 10:07:35
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-06-27 10:48:11
- */
-
 #include <cassert>
 #include <queue>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -52,9 +46,14 @@ class Solution {
 };
 
 int main() {
-  vector<vector<int>> board{{-1, -1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1, -1},
+  vector<tuple<vector<vector<int>>, int>> tests {
+    {{{-1, -1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1, -1},
                             {-1, -1, -1, -1, -1, -1}, {-1, 35, -1, -1, 13, -1},
-                            {-1, -1, -1, -1, -1, -1}, {-1, 15, -1, -1, -1, -1}};
-  assert(Solution{}.snakesAndLadders(board) == 4);
-  return 0;
+                            {-1, -1, -1, -1, -1, -1}, {-1, 15, -1, -1, -1, -1}},4},
+    {{{-1,-1},{-1,3}},1},
+  };
+
+  for(auto &[board, ans] : tests) {
+    assert(Solution().snakesAndLadders(board) == ans);
+  }
 }
