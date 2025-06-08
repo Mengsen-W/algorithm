@@ -1,12 +1,5 @@
-/*
- * @Date: 2022-04-18 07:14:48
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-04-18 07:24:30
- * @FilePath: /algorithm/386_lexical_order/lexical_order.cpp
- */
-
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -32,6 +25,12 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().lexicalOrder(13) == vector<int>({1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9}));
-  assert(Solution().lexicalOrder(2) == vector<int>({1, 2}));
+  vector<tuple<int, vector<int>>> tests{
+      {13, {1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9}},
+      {2, {1, 2}},
+  };
+
+  for (auto &[n, ans] : tests) {
+    assert(Solution().lexicalOrder(n) == ans);
+  }
 }

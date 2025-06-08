@@ -1,14 +1,11 @@
-/*
- * @Date: 2022-04-18 07:14:55
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-04-18 07:16:27
- * @FilePath: /algorithm/386_lexical_order/lexical_order.go
- */
-
+// Package main ...
 package main
 
-import "reflect"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func lexicalOrder(n int) []int {
 	ans := make([]int, n)
@@ -28,12 +25,15 @@ func lexicalOrder(n int) []int {
 }
 
 func main() {
-	assert := func(a, b []int) {
-		if !reflect.DeepEqual(a, b) {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		n   int
+		ans []int
+	}{
+		{13, []int{1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9}},
+		{2, []int{1, 2}},
 	}
 
-	assert(lexicalOrder(13), []int{1, 10, 11, 12, 13, 2, 3, 4, 5, 6, 7, 8, 9})
-	assert(lexicalOrder(2), []int{1, 2})
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, lexicalOrder(test.n), index)
+	}
 }
