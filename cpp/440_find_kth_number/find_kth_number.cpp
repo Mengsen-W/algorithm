@@ -1,13 +1,7 @@
-/*
- * @Date: 2022-03-23 00:37:33
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-03-23 00:42:30
- * @FilePath: /algorithm/440_find_kth_number/find_kth_number.cpp
- */
-
+#include <algorithm>
 #include <cassert>
-#include <cmath>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -43,6 +37,12 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().findKthNumber(13, 2) == 10);
-  assert(Solution().findKthNumber(1, 1) == 1);
+  vector<tuple<int, int, int>> tests{
+      {13, 2, 10},
+      {1, 1, 1},
+  };
+
+  for (auto [n, k, expected] : tests) {
+    assert(Solution().findKthNumber(n, k) == expected);
+  }
 }
