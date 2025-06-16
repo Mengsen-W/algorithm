@@ -1,12 +1,11 @@
-/*
- * @Date: 2022-02-26 01:33:40
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-02-26 01:40:54
- * @FilePath: /algorithm/2016_maximum_difference/maximum_difference.go
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func maximumDifference(nums []int) int {
 	ans := -1
@@ -27,13 +26,16 @@ func maximumDifference(nums []int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		nums []int
+		ans  int
+	}{
+		{[]int{7, 1, 5, 4}, 4},
+		{[]int{9, 4, 3, 2}, -1},
+		{[]int{1, 5, 2, 10}, 9},
 	}
 
-	assert(maximumDifference([]int{7, 1, 5, 4}) == 4)
-	assert(maximumDifference([]int{9, 4, 3, 2}) == -1)
-	assert(maximumDifference([]int{1, 5, 2, 10}) == 9)
+	for index, test := range tests {
+		assert.Equal(&testing.B{}, test.ans, maximumDifference(test.nums), index)
+	}
 }
