@@ -1,10 +1,3 @@
-/*
- * @Date: 2021-11-20 00:40:32
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-11-20 00:54:29
- */
-
 struct Solution;
 
 impl Solution {
@@ -26,7 +19,13 @@ impl Solution {
 }
 
 fn main() {
-    assert_eq!(Solution::find_lhs(vec![1, 3, 2, 2, 5, 2, 3, 7]), 5);
-    assert_eq!(Solution::find_lhs(vec![1, 2, 3, 4]), 2);
-    assert_eq!(Solution::find_lhs(vec![1, 1, 1, 1]), 0);
+    let tests = vec![
+        (vec![1, 3, 2, 2, 5, 2, 3, 7], 5),
+        (vec![1, 2, 3, 4], 2),
+        (vec![1, 1, 1, 1], 0),
+    ];
+
+    for (nums, ans) in tests {
+        assert_eq!(Solution::find_lhs(nums), ans);
+    }
 }
