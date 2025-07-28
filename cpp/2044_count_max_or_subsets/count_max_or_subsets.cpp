@@ -1,20 +1,13 @@
-/*
- * @Date: 2022-03-15 00:28:10
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-03-15 00:49:31
- * @FilePath: /algorithm/2044_count_max_or_subsets/count_max_or_subsets.cpp
- */
-
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
 
 class Solution {
  public:
-  int countMaxOrSubsets(vector<int>& nums) {
-    this->nums = nums;
+  int countMaxOrSubsets(vector<int>& nums_) {
+    this->nums = nums_;
     this->maxOr = 0;
     this->cnt = 0;
     dfs(0, 0);
@@ -41,21 +34,13 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> input{3, 1};
-    int ans = 2;
-    assert(Solution().countMaxOrSubsets(input) == ans);
-  }
+  vector<tuple<vector<int>, int>> testCases{
+      {{3, 1}, 2},
+      {{2, 2, 2}, 7},
+      {{3, 2, 1, 5}, 6},
+  };
 
-  {
-    vector<int> input{2, 2, 2};
-    int ans = 7;
-    assert(Solution().countMaxOrSubsets(input) == ans);
-  }
-
-  {
-    vector<int> input{3, 2, 1, 5};
-    int ans = 6;
-    assert(Solution().countMaxOrSubsets(input) == ans);
+  for (auto& [nums, expected] : testCases) {
+    assert(Solution().countMaxOrSubsets(nums) == expected);
   }
 }

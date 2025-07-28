@@ -1,14 +1,10 @@
-/*
- * @Date: 2022-03-15 00:28:17
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-03-15 00:53:10
- * @FilePath: /algorithm/2044_count_max_or_subsets/count_max_or_subsets.go
- */
-
 package main
 
-import "reflect"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func countMaxOrSubsets(nums []int) (ans int) {
 	maxOr := 0
@@ -31,27 +27,15 @@ func countMaxOrSubsets(nums []int) (ans int) {
 }
 
 func main() {
-	assert := func(a, b int) {
-		if !reflect.DeepEqual(a, b) {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		nums []int
+		ans  int
+	}{
+		{[]int{3, 1}, 2},
+		{[]int{2, 2, 2}, 7},
+		{[]int{3, 2, 1, 5}, 6},
 	}
-
-	{
-		input := []int{3, 1}
-		ans := 2
-		assert(countMaxOrSubsets(input), ans)
-	}
-
-	{
-		input := []int{2, 2, 2}
-		ans := 7
-		assert(countMaxOrSubsets(input), ans)
-	}
-
-	{
-		input := []int{3, 2, 1, 5}
-		ans := 6
-		assert(countMaxOrSubsets(input), ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, countMaxOrSubsets(test.nums), index)
 	}
 }
