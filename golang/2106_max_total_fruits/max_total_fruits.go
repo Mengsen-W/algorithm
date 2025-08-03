@@ -1,12 +1,11 @@
-/*
- * @Date: 2023-05-04
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-05-04
- * @FilePath: /algorithm/golang/2106_max_total_fruits/max_total_fruits.go
- */
-
 // Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func maxTotalFruits(fruits [][]int, startPos int, k int) int {
 	min := func(a, b int) int {
@@ -60,33 +59,18 @@ func maxTotalFruits(fruits [][]int, startPos int, k int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		fruits   [][]int
+		startPos int
+		k        int
+		ans      int
+	}{
+		{[][]int{{2, 8}, {6, 3}, {8, 6}}, 5, 4, 9},
+		{[][]int{{0, 9}, {4, 1}, {5, 7}, {6, 2}, {7, 4}, {10, 9}}, 5, 4, 14},
+		{[][]int{{0, 3}, {6, 4}, {8, 5}}, 3, 2, 0},
 	}
 
-	{
-		fruits := [][]int{{2, 8}, {6, 3}, {8, 6}}
-		startPos := 5
-		k := 4
-		ans := 9
-		assert(maxTotalFruits(fruits, startPos, k) == ans)
-	}
-
-	{
-		fruits := [][]int{{0, 9}, {4, 1}, {5, 7}, {6, 2}, {7, 4}, {10, 9}}
-		startPos := 5
-		k := 4
-		ans := 14
-		assert(maxTotalFruits(fruits, startPos, k) == ans)
-	}
-
-	{
-		fruits := [][]int{{0, 3}, {6, 4}, {8, 5}}
-		startPos := 3
-		k := 2
-		ans := 0
-		assert(maxTotalFruits(fruits, startPos, k) == ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, maxTotalFruits(test.fruits, test.startPos, test.k), index)
 	}
 }
