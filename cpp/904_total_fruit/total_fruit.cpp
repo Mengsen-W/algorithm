@@ -1,11 +1,5 @@
-/*
- * @Date: 2022-10-17
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-10-17
- * @FilePath: /algorithm/904_total_fruit/total_fruit.cpp
- */
-
 #include <cassert>
+#include <tuple>
 #include <unordered_map>
 #include <vector>
 
@@ -35,27 +29,14 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> fruits{1, 2, 1};
-    int ans = 3;
-    assert(Solution().totalFruit(fruits) == ans);
-  }
+  vector<tuple<vector<int>, int>> tests{
+      {{1, 2, 1}, 3},
+      {{0, 1, 2, 2}, 3},
+      {{1, 2, 3, 2, 2}, 4},
+      {{3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4}, 5},
+  };
 
-  {
-    vector<int> fruits{0, 1, 2, 2};
-    int ans = 3;
-    assert(Solution().totalFruit(fruits) == ans);
-  }
-
-  {
-    vector<int> fruits{1, 2, 3, 2, 2};
-    int ans = 4;
-    assert(Solution().totalFruit(fruits) == ans);
-  }
-
-  {
-    vector<int> fruits{3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4};
-    int ans = 5;
-    assert(Solution().totalFruit(fruits) == ans);
+  for (auto& [fruits, expect] : tests) {
+    assert(Solution().totalFruit(fruits) == expect);
   }
 }
