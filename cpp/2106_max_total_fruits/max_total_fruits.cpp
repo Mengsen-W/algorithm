@@ -1,11 +1,6 @@
-/*
- * @Date: 2023-05-04
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-05-04
- * @FilePath: /algorithm/cpp/2106_max_total_fruits/max_total_fruits.cpp
- */
-
 #include <cassert>
+#include <cstdlib>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -45,27 +40,13 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<vector<int>> fruits{{2, 8}, {6, 3}, {8, 6}};
-    int startPos = 5;
-    int k = 4;
-    int ans = 9;
-    assert(Solution().maxTotalFruits(fruits, startPos, k) == ans);
-  }
+  vector<tuple<vector<vector<int>>, int, int, int>> tests{
+      {{{2, 8}, {6, 3}, {8, 6}}, 5, 4, 9},
+      {{{0, 9}, {4, 1}, {5, 7}, {6, 2}, {7, 4}, {10, 9}}, 5, 4, 14},
+      {{{0, 3}, {6, 4}, {8, 5}}, 3, 2, 0},
+  };
 
-  {
-    vector<vector<int>> fruits{{0, 9}, {4, 1}, {5, 7}, {6, 2}, {7, 4}, {10, 9}};
-    int startPos = 5;
-    int k = 4;
-    int ans = 14;
-    assert(Solution().maxTotalFruits(fruits, startPos, k) == ans);
-  }
-
-  {
-    vector<vector<int>> fruits{{0, 3}, {6, 4}, {8, 5}};
-    int startPos = 3;
-    int k = 2;
-    int ans = 0;
+  for (auto& [fruits, startPos, k, ans] : tests) {
     assert(Solution().maxTotalFruits(fruits, startPos, k) == ans);
   }
 }
