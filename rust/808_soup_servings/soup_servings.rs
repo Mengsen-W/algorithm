@@ -1,10 +1,3 @@
-/*
- * @Date: 2022-11-21
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-11-21
- * @FilePath: /algorithm/808_soup_servings/soup_servings.rs
- */
-
 struct Solution;
 
 impl Solution {
@@ -52,6 +45,15 @@ impl Solution {
 }
 
 fn main() {
-    assert_eq!(Solution::soup_servings(50), 0.62500);
-    assert_eq!(Solution::soup_servings(100), 0.71875);
+    let tests = vec![(50, 0.62500), (100, 0.71875)];
+
+    for (n, expected) in tests {
+        assert_eq!(
+            Solution::soup_servings(n),
+            expected,
+            "soup_servings({}) should be {}",
+            n,
+            expected
+        );
+    }
 }
