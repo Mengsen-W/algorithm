@@ -13,6 +13,16 @@ bool isPowerOfTwo_1(int n) { return n > 0 && (n & (n - 1)) == 0; }
 bool isPowerOfTwo_2(int n) { return n > 0 && (n & -n) == n; }
 bool isPowerOfTwo_3(int n) { return n > 0 && BIG % n == 0; }
 
+class Solution {
+private:
+    static constexpr int BIG = 1 << 30;
+
+public:
+    bool isPowerOfTwo(int n) {
+        return n > 0 && BIG % n == 0;
+    }
+};
+
 int main() {
   assert(isPowerOfTwo_1(1));
   assert(isPowerOfTwo_2(1));
