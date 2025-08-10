@@ -1,11 +1,5 @@
-/*
- * @Date: 2021-10-28 01:59:33
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-28 02:15:04
- */
-
 struct Solution;
+
 impl Solution {
     pub fn reordered_power_of2(n: i32) -> bool {
         if n == 0 {
