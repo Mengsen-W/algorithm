@@ -1,12 +1,4 @@
-/*
- * @Date: 2021-10-28 01:59:30
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-28 02:09:50
- */
-
 #include <cassert>
-#include <iostream>
 #include <string>
 #include <unordered_set>
 
