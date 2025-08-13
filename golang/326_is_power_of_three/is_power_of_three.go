@@ -1,11 +1,11 @@
-/*
- * @Date: 2021-09-23 08:48:55
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-09-23 08:50:03
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func isPowerOfThree(n int) bool {
 	for n > 0 && n%3 == 0 {
@@ -15,13 +15,17 @@ func isPowerOfThree(n int) bool {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		n   int
+		ans bool
+	}{
+		{27, true},
+		{0, false},
+		{9, true},
+		{45, false},
 	}
-	assert(isPowerOfThree(27))
-	assert(!isPowerOfThree(0))
-	assert(isPowerOfThree(9))
-	assert(!isPowerOfThree(45))
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, isPowerOfThree(test.n), index)
+	}
 }

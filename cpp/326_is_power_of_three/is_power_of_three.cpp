@@ -1,11 +1,6 @@
-/*
- * @Date: 2021-09-23 08:39:41
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-09-23 08:48:27
- */
-
 #include <cassert>
+#include <tuple>
+#include <vector>
 
 class Solution {
  public:
@@ -16,8 +11,14 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().isPowerOfThree(27));
-  assert(!Solution().isPowerOfThree(0));
-  assert(Solution().isPowerOfThree(9));
-  assert(!Solution().isPowerOfThree(45));
+  std::vector<std::tuple<int, bool>> tests{
+      {27, true},
+      {0, false},
+      {9, true},
+      {45, false},
+  };
+
+  for (auto& [n, expected] : tests) {
+    assert(Solution().isPowerOfThree(n) == expected);
+  }
 }
