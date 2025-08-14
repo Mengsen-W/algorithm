@@ -1,11 +1,6 @@
-/*
- * @Date: 2022-12-09
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-12-09
- * @FilePath: /algorithm/1780_check_powers_of_three/check_powers_of_three.cpp
- */
-
 #include <cassert>
+#include <tuple>
+#include <vector>
 
 class Solution {
  public:
@@ -21,7 +16,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().checkPowersOfThree(12));
-  assert(Solution().checkPowersOfThree(91));
-  assert(!Solution().checkPowersOfThree(21));
+  std::vector<std::tuple<int, bool>> tests{
+      {12, true},
+      {91, true},
+      {21, false},
+  };
+
+  for (auto& [n, expected] : tests) {
+    assert(Solution().checkPowersOfThree(n) == expected);
+  }
 }
