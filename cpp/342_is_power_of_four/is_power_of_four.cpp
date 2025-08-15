@@ -1,16 +1,20 @@
-/*
- * @Date: 2021-05-31 09:05:06
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-05-31 09:08:39
- */
-
 #include <cassert>
+#include <tuple>
+#include <vector>
 
-bool isPowerOfFour(int n) { return n > 0 && (n & (n - 1)) == 0 && n % 3 == 1; }
+class Solution {
+ public:
+  bool isPowerOfFour(int n) { return n > 0 && (n & (n - 1)) == 0 && n % 3 == 1; }
+};
 
 int main() {
-  assert(isPowerOfFour(16));
-  assert(!isPowerOfFour(5));
-  assert(isPowerOfFour(1));
+  std::vector<std::tuple<int, bool>> tests{
+      {16, true},
+      {5, false},
+      {1, true},
+  };
+
+  for (auto& [n, ans] : tests) {
+    assert(Solution{}.isPowerOfFour(n) == ans);
+  }
 }
