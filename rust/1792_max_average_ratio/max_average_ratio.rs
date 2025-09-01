@@ -1,10 +1,3 @@
-/*
- * @Date: 2023-02-19
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-02-19
- * @FilePath: /algorithm/rust/1792_max_average_ratio/max_average_ratio.rs
- */
-
 struct Solution;
 
 #[derive(Eq, PartialEq)]
@@ -62,23 +55,26 @@ impl Solution {
 }
 
 fn main() {
-    {
-        let classes = [[1, 2], [3, 5], [2, 2]]
-            .iter()
-            .map(|v| v.to_vec())
-            .collect();
-        let extra_students = 2;
-        let ans = 0.7833333333333333;
-        assert_eq!(Solution::max_average_ratio(classes, extra_students), ans);
-    }
+    let tests = vec![
+        (
+            [[1, 2], [3, 5], [2, 2]]
+                .iter()
+                .map(|v| v.to_vec())
+                .collect(),
+            2,
+            0.7833333333333333,
+        ),
+        (
+            [[2, 4], [3, 9], [4, 5], [2, 10]]
+                .iter()
+                .map(|v| v.to_vec())
+                .collect(),
+            4,
+            0.5348484848484849,
+        ),
+    ];
 
-    {
-        let classes = [[2, 4], [3, 9], [4, 5], [2, 10]]
-            .iter()
-            .map(|v| v.to_vec())
-            .collect();
-        let extra_students = 4;
-        let ans = 0.5348484848484849;
-        assert_eq!(Solution::max_average_ratio(classes, extra_students), ans);
+    for (classes, extra_students, ans) in tests {
+        assert!((Solution::max_average_ratio(classes, extra_students) - ans).abs() < 1e-5);
     }
 }

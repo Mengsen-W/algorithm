@@ -1,14 +1,11 @@
-/*
- * @Date: 2023-02-19
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-02-19
- * @FilePath: /algorithm/golang/1792_max_average_ratio/max_average_ratio.go
- */
-
+// Package main ...
 package main
 
 import (
 	"container/heap"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func maxAverageRatio(classes [][]int, extraStudents int) (ans float64) {
@@ -32,27 +29,21 @@ func (h hp) Less(i, j int) bool {
 	a, b := h[i], h[j]
 	return (a[1]-a[0])*b[1]*(b[1]+1) > (b[1]-b[0])*a[1]*(a[1]+1)
 }
-func (h hp) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
-func (hp) Push(interface{})     {}
-func (hp) Pop() (_ interface{}) { return }
+func (h hp) Swap(i, j int) { h[i], h[j] = h[j], h[i] }
+func (hp) Push(any)        {}
+func (hp) Pop() (_ any)    { return }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		classes       [][]int
+		extraStudents int
+		ans           float64
+	}{
+		{[][]int{{1, 2}, {3, 5}, {2, 2}}, 2, 0.78333},
+		{[][]int{{2, 4}, {3, 9}, {4, 5}, {2, 10}}, 4, 0.53485},
 	}
-	{
-		classes := [][]int{{1, 2}, {3, 5}, {2, 2}}
-		extraStudents := 2
-		ans := 0.7833
-		assert(maxAverageRatio(classes, extraStudents) == ans)
-	}
-
-	{
-		classes := [][]int{{2, 4}, {3, 9}, {4, 5}, {2, 10}}
-		extraStudents := 4
-		ans := 0.53485
-		assert(maxAverageRatio(classes, extraStudents) == ans)
+	for index, test := range tests {
+		res := maxAverageRatio(test.classes, test.extraStudents)
+		assert.InDelta(&testing.T{}, test.ans, res, 0.00001, index)
 	}
 }
