@@ -1,11 +1,11 @@
-/*
- * @Date: 2021-09-01 13:49:19
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-09-01 14:28:17
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func compareVersion(version1, version2 string) int {
 	n, m := len(version1), len(version2)
@@ -32,35 +32,39 @@ func compareVersion(version1, version2 string) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		version1 string
+		version2 string
+		ans      int
+	}{
+		{
+			"1.01",
+			"1.001",
+			0,
+		},
+		{
+			"1.0",
+			"1.0.0",
+			0,
+		},
+		{
+			"0.1",
+			"1.1",
+			-1,
+		},
+		{
+			"1.0.1",
+			"1",
+			1,
+		},
+		{
+			"7.5.2.4",
+			"7.5.3",
+			-1,
+		},
 	}
 
-	{
-		version1 := "1.01"
-		version2 := "1.001"
-		assert(compareVersion(version1, version2) == 0)
-	}
-	{
-		version1 := "1.0"
-		version2 := "1.0.0"
-		assert(compareVersion(version1, version2) == 0)
-	}
-	{
-		version1 := "0.1"
-		version2 := "1.1"
-		assert(compareVersion(version1, version2) == -1)
-	}
-	{
-		version1 := "1.0.1"
-		version2 := "1"
-		assert(compareVersion(version1, version2) == 1)
-	}
-	{
-		version1 := "7.5.2.4"
-		version2 := "7.5.3"
-		assert(compareVersion(version1, version2) == -1)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, compareVersion(test.version1, test.version2), index)
 	}
 }

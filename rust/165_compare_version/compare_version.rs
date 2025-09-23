@@ -1,67 +1,49 @@
-/*
- * @Date: 2021-09-01 13:49:16
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-09-01 15:20:53
- */
-
 struct Solution;
 
 impl Solution {
     pub fn compare_version(version1: String, version2: String) -> i32 {
-        let n = version1.len();
-        let m = version2.len();
-        let version1: Vec<char> = version1.chars().collect();
-        let version2: Vec<char> = version2.chars().collect();
+        let (bytes1, bytes2) = (version1.as_bytes(), version2.as_bytes());
+        let (m, n) = (bytes1.len(), bytes2.len());
         let (mut i, mut j) = (0, 0);
-        while i < n || j < m {
-            let mut x = 0;
-            while i < n && version1[i] != '.' {
-                x = x * 10 + (version1[i] as i32 - '0' as i32);
+
+        while i < m || j < n {
+            let mut a = 0;
+            let mut b = 0;
+
+            while i < m && bytes1[i] != b'.' {
+                a = a * 10 + (bytes1[i] - b'0') as i32;
                 i += 1;
             }
-            i += 1;
-            let mut y = 0;
-            while j < m && version2[j] != '.' {
-                y = y * 10 + (version2[j] as i32 - '0' as i32);
+            while j < n && bytes2[j] != b'.' {
+                b = b * 10 + (bytes2[j] - b'0') as i32;
                 j += 1;
             }
-            j += 1;
-            if x != y {
-                match x > y {
-                    true => return 1,
-                    false => return -1,
-                }
+
+            if a != b {
+                return if a < b { -1 } else { 1 };
             }
+
+            i += 1;
+            j += 1;
         }
-        return 0;
+
+        0
     }
 }
 
 fn main() {
-    {
-        let version1 = "1.01".to_string();
-        let version2 = "1.001".to_string();
-        assert_eq!(Solution::compare_version(version1, version2), 0);
-    }
-    {
-        let version1 = "1.0".to_string();
-        let version2 = "1.0.0".to_string();
-        assert_eq!(Solution::compare_version(version1, version2), 0);
-    }
-    {
-        let version1 = "0.1".to_string();
-        let version2 = "1.1".to_string();
-        assert_eq!(Solution::compare_version(version1, version2), -1);
-    }
-    {
-        let version1 = "1.0.1".to_string();
-        let version2 = "1".to_string();
-        assert_eq!(Solution::compare_version(version1, version2), 1);
-    }
-    {
-        let version1 = "7.5.2.4".to_string();
-        let version2 = "7.5.3".to_string();
-        assert_eq!(Solution::compare_version(version1, version2), -1);
+    let tests = vec![
+        ("1.01", "1.001", 0),
+        ("1.0", "1.0.0", 0),
+        ("0.1", "1.1", -1),
+        ("1.0.1", "1", 1),
+        ("7.5.2.4", "7.5.3", -1),
+    ];
+
+    for (version1, version2, expected) in tests {
+        assert_eq!(
+            Solution::compare_version(version1.to_string(), version2.to_string()),
+            expected
+        );
     }
 }
