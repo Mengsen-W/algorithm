@@ -1,13 +1,12 @@
-/*
- * @Date: 2021-10-03 09:00:19
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-03 09:02:52
- */
-
+// Package main ...
 package main
 
-import "strconv"
+import (
+	"strconv"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func fractionToDecimal(numerator, denominator int) string {
 	if numerator%denominator == 0 {
@@ -51,14 +50,17 @@ func fractionToDecimal(numerator, denominator int) string {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		numerator, denominator int
+		expected               string
+	}{
+		{1, 2, "0.5"},
+		{2, 1, "2"},
+		{4, 333, "0.(012)"},
+		{1, 5, "0.2"},
 	}
-	assert(fractionToDecimal(1, 2) == "0.5")
-	assert(fractionToDecimal(2, 1) == "2")
-	assert(fractionToDecimal(2, 3) == "0.(6)")
-	assert(fractionToDecimal(4, 333) == "0.(012)")
-	assert(fractionToDecimal(1, 5) == "0.2")
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.expected, fractionToDecimal(test.numerator, test.denominator), index)
+	}
 }

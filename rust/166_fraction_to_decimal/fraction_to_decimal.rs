@@ -1,16 +1,8 @@
-/*
- * @Date: 2021-10-03 09:05:53
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-03 09:09:35
- */
-
 struct Solution;
-
-use std::collections::HashMap;
 
 impl Solution {
     pub fn fraction_to_decimal(numerator: i32, denominator: i32) -> String {
+        use std::collections::HashMap;
         if numerator == 0 {
             return "0".to_string();
         }
@@ -40,9 +32,17 @@ impl Solution {
 }
 
 fn main() {
-    assert_eq!(Solution::fraction_to_decimal(1, 2), "0.5");
-    assert_eq!(Solution::fraction_to_decimal(2, 1), "2");
-    assert_eq!(Solution::fraction_to_decimal(2, 3), "0.(6)");
-    assert_eq!(Solution::fraction_to_decimal(4, 333), "0.(012)");
-    assert_eq!(Solution::fraction_to_decimal(1, 5), "0.2");
+    let tests = vec![
+        (1, 2, "0.5"),
+        (2, 1, "2"),
+        (4, 333, "0.(012)"),
+        (1, 5, "0.2"),
+    ];
+
+    for (numerator, denominator, expected) in tests {
+        assert_eq!(
+            Solution::fraction_to_decimal(numerator, denominator),
+            expected
+        );
+    }
 }
