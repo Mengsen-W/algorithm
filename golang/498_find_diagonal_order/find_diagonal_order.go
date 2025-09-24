@@ -1,14 +1,11 @@
-/*
- * @Date: 2022-06-14 09:51:35
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-06-14 10:01:56
- * @FilePath: /algorithm/498_find_diagonal_order/find_diagonal_order.go
- */
-
+// Package main ...
 package main
 
-import "reflect"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func findDiagonalOrder(mat [][]int) []int {
 	min := func(a, b int) int {
@@ -49,12 +46,15 @@ func findDiagonalOrder(mat [][]int) []int {
 }
 
 func main() {
-	assert := func(a, b []int) {
-		if !reflect.DeepEqual(a, b) {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		mat    [][]int
+		expect []int
+	}{
+		{[][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}, []int{1, 2, 4, 7, 5, 3, 6, 8, 9}},
+		{[][]int{{1, 2}, {3, 4}}, []int{1, 2, 3, 4}},
 	}
 
-	assert(findDiagonalOrder([][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}), []int{1, 2, 4, 7, 5, 3, 6, 8, 9})
-	assert(findDiagonalOrder([][]int{{1, 2}, {3, 4}}), []int{1, 2, 3, 4})
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.expect, findDiagonalOrder(test.mat), index)
+	}
 }

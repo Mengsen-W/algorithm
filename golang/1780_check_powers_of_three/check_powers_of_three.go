@@ -1,11 +1,11 @@
-/*
- * @Date: 2022-12-09
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-12-09
- * @FilePath: /algorithm/1780_check_powers_of_three/check_powers_of_three.go
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func checkPowersOfThree(n int) bool {
 	for ; n > 0; n /= 3 {
@@ -17,13 +17,16 @@ func checkPowersOfThree(n int) bool {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		n      int
+		except bool
+	}{
+		{12, true},
+		{91, true},
+		{21, false},
 	}
 
-	assert(checkPowersOfThree(12))
-	assert(checkPowersOfThree(91))
-	assert(!checkPowersOfThree(21))
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.except, checkPowersOfThree(test.n), index)
+	}
 }

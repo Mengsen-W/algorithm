@@ -1,11 +1,5 @@
-/*
- * @Date: 2021-11-20 00:40:30
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-11-20 00:44:43
- */
-
 #include <cassert>
+#include <tuple>
 #include <unordered_map>
 #include <vector>
 
@@ -26,7 +20,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().findLHS({1, 3, 2, 2, 5, 2, 3, 7}) == 5);
-  assert(Solution().findLHS({1, 2, 3, 4}) == 2);
-  assert(Solution().findLHS({1, 1, 1, 1}) == 0);
+  vector<tuple<vector<int>, int>> tests{
+      {{0, 3, 2, 2, 5, 2, 3, 7}, 5},
+      {{0, 2, 3, 4}, 2},
+      {{0, 1, 1, 1}, 0},
+  };
+
+  for (auto &[nums, ans] : tests) {
+    assert(Solution().findLHS(nums) == ans);
+  }
 }

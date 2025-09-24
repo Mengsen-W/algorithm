@@ -1,11 +1,11 @@
-/*
- * @Date: 2021-11-20 00:40:35
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-11-20 00:48:43
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func findLHS(nums []int) (ans int) {
 	cnt := map[int]int{}
@@ -21,13 +21,16 @@ func findLHS(nums []int) (ans int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		nums []int
+		ans  int
+	}{
+		{[]int{0, 3, 2, 2, 5, 2, 3, 7}, 5},
+		{[]int{0, 2, 3, 4}, 2},
+		{[]int{0, 1, 1, 1}, 0},
 	}
 
-	assert(findLHS([]int{1, 3, 2, 2, 5, 2, 3, 7}) == 5)
-	assert(findLHS([]int{1, 2, 3, 4}) == 2)
-	assert(findLHS([]int{1, 1, 1, 1}) == 0)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, findLHS(test.nums), index)
+	}
 }

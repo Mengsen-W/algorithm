@@ -1,10 +1,3 @@
-/*
- * @Date: 2021-08-20 15:16:10
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-08-21 14:12:03
- */
-
 struct Solution;
 
 impl Solution {
@@ -24,16 +17,9 @@ impl Solution {
 }
 
 fn main() {
-    {
-        let s = "abcdefg".to_string();
-        let k = 2;
-        let ans = "bacdfeg";
-        assert_eq!(Solution::reverse_str(s, k), ans);
-    }
-    {
-        let s = "abcd".to_string();
-        let k = 2;
-        let ans = "bacd";
-        assert_eq!(Solution::reverse_str(s, k), ans);
+    let tests = vec![("abcdefg", 2, "bacdfeg"), ("abcd", 2, "bacd")];
+
+    for (s, k, ans) in tests {
+        assert_eq!(Solution::reverse_str(s.to_string(), k), ans.to_string());
     }
 }

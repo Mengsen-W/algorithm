@@ -1,12 +1,7 @@
-/*
- * @Date: 2023-02-19
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-02-19
- * @FilePath: /algorithm/cpp/1792_max_average_ratio/max_average_ratio.cpp
- */
-
 #include <cassert>
+#include <cmath>
 #include <queue>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -44,17 +39,13 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<vector<int>> classes{{1, 2}, {3, 5}, {2, 2}};
-    int extraStudents = 2;
-    double ans = 0.7833;
-    assert(Solution().maxAverageRatio(classes, extraStudents) == ans);
-  }
+  vector<tuple<vector<vector<int>>, int, double>> tests{
+      {{{1, 2}, {3, 5}, {2, 2}}, 2, 0.78333},
+      {{{2, 4}, {3, 9}, {4, 5}, {2, 10}}, 4, 0.53485},
+  };
 
-  {
-    vector<vector<int>> classes{{2, 4}, {3, 9}, {4, 5}, {2, 10}};
-    int extraStudents = 4;
-    double ans = 0.53485;
-    assert(Solution().maxAverageRatio(classes, extraStudents) == ans);
+  for (auto& [classes, extraStudents, expect] : tests) {
+    double res = Solution().maxAverageRatio(classes, extraStudents);
+    assert(fabs(res - expect) < 1e-5);
   }
 }

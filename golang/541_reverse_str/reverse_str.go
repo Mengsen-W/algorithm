@@ -1,13 +1,19 @@
-/*
- * @Date: 2021-08-20 15:23:31
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-08-20 15:26:33
- */
-
+// Package main ...
 package main
 
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
 func reverseStr(s string, k int) string {
+	min := func(a, b int) int {
+		if a < b {
+			return a
+		}
+		return b
+	}
 	t := []byte(s)
 	for i := 0; i < len(s); i += 2 * k {
 		sub := t[i:min(i+k, len(s))]
@@ -18,29 +24,17 @@ func reverseStr(s string, k int) string {
 	return string(t)
 }
 
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		s   string
+		k   int
+		ans string
+	}{
+		{"abcdefg", 2, "bacdfeg"},
+		{"abcd", 2, "bacd"},
 	}
-	{
-		s := "abcdefg"
-		k := 2
-		ans := "bacdfeg"
-		assert(reverseStr(s, k) == ans)
-	}
-	{
-		s := "abcd"
-		k := 2
-		ans := "bacd"
-		assert(reverseStr(s, k) == ans)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, reverseStr(test.s, test.k), index)
 	}
 }

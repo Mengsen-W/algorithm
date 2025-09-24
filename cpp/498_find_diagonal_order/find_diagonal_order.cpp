@@ -1,12 +1,5 @@
-/*
- * @Date: 2022-06-14 09:51:30
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-06-14 09:57:49
- * @FilePath: /algorithm/498_find_diagonal_order/find_diagonal_order.cpp
- */
-
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -41,6 +34,11 @@ class Solution {
 };
 
 int main() {
-  assert((Solution().findDiagonalOrder({{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}) == vector<int>{1, 2, 4, 7, 5, 3, 6, 8, 9}));
-  assert((Solution().findDiagonalOrder({{1, 2}, {3, 4}}) == vector<int>{1, 2, 3, 4}));
+  vector<tuple<vector<vector<int>>, vector<int>>> test_cases{
+      {{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}, {1, 2, 4, 7, 5, 3, 6, 8, 9}},
+      {{{1, 2}, {3, 4}}, {1, 2, 3, 4}},
+  };
+  for (auto& [mat, expected] : test_cases) {
+    assert((Solution().findDiagonalOrder(mat) == expected));
+  }
 }

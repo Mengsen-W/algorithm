@@ -1,10 +1,3 @@
-/*
- * @Date: 2022-08-16
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-08-16
- * @FilePath: /algorithm/1656_OrderedStream/OrderedStream.rs
- */
-
 struct OrderedStream {
     arr: Vec<Option<String>>,
     ptr: usize,

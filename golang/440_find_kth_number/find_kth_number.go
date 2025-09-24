@@ -1,12 +1,11 @@
-/*
- * @Date: 2022-03-23 00:37:43
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-03-23 01:13:22
- * @FilePath: /algorithm/440_find_kth_number/find_kth_number.go
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func findKthNumber(n, k int) int {
 	getSteps := func(cur, n int) (steps int) {
@@ -40,11 +39,16 @@ func findKthNumber(n, k int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		n   int
+		k   int
+		ans int
+	}{
+		{13, 2, 10},
+		{1, 1, 1},
 	}
-	assert(findKthNumber(13, 2) == 10)
-	assert(findKthNumber(1, 1) == 1)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, findKthNumber(test.n, test.k), index)
+	}
 }

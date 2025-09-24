@@ -1,14 +1,11 @@
-/*
- * @Date: 2022-02-23 23:51:52
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-02-24 00:18:06
- * @FilePath: /algorithm/1706_find_ball/find_ball.go
- */
-
+// Package main ...
 package main
 
-import "reflect"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func findBall(grid [][]int) []int {
 	n := len(grid[0])
@@ -29,27 +26,22 @@ func findBall(grid [][]int) []int {
 }
 
 func main() {
-	assert := func(a, b []int) {
-		if !reflect.DeepEqual(a, b) {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		grid [][]int
+		ans  []int
+	}{
+		{
+			[][]int{{1, 1, 1, -1, -1}, {1, 1, 1, -1, -1}, {-1, -1, -1, 1, 1}, {1, 1, 1, 1, -1}, {-1, -1, -1, -1, -1}},
+			[]int{1, -1, -1, -1, -1},
+		},
+		{[][]int{{-1}}, []int{-1}},
+		{
+			[][]int{{1, 1, 1, 1, 1, 1}, {-1, -1, -1, -1, -1, -1}, {1, 1, 1, 1, 1, 1}, {-1, -1, -1, -1, -1, -1}},
+			[]int{0, 1, 2, 3, 4, -1},
+		},
 	}
 
-	{
-		grid := [][]int{{1, 1, 1, -1, -1}, {1, 1, 1, -1, -1}, {-1, -1, -1, 1, 1}, {1, 1, 1, 1, -1}, {-1, -1, -1, -1, -1}}
-		ans := []int{1, -1, -1, -1, -1}
-		assert(findBall(grid), ans)
-	}
-
-	{
-		grid := [][]int{{-1}}
-		ans := []int{-1}
-		assert(findBall(grid), ans)
-	}
-
-	{
-		grid := [][]int{{1, 1, 1, 1, 1, 1}, {-1, -1, -1, -1, -1, -1}, {1, 1, 1, 1, 1, 1}, {-1, -1, -1, -1, -1, -1}}
-		ans := []int{0, 1, 2, 3, 4, -1}
-		assert(findBall(grid), ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, findBall(test.grid), index)
 	}
 }

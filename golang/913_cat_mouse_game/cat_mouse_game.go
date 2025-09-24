@@ -1,11 +1,11 @@
-/*
- * @Date: 2022-01-04 01:32:45
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-01-04 01:45:36
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 const (
 	draw     = 0
@@ -19,7 +19,7 @@ func catMouseGame(graph [][]int) int {
 	for i := range dp {
 		dp[i] = make([][]int, n)
 		for j := range dp[i] {
-			dp[i][j] = make([]int, n*2)
+			dp[i][j] = make([]int, n*(n-1)*2)
 			for k := range dp[i][j] {
 				dp[i][j][k] = -1
 			}
@@ -28,7 +28,7 @@ func catMouseGame(graph [][]int) int {
 
 	var getResult, getNextResult func(int, int, int) int
 	getResult = func(mouse, cat, turns int) int {
-		if turns == n*2 {
+		if turns == n*(n-1)*2 {
 			return draw
 		}
 		res := dp[mouse][cat][turns]
@@ -79,11 +79,15 @@ func catMouseGame(graph [][]int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		graph [][]int
+		ans   int
+	}{
+		{[][]int{{2, 5}, {3}, {0, 4, 5}, {1, 4, 5}, {2, 3}, {0, 2, 3}}, 0},
+		{[][]int{{1, 3}, {0}, {3}, {0, 2}}, 1},
 	}
-	assert(catMouseGame([][]int{{2, 5}, {3}, {0, 4, 5}, {1, 4, 5}, {2, 3}, {0, 2, 3}}) == 0)
-	assert(catMouseGame([][]int{{1, 3}, {0}, {3}, {0, 2}}) == 1)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, catMouseGame(test.graph), index)
+	}
 }

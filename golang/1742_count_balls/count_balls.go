@@ -1,11 +1,11 @@
-/*
- * @Date: 2022-11-23
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-11-23
- * @FilePath: /algorithm/1742_count_balls/count_balls.go
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func countBalls(lowLimit, highLimit int) (ans int) {
 	max := func(a, b int) int {
@@ -27,12 +27,17 @@ func countBalls(lowLimit, highLimit int) (ans int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		lowLimit  int
+		highLimit int
+		ans       int
+	}{
+		{1, 10, 2},
+		{5, 15, 2},
+		{19, 28, 2},
 	}
-	assert(countBalls(1, 10) == 2)
-	assert(countBalls(5, 15) == 2)
-	assert(countBalls(19, 28) == 2)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, countBalls(test.lowLimit, test.highLimit), index)
+	}
 }

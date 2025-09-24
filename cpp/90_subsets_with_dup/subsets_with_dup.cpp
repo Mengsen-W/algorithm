@@ -1,59 +1,44 @@
-/*
- * @Date: 2021-04-04 18:39:26
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-04-04 18:47:34
- * @FilePath: \algorithm\90_subsets_with_dup\subsets_with_dup.cpp
- * @Description: file content
- */
-
 #include <algorithm>
-#include <iostream>
+#include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
 
-vector<int> t;
-vector<vector<int>> ans;
-
-void dfs(bool choosePre, int cur, vector<int> &nums) {
-  if (cur == nums.size()) {
-    ans.push_back(t);
-    return;
+class Solution {
+ public:
+  vector<int> t;
+  vector<vector<int>> ans;
+  vector<vector<int>> subsetsWithDup(vector<int> &nums) {
+    sort(nums.begin(), nums.end());
+    int n = nums.size();
+    for (int mask = 0; mask < (1 << n); ++mask) {
+      t.clear();
+      bool flag = true;
+      for (int i = 0; i < n; ++i) {
+        if (mask & (1 << i)) {
+          if (i > 0 && (mask >> (i - 1) & 1) == 0 && nums[i] == nums[i - 1]) {
+            flag = false;
+            break;
+          }
+          t.push_back(nums[i]);
+        }
+      }
+      if (flag) {
+        ans.push_back(t);
+      }
+    }
+    return ans;
   }
-  dfs(false, cur + 1, nums);
-  if (!choosePre && cur > 0 && nums[cur - 1] == nums[cur]) {
-    return;
-  }
-  t.push_back(nums[cur]);
-  dfs(true, cur + 1, nums);
-  t.pop_back();
-}
-
-vector<vector<int>> subsets_with_dup(vector<int> &nums) {
-  sort(nums.begin(), nums.end());
-  dfs(false, 0, nums);
-  return ans;
-}
+};
 
 int main() {
-  vector<int> nums{1, 2, 2};
-  subsets_with_dup(nums);
-  for (auto v : ans) {
-    for (int i : v) {
-      cout << i << ", ";
-    }
-    cout << endl;
-  }
+  vector<tuple<vector<int>, vector<vector<int>>>> tests{
+      {{1, 2, 2}, {{}, {1}, {1, 2}, {1, 2, 2}, {2}, {2, 2}}},
+      {{0}, {{}, {0}}},
+  };
 
-  ans.clear();
-  nums.clear();
-  nums = {0};
-  subsets_with_dup(nums);
-  for (auto v : ans) {
-    for (int i : v) {
-      cout << i << ", ";
-    }
-    cout << endl;
+  for (auto &[nums, ans] : tests) {
+    assert(Solution().subsetsWithDup(nums) == ans);
   }
 }

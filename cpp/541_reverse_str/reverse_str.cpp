@@ -1,13 +1,8 @@
-/*
- * @Date: 2021-08-20 15:16:06
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-08-21 14:01:11
- */
-
 #include <algorithm>
 #include <cassert>
 #include <string>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -23,16 +18,12 @@ class Solution {
 };
 
 int main() {
-  {
-    string s = "abcdefg";
-    int k = 2;
-    string ans = "bacdfeg";
-    assert(Solution{}.reverseStr(s, k) == ans);
-  }
-  {
-    string s = "abcd";
-    int k = 2;
-    string ans = "bacd";
-    assert(Solution{}.reverseStr(s, k) == ans);
+  vector<tuple<string, int, string>> tests{
+      {"abcdefg", 2, "bacdfeg"},
+      {"abcd", 2, "bacd"},
+  };
+
+  for (auto &[s, k, ans] : tests) {
+    assert(Solution().reverseStr(s, k) == ans);
   }
 }

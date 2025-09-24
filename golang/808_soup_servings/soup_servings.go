@@ -1,11 +1,11 @@
-/*
- * @Date: 2022-11-21
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-11-21
- * @FilePath: /algorithm/808_soup_servings/soup_servings.go
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func soupServings(n int) float64 {
 	n = (n + 24) / 25
@@ -40,11 +40,15 @@ func soupServings(n int) float64 {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		n      int
+		expect float64
+	}{
+		{50, 0.62500},
+		{100, 0.71875},
 	}
-	assert(soupServings(50) == 0.62500)
-	assert(soupServings(100) == 0.71875)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.expect, soupServings(test.n), index)
+	}
 }

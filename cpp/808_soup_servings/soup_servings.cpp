@@ -1,11 +1,6 @@
-/*
- * @Date: 2022-11-21
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-11-21
- * @FilePath: /algorithm/808_soup_servings/soup_servings.cpp
- */
-
 #include <cassert>
+#include <cmath>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -41,6 +36,12 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().soupServings(50) == 0.62500);
-  assert(Solution().soupServings(100) == 0.71875);
+  vector<tuple<int, double>> tests{
+    {50, 0.62500},
+    {100, 0.71875},
+  };
+
+  for (auto& [n, expected] : tests) {
+    assert(Solution().soupServings(n) == expected);
+  }
 }

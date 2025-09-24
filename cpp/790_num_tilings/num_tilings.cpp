@@ -1,11 +1,6 @@
-/*
- * @Date: 2022-11-12
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-11-12
- * @FilePath: /algorithm/790_num_tilings/num_tilings.cpp
- */
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -41,6 +36,12 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().numTilings(1) == 1);
-  assert(Solution().numTilings(3) == 5);
+  vector<tuple<int, int>> tests{
+      {1, 1},
+      {3, 5},
+  };
+
+  for (auto &[n, ans] : tests) {
+    assert(Solution().numTilings(n) == ans);
+  }
 }

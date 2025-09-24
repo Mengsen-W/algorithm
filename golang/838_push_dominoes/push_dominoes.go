@@ -1,11 +1,11 @@
-/*
- * @Date: 2022-02-21 00:58:33
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-02-21 01:05:42
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func pushDominoes(dominoes string) string {
 	s := []byte(dominoes)
@@ -43,12 +43,15 @@ func pushDominoes(dominoes string) string {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		dominoes string
+		ans      string
+	}{
+		{"RR.L", "RR.L"},
+		{".L.R...LR..L..", "LL.RR.LLRRLL.."},
 	}
 
-	assert(pushDominoes("RR.L") == "RR.L")
-	assert(pushDominoes(".L.R...LR..L..") == "LL.RR.LLRRLL..")
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, pushDominoes(test.dominoes), index)
+	}
 }

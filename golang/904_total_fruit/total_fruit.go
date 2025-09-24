@@ -1,11 +1,11 @@
-/*
- * @Date: 2022-10-17
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-10-17
- * @FilePath: /algorithm/904_total_fruit/total_fruit.go
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func totalFruit(fruits []int) (ans int) {
 	max := func(a, b int) int {
@@ -32,32 +32,17 @@ func totalFruit(fruits []int) (ans int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
-	}
-	{
-		fruits := []int{1, 2, 1}
-		ans := 3
-		assert(totalFruit(fruits) == ans)
-	}
-
-	{
-		fruits := []int{0, 1, 2, 2}
-		ans := 3
-		assert(totalFruit(fruits) == ans)
+	tests := []struct {
+		fruits []int
+		ans    int
+	}{
+		{[]int{1, 2, 1}, 3},
+		{[]int{0, 1, 2, 2}, 3},
+		{[]int{1, 2, 3, 2, 2}, 4},
+		{[]int{3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4}, 5},
 	}
 
-	{
-		fruits := []int{1, 2, 3, 2, 2}
-		ans := 4
-		assert(totalFruit(fruits) == ans)
-	}
-
-	{
-		fruits := []int{3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4}
-		ans := 5
-		assert(totalFruit(fruits) == ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, totalFruit(test.fruits), index)
 	}
 }

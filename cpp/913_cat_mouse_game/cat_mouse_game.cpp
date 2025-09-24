@@ -1,74 +1,96 @@
-/*
- * @Date: 2022-01-04 01:32:04
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-01-04 01:41:10
- */
-
 #include <cassert>
 #include <cstring>
+#include <queue>
+#include <tuple>
 #include <vector>
 
 using namespace std;
 
-const int MOUSE_WIN = 1;
-const int CAT_WIN = 2;
-const int DRAW = 0;
-const int MAXN = 51;
-
 class Solution {
  public:
-  int n;
-  int dp[MAXN][MAXN][MAXN * 2];
+  const int MOUSE_TURN = 0, CAT_TURN = 1;
+  const int DRAW = 0, MOUSE_WIN = 1, CAT_WIN = 2;
   vector<vector<int>> graph;
+  vector<vector<vector<int>>> degrees;
+  vector<vector<vector<int>>> results;
 
-  int catMouseGame(vector<vector<int>> graph) {
-    this->n = graph.size();
+  int catMouseGame(vector<vector<int>>& graph) {
+    int n = graph.size();
     this->graph = graph;
-    memset(dp, -1, sizeof(dp));
-    return getResult(1, 2, 0);
-  }
+    this->degrees = vector<vector<vector<int>>>(n, vector<vector<int>>(n, vector<int>(2)));
+    this->results = vector<vector<vector<int>>>(n, vector<vector<int>>(n, vector<int>(2)));
+    queue<tuple<int, int, int>> qu;
 
-  int getResult(int mouse, int cat, int turns) {
-    if (turns == n * 2) {
-      return DRAW;
-    }
-    if (dp[mouse][cat][turns] < 0) {
-      if (mouse == 0) {
-        dp[mouse][cat][turns] = MOUSE_WIN;
-      } else if (cat == mouse) {
-        dp[mouse][cat][turns] = CAT_WIN;
-      } else {
-        getNextResult(mouse, cat, turns);
+    for (int i = 0; i < n; i++) {
+      for (int j = 1; j < n; j++) {
+        degrees[i][j][MOUSE_TURN] = graph[i].size();
+        degrees[i][j][CAT_TURN] = graph[j].size();
       }
     }
-    return dp[mouse][cat][turns];
-  }
-
-  void getNextResult(int mouse, int cat, int turns) {
-    int curMove = turns % 2 == 0 ? mouse : cat;
-    int defaultResult = curMove == mouse ? CAT_WIN : MOUSE_WIN;
-    int result = defaultResult;
-    for (int next : graph[curMove]) {
-      if (curMove == cat && next == 0) {
-        continue;
+    for (int node : graph[0]) {
+      for (int i = 0; i < n; i++) {
+        degrees[i][node][CAT_TURN]--;
       }
-      int nextMouse = curMove == mouse ? next : mouse;
-      int nextCat = curMove == cat ? next : cat;
-      int nextResult = getResult(nextMouse, nextCat, turns + 1);
-      if (nextResult != defaultResult) {
-        result = nextResult;
-        if (result != DRAW) {
-          break;
+    }
+    for (int j = 1; j < n; j++) {
+      results[0][j][MOUSE_TURN] = MOUSE_WIN;
+      results[0][j][CAT_TURN] = MOUSE_WIN;
+      qu.emplace(0, j, MOUSE_TURN);
+      qu.emplace(0, j, CAT_TURN);
+    }
+    for (int i = 1; i < n; i++) {
+      results[i][i][MOUSE_TURN] = CAT_WIN;
+      results[i][i][CAT_TURN] = CAT_WIN;
+      qu.emplace(i, i, MOUSE_TURN);
+      qu.emplace(i, i, CAT_TURN);
+    }
+    while (!qu.empty()) {
+      auto [mouse, cat, turn] = qu.front();
+      qu.pop();
+      int result = results[mouse][cat][turn];
+      vector<tuple<int, int, int>> prevStates = GetPrevStates(mouse, cat, turn);
+      for (auto& [prevMouse, prevCat, prevTurn] : prevStates) {
+        if (results[prevMouse][prevCat][prevTurn] == DRAW) {
+          bool canWin = (result == MOUSE_WIN && prevTurn == MOUSE_TURN) || (result == CAT_WIN && prevTurn == CAT_TURN);
+          if (canWin) {
+            results[prevMouse][prevCat][prevTurn] = result;
+            qu.emplace(prevMouse, prevCat, prevTurn);
+          } else if (--degrees[prevMouse][prevCat][prevTurn] == 0) {
+            int loseResult = prevTurn == MOUSE_TURN ? CAT_WIN : MOUSE_WIN;
+            results[prevMouse][prevCat][prevTurn] = loseResult;
+            qu.emplace(prevMouse, prevCat, prevTurn);
+          }
         }
       }
     }
-    dp[mouse][cat][turns] = result;
+    return results[1][2][MOUSE_TURN];
+  }
+
+  vector<tuple<int, int, int>> GetPrevStates(int mouse, int cat, int turn) {
+    vector<tuple<int, int, int>> prevStates;
+    int prevTurn = turn == MOUSE_TURN ? CAT_TURN : MOUSE_TURN;
+    if (prevTurn == MOUSE_TURN) {
+      for (int& prev : graph[mouse]) {
+        prevStates.emplace_back(prev, cat, prevTurn);
+      }
+    } else {
+      for (int& prev : graph[cat]) {
+        if (prev != 0) {
+          prevStates.emplace_back(mouse, prev, prevTurn);
+        }
+      }
+    }
+    return prevStates;
   }
 };
 
 int main() {
-  assert(Solution().catMouseGame(
-             {{2, 5}, {3}, {0, 4, 5}, {1, 4, 5}, {2, 3}, {0, 2, 3}}) == 0);
-  assert(Solution().catMouseGame({{1, 3}, {0}, {3}, {0, 2}}) == 1);
+  vector<tuple<vector<vector<int>>, int>> tests{
+      {{{2, 5}, {3}, {0, 4, 5}, {1, 4, 5}, {2, 3}, {0, 2, 3}}, 0},
+      {{{1, 3}, {0}, {3}, {0, 2}}, 1},
+  };
+
+  for (auto& [graph, ans] : tests) {
+    assert(Solution().catMouseGame(graph) == ans);
+  }
 }

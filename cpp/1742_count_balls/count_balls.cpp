@@ -1,12 +1,8 @@
-/*
- * @Date: 2022-11-23
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-11-23
- * @FilePath: /algorithm/1742_count_balls/count_balls.cpp
- */
 
 #include <cassert>
+#include <tuple>
 #include <unordered_map>
+#include <vector>
 
 using namespace std;
 
@@ -29,7 +25,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().countBalls(1, 10) == 2);
-  assert(Solution().countBalls(5, 15) == 2);
-  assert(Solution().countBalls(19, 28) == 2);
+  vector<tuple<int, int, int>> tests{
+      {1, 10, 2},
+      {5, 15, 2},
+      {19, 28, 2},
+  };
+
+  for (auto& [lowLimit, highLimit, ans] : tests) {
+    assert(Solution().countBalls(lowLimit, highLimit) == ans);
+  }
 }

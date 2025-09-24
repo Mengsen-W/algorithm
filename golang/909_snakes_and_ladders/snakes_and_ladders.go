@@ -1,11 +1,11 @@
-/*
- * @Date: 2021-06-27 10:07:47
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-06-27 10:21:05
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func id2rc(id, n int) (r, c int) {
 	r, c = (id-1)/n, (id-1)%n
@@ -46,14 +46,21 @@ func snakesAndLadders(board [][]int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed!")
-		}
+	tests := []struct {
+		board [][]int
+		ans   int
+	}{
+		{[][]int{
+			{-1, -1, -1, -1, -1, -1},
+			{-1, -1, -1, -1, -1, -1},
+			{-1, -1, -1, -1, -1, -1},
+			{-1, 35, -1, -1, 13, -1},
+			{-1, -1, -1, -1, -1, -1},
+			{-1, 15, -1, -1, -1, -1},
+		}, 4},
+		{[][]int{{-1, -1}, {-1, 3}}, 1},
 	}
-	board := [][]int{{-1, -1, -1, -1, -1, -1}, {-1, -1, -1, -1, -1, -1},
-		{-1, -1, -1, -1, -1, -1}, {-1, 35, -1, -1, 13, -1},
-		{-1, -1, -1, -1, -1, -1}, {-1, 15, -1, -1, -1, -1}}
-	assert(snakesAndLadders(board) == 4)
-
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, snakesAndLadders(test.board), index)
+	}
 }

@@ -1,12 +1,5 @@
-/*
- * @Date: 2022-02-26 01:33:16
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-02-26 01:39:56
- * @FilePath: /algorithm/2016_maximum_difference/maximum_difference.cpp
- */
-
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -28,7 +21,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().maximumDifference({7, 1, 5, 4}) == 4);
-  assert(Solution().maximumDifference({9, 4, 3, 2}) == -1);
-  assert(Solution().maximumDifference({1, 5, 2, 10}) == 9);
+  vector<tuple<vector<int>, int>> tests{
+      {{7, 1, 5, 4}, 4},
+      {{9, 4, 3, 2}, -1},
+      {{1, 5, 2, 10}, 9},
+  };
+
+  for (auto &[nums, ans] : tests) {
+    assert(Solution().maximumDifference(nums) == ans);
+  }
 }

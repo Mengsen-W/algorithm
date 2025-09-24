@@ -1,10 +1,4 @@
-/*
- * @Date: 2021-10-28 01:59:36
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-28 02:12:37
- */
-
+// Package main ...
 package main
 
 func countDigits(n int) (cnt [10]int) {
