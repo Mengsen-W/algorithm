@@ -1,13 +1,12 @@
-/*
- * @Date: 2021-08-04 14:59:28
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-08-04 15:02:51
- */
-
+// Package main
 package main
 
-import "sort"
+import (
+	"sort"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func triangleNumber(nums []int) (ans int) {
 	max := func(a, b int) int {
@@ -31,11 +30,15 @@ func triangleNumber(nums []int) (ans int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		nums []int
+		ans  int
+	}{
+		{[]int{2, 2, 3, 4}, 3},
+		{[]int{4, 2, 3, 4}, 4},
 	}
-	nums := []int{2, 2, 3, 4}
-	assert(triangleNumber(nums) == 3)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, triangleNumber(test.nums), index)
+	}
 }

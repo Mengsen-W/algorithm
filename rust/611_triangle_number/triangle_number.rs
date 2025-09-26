@@ -1,10 +1,3 @@
-/*
- * @Date: 2021-08-04 14:59:33
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-08-04 15:10:03
- */
-
 struct Solution;
 
 impl Solution {
@@ -26,8 +19,9 @@ impl Solution {
 }
 
 fn main() {
-    let nums = vec![2, 2, 3, 4];
-    assert_eq!(Solution::triangle_number(nums), 3);
-    let nums = vec![0, 0];
-    assert_eq!(Solution::triangle_number(nums), 0);
+    let tests = vec![(vec![2, 2, 3, 4], 3), (vec![4, 2, 3, 4], 4)];
+
+    for (nums, expected) in tests {
+        assert_eq!(Solution::triangle_number(nums), expected);
+    }
 }
