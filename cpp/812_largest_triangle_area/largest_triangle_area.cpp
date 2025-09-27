@@ -1,12 +1,6 @@
-/*
- * @Date: 2022-05-15 14:54:53
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-05-15 15:52:05
- * @FilePath: /algorithm/812_largest_triangle_area/largest_triangle_area.cpp
- */
-
+#include <algorithm>
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -80,4 +74,13 @@ class Solution {
   }
 };
 
-int main() { assert(Solution().largestTriangleArea({{0, 0}, {0, 1}, {1, 0}, {0, 2}, {2, 0}}) == 2); }
+int main() {
+  vector<tuple<vector<vector<int>>, double>> tests{
+      {{{0, 0}, {0, 1}, {1, 0}, {0, 2}, {2, 0}}, 2.0},
+      {{{1, 0}, {0, 0}, {0, 1}}, 0.5},
+  };
+
+  for (auto& [points, ans] : tests) {
+    assert(Solution().largestTriangleArea(points) == ans);
+  }
+}

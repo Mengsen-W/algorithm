@@ -1,16 +1,12 @@
-/*
- * @Date: 2022-05-15 14:55:21
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-05-15 15:45:59
- * @FilePath: /algorithm/812_largest_triangle_area/largest_triangle_area.go
- */
-
+// Package main ...
 package main
 
 import (
 	"math"
 	"sort"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func cross(p, q, r []int) int {
@@ -70,9 +66,15 @@ func largestTriangleArea(points [][]int) (ans float64) {
 }
 
 func main() {
-	func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
-	}(largestTriangleArea([][]int{{0, 0}, {0, 1}, {1, 0}, {0, 2}, {2, 0}}) == 2)
+	tests := []struct {
+		points   [][]int
+		expected float64
+	}{
+		{[][]int{{0, 0}, {0, 1}, {1, 0}, {0, 2}, {2, 0}}, 2.0},
+		{[][]int{{1, 0}, {0, 0}, {0, 1}}, 0.5},
+	}
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.expected, largestTriangleArea(test.points), index)
+	}
 }
