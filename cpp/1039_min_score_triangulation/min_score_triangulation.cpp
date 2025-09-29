@@ -1,6 +1,8 @@
 
 #include <cassert>
+#include <climits>
 #include <functional>
+#include <tuple>
 #include <unordered_map>
 #include <vector>
 
@@ -33,21 +35,14 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> values{1, 2, 3};
-    int ans = 6;
-    assert(Solution().minScoreTriangulation(values) == ans);
-  }
+  vector<tuple<vector<int>, int>> tests{
+      {{1, 2, 3}, 6},
+      {{3, 7, 4, 5}, 144},
+      {{1, 3, 1, 4, 1, 5}, 13},
+  };
 
-  {
-    vector<int> values{3, 7, 4, 5};
-    int ans = 144;
-    assert(Solution().minScoreTriangulation(values) == ans);
+  for (auto& [values, expect] : tests) {
+    assert(Solution().minScoreTriangulation(values) == expect);
   }
-
-  {
-    vector<int> values{1, 3, 1, 4, 1, 5};
-    int ans = 13;
-    assert(Solution().minScoreTriangulation(values) == ans);
-  }
+  return 0;
 }
