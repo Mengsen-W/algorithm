@@ -1,11 +1,11 @@
-/*
- * @Date: 2021-11-03 01:11:03
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-11-03 01:42:08
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func trapRainWater(heightMap [][]int) (ans int) {
 	m, n := len(heightMap), len(heightMap[0])
@@ -64,11 +64,15 @@ func max(a, b int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		heightMap [][]int
+		expected  int
+	}{
+		{[][]int{{1, 4, 3, 1, 3, 2}, {3, 2, 1, 3, 2, 4}, {2, 3, 3, 2, 3, 1}}, 4},
+		{[][]int{{3, 3, 3, 3, 3}, {3, 2, 2, 2, 3}, {3, 2, 1, 2, 3}, {3, 2, 2, 2, 3}, {3, 3, 3, 3, 3}}, 10},
 	}
-	assert(trapRainWater([][]int{{1, 4, 3, 1, 3, 2}, {3, 2, 1, 3, 2, 4}, {2, 3, 3, 2, 3, 1}}) == 4)
-	assert(trapRainWater([][]int{{3, 3, 3, 3, 3}, {3, 2, 2, 2, 3}, {3, 2, 1, 2, 3}, {3, 2, 2, 2, 3}, {3, 3, 3, 3, 3}}) == 10)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.expected, trapRainWater(test.heightMap), "test case %d failed", index)
+	}
 }
