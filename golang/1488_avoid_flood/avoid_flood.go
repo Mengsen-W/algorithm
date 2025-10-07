@@ -1,10 +1,4 @@
-/*
- * @Date: 2023-10-13
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-10-13
- * @FilePath: /algorithm/golang/1488_avoid_flood/avoid_flood.go
- */
-
+// Package main ...
 package main
 
 import (

@@ -1,10 +1,3 @@
-/*
- * @Date: 2023-10-13
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-10-13
- * @FilePath: /algorithm/cpp/1488_avoid_flood/avoid_flood.cpp
- */
-
 #include <cassert>
 #include <set>
 #include <tuple>
@@ -19,7 +12,7 @@ class Solution {
     vector<int> ans(rains.size(), 1);
     set<int> st;
     unordered_map<int, int> mp;
-    for (int i = 0; i < rains.size(); ++i) {
+    for (size_t i = 0; i < rains.size(); ++i) {
       if (rains[i] == 0) {
         st.insert(i);
       } else {
