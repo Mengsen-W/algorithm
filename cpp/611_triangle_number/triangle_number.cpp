@@ -1,12 +1,6 @@
-/*
- * @Date: 2021-08-04 14:51:31
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-08-04 15:02:35
- */
-
 #include <algorithm>
 #include <cassert>
+#include <tuple>
 #include <vector>
 using namespace std;
 
@@ -28,7 +22,13 @@ class Solution {
 };
 
 int main() {
-  vector<int> nums{2, 2, 3, 4};
-  assert(Solution{}.triangleNumber(nums) == 3);
+  vector<tuple<vector<int>, int>> tests{
+      {{2, 2, 3, 4}, 3},
+      {{4, 2, 3, 4}, 4},
+  };
+
+  for (auto& [nums, ans] : tests) {
+    assert(Solution().triangleNumber(nums) == ans);
+  }
   return 0;
 }

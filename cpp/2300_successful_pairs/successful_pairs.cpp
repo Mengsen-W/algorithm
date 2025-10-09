@@ -1,14 +1,9 @@
-/*
- * @Date: 2023-11-10
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-11-10
- * @FilePath: /algorithm/cpp/2300_successful_pairs/successful_pairs.cpp
- */
-
+#include <algorithm>
 #include <cassert>
 #include <numeric>
 #include <tuple>
 #include <vector>
+
 using namespace std;
 
 class Solution {
@@ -19,10 +14,10 @@ class Solution {
     iota(idx.begin(), idx.end(), 0);
     sort(idx.begin(), idx.end(), [&](int a, int b) { return spells[a] < spells[b]; });
     sort(potions.begin(), potions.end(), [](int a, int b) { return a > b; });
-    for (int i = 0, j = 0; i < spells.size(); ++i) {
+    for (size_t i = 0, j = 0; i < spells.size(); ++i) {
       int p = idx[i];
       int v = spells[p];
-      while (j < potions.size() && (long long)potions[j] * v >= success) {
+      while (j < potions.size() && static_cast<long long>(potions[j]) * v >= success) {
         ++j;
       }
       res[p] = j;

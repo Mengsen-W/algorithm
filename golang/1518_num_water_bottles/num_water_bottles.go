@@ -1,11 +1,11 @@
-/*
- * @Date: 2021-12-17 08:27:17
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-12-17 08:53:52
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func numWaterBottles(numBottles int, numExchange int) int {
 	if numBottles < numExchange {
@@ -15,14 +15,18 @@ func numWaterBottles(numBottles int, numExchange int) int {
 }
 
 func main() {
-	assert := func(a, b int) {
-		if a != b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		numBottles  int
+		numExchange int
+		expected    int
+	}{
+		{9, 3, 13},
+		{15, 4, 19},
+		{5, 5, 6},
+		{2, 3, 2},
 	}
 
-	assert(numWaterBottles(9, 3), 13)
-	assert(numWaterBottles(15, 4), 19)
-	assert(numWaterBottles(5, 5), 6)
-	assert(numWaterBottles(2, 3), 2)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.expected, numWaterBottles(test.numBottles, test.numExchange), "case %d", index)
+	}
 }

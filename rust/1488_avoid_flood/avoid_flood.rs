@@ -1,15 +1,8 @@
-/*
- * @Date: 2023-10-13
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-10-13
- * @FilePath: /algorithm/rust/1488_avoid_flood/avoid_flood.rs
- */
-
 struct Solution;
 
-use std::collections::{BTreeSet, HashMap};
 impl Solution {
     pub fn avoid_flood(rains: Vec<i32>) -> Vec<i32> {
+        use std::collections::{BTreeSet, HashMap};
         let mut gmap: HashMap<i32, usize> = HashMap::new();
         let mut res = vec![-1; rains.len()];
 

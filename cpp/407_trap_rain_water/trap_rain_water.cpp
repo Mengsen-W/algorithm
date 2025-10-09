@@ -1,13 +1,7 @@
-/*
- * @Date: 2021-11-03 01:10:55
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-11-03 01:38:22
- */
-
 #include <algorithm>
 #include <cassert>
 #include <queue>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -19,9 +13,7 @@ class Solution {
     int maxHeight = 0;
     int dirs[] = {-1, 0, 1, 0, -1};
 
-    for (int i = 0; i < m; ++i)
-      maxHeight = max(maxHeight,
-                      *max_element(heightMap[i].begin(), heightMap[i].end()));
+    for (int i = 0; i < m; ++i) maxHeight = max(maxHeight, *max_element(heightMap[i].begin(), heightMap[i].end()));
 
     vector<vector<int>> water(m, vector<int>(n, maxHeight));
     queue<pair<int, int>> qu;
@@ -56,17 +48,12 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<vector<int>> heightMap{
-        {1, 4, 3, 1, 3, 2}, {3, 2, 1, 3, 2, 4}, {2, 3, 3, 2, 3, 1}};
-    assert(Solution().trapRainWater(heightMap) == 4);
-  }
-  {
-    vector<vector<int>> heightMap{{3, 3, 3, 3, 3},
-                                  {3, 2, 2, 2, 3},
-                                  {3, 2, 1, 2, 3},
-                                  {3, 2, 2, 2, 3},
-                                  {3, 3, 3, 3, 3}};
-    assert(Solution().trapRainWater(heightMap) == 10);
+  vector<tuple<vector<vector<int>>, int>> tests{
+      {{{1, 4, 3, 1, 3, 2}, {3, 2, 1, 3, 2, 4}, {2, 3, 3, 2, 3, 1}}, 4},
+      {{{3, 3, 3, 3, 3}, {3, 2, 2, 2, 3}, {3, 2, 1, 2, 3}, {3, 2, 2, 2, 3}, {3, 3, 3, 3, 3}}, 10},
+  };
+
+  for (auto& [heightMap, expect] : tests) {
+    assert(Solution().trapRainWater(heightMap) == expect);
   }
 }

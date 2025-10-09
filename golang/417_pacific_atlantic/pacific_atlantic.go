@@ -1,14 +1,11 @@
-/*
- * @Date: 2022-04-27 09:41:45
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-04-27 09:55:37
- * @FilePath: /algorithm/417_pacific_atlantic/pacific_atlantic.go
- */
-
+// Package main ...
 package main
 
-import "reflect"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 type pair struct{ x, y int }
 
@@ -64,21 +61,21 @@ func pacificAtlantic(heights [][]int) (ans [][]int) {
 }
 
 func main() {
-	assert := func(a, b [][]int) {
-		if !reflect.DeepEqual(a, b) {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		heights [][]int
+		ans     [][]int
+	}{
+		{
+			[][]int{{1, 2, 2, 3, 5}, {3, 2, 3, 4, 4}, {2, 4, 5, 3, 1}, {6, 7, 1, 4, 5}, {5, 1, 1, 2, 4}},
+			[][]int{{0, 4}, {1, 3}, {1, 4}, {2, 2}, {3, 0}, {3, 1}, {4, 0}},
+		},
+		{
+			[][]int{{2, 1}, {1, 2}},
+			[][]int{{0, 0}, {0, 1}, {1, 0}, {1, 1}},
+		},
 	}
 
-	{
-		heights := [][]int{{1, 2, 2, 3, 5}, {3, 2, 3, 4, 4}, {2, 4, 5, 3, 1}, {6, 7, 1, 4, 5}, {5, 1, 1, 2, 4}}
-		ans := [][]int{{0, 4}, {1, 3}, {1, 4}, {2, 2}, {3, 0}, {3, 1}, {4, 0}}
-		assert(pacificAtlantic(heights), ans)
-	}
-
-	{
-		heights := [][]int{{2, 1}, {1, 2}}
-		ans := [][]int{{0, 0}, {0, 1}, {1, 0}, {1, 1}}
-		assert(pacificAtlantic(heights), ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, pacificAtlantic(test.heights), index)
 	}
 }

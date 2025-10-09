@@ -1,10 +1,3 @@
-/*
- * @Date: 2023-11-10
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-11-10
- * @FilePath: /algorithm/golang/2300_successful_pairs/successful_pairs.go
- */
-
 // Package main ...
 package main
 

@@ -1,14 +1,7 @@
-/*
- * @Date: 2021-11-03 01:10:58
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-11-03 01:45:14
- */
+struct Solution;
 
 use std::cmp::{max, Ordering};
 use std::collections::BinaryHeap;
-
-struct Solution;
 
 struct Node {
     row: usize,
@@ -166,22 +159,28 @@ impl Solution {
 }
 
 fn main() {
-    assert_eq!(
-        Solution::trap_rain_water(vec![
-            vec![1, 4, 3, 1, 3, 2],
-            vec![3, 2, 1, 3, 2, 4],
-            vec![2, 3, 3, 2, 3, 1]
-        ]),
-        4
-    );
-    assert_eq!(
-        Solution::trap_rain_water(vec![
-            vec![3, 3, 3, 3, 3],
-            vec![3, 2, 2, 2, 3],
-            vec![3, 2, 1, 2, 3],
-            vec![3, 2, 2, 2, 3],
-            vec![3, 3, 3, 3, 3]
-        ]),
-        10
-    );
+    let tests = vec![
+        (
+            vec![
+                vec![1, 4, 3, 1, 3, 2],
+                vec![3, 2, 1, 3, 2, 4],
+                vec![2, 3, 3, 2, 3, 1],
+            ],
+            4,
+        ),
+        (
+            vec![
+                vec![3, 3, 3, 3, 3],
+                vec![3, 2, 2, 2, 3],
+                vec![3, 2, 1, 2, 3],
+                vec![3, 2, 2, 2, 3],
+                vec![3, 3, 3, 3, 3],
+            ],
+            10,
+        ),
+    ];
+
+    for (height_map, expected) in tests {
+        assert_eq!(Solution::trap_rain_water(height_map), expected);
+    }
 }
