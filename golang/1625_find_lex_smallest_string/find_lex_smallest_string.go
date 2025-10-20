@@ -1,12 +1,11 @@
-/*
- * @Date: 2023-03-19
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-03-19
- * @FilePath: /algorithm/golang/1625_find_lex_smallest_string/find_lex_smallest_string.go
- */
-
 // Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func findLexSmallestString(s string, a int, b int) string {
 	q := []string{s}
@@ -35,40 +34,19 @@ func findLexSmallestString(s string, a int, b int) string {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
-	}
-	{
-		s := "5525"
-		a := 9
-		b := 2
-		ans := "2050"
-		assert(findLexSmallestString(s, a, b) == ans)
-	}
-
-	{
-		s := "74"
-		a := 5
-		b := 1
-		ans := "24"
-		assert(findLexSmallestString(s, a, b) == ans)
+	tests := []struct {
+		s    string
+		a    int
+		b    int
+		want string
+	}{
+		{"5525", 9, 2, "2050"},
+		{"74", 5, 1, "24"},
+		{"0011", 4, 2, "0011"},
+		{"43987654", 7, 3, "00553311"},
 	}
 
-	{
-		s := "0011"
-		a := 4
-		b := 2
-		ans := "0011"
-		assert(findLexSmallestString(s, a, b) == ans)
-	}
-
-	{
-		s := "43987654"
-		a := 7
-		b := 3
-		ans := "00553311"
-		assert(findLexSmallestString(s, a, b) == ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.want, findLexSmallestString(test.s, test.a, test.b), index)
 	}
 }

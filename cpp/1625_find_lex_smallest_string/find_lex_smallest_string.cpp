@@ -1,15 +1,9 @@
-/*
- * @Date: 2023-03-19
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-03-19
- * @FilePath: /algorithm/cpp/1625_find_lex_smallest_string/find_lex_smallest_string.cpp
- */
-
 #include <cassert>
-#include <numeric>
 #include <queue>
 #include <string>
+#include <tuple>
 #include <unordered_set>
+#include <vector>
 
 using namespace std;
 
@@ -41,35 +35,14 @@ class Solution {
 };
 
 int main() {
-  {
-    string s{"5525"};
-    int a = 9;
-    int b = 2;
-    string ans{"2050"};
-    assert(Solution().findLexSmallestString(s, a, b) == ans);
-  }
+  vector<tuple<string, int, int, string>> tests {
+    {"5525", 9, 2, "2050"},
+    {"74", 5, 1, "24"},
+    {"0011", 4, 2, "0011"},
+    {"43987654", 7, 3, "00553311"},
+  };
 
-  {
-    string s{"74"};
-    int a = 5;
-    int b = 1;
-    string ans{"24"};
-    assert(Solution().findLexSmallestString(s, a, b) == ans);
-  }
-
-  {
-    string s{"0011"};
-    int a = 4;
-    int b = 2;
-    string ans{"0011"};
-    assert(Solution().findLexSmallestString(s, a, b) == ans);
-  }
-
-  {
-    string s{"43987654"};
-    int a = 7;
-    int b = 3;
-    string ans{"00553311"};
-    assert(Solution().findLexSmallestString(s, a, b) == ans);
+  for (auto& [s, a, b, expect] : tests) {
+    assert(Solution().findLexSmallestString(s, a, b) == expect);
   }
 }
