@@ -1,10 +1,3 @@
-/*
- * @Date: 2023-12-09
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-12-09
- * @FilePath: /algorithm/rust/2048_next_beautiful_number/next_beautiful_number.rs
- */
-
 struct Solution;
 
 impl Solution {

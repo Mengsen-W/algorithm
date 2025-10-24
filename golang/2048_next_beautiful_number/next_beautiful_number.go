@@ -1,10 +1,3 @@
-/*
- * @Date: 2023-12-09
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-12-09
- * @FilePath: /algorithm/golang/2048_next_beautiful_number/next_beautiful_number.go
- */
-
 // Package main ...
 package main
 
@@ -41,7 +34,11 @@ func main() {
 	tests := []struct {
 		x   int
 		ans int
-	}{{1, 22}, {1000, 1333}, {3000, 3133}}
+	}{
+		{1, 22},
+		{1000, 1333},
+		{3000, 3133},
+	}
 
 	for index, test := range tests {
 		assert.Equal(&testing.T{}, test.ans, nextBeautifulNumber(test.x), index)

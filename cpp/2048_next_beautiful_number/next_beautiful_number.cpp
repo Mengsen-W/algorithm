@@ -1,10 +1,3 @@
-/*
- * @Date: 2023-12-09
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-12-09
- * @FilePath: /algorithm/cpp/2048_next_beautiful_number/next_beautiful_number.cpp
- */
-
 #include <cassert>
 #include <tuple>
 #include <vector>
@@ -40,7 +33,7 @@ class Solution {
 int main() {
   vector<tuple<int, int>> tests{{1, 22}, {1000, 1333}, {3000, 3133}, {122645, 123233}};
 
-  for (auto &[x, ans] : tests) {
+  for (const auto &[x, ans] : tests) {
     assert(Solution().nextBeautifulNumber(x) == ans);
   }
 }
