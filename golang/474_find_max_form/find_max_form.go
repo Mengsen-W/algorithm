@@ -1,13 +1,12 @@
-/*
- * @Date: 2021-06-06 09:36:34
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-06-06 09:51:36
- */
-
+// Package main ...
 package main
 
-import "strings"
+import (
+	"strings"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func findMaxForm(strs []string, m, n int) int {
 	max := func(a, b int) int {
@@ -33,21 +32,16 @@ func findMaxForm(strs []string, m, n int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed!")
-		}
+	tests := []struct {
+		strs []string
+		m, n int
+		ans  int
+	}{
+		{[]string{"10", "0001", "111001", "1", "0"}, 5, 3, 4},
+		{[]string{"01", "0", "1"}, 1, 1, 2},
 	}
-	{
-		strs := []string{"10", "0001", "111001", "1", "0"}
-		m := 5
-		n := 3
-		assert(findMaxForm(strs, m, n) == 4)
-	}
-	{
-		strs := []string{"10", "0", "1"}
-		m := 1
-		n := 1
-		assert(findMaxForm(strs, m, n) == 2)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, findMaxForm(test.strs, test.m, test.n), index)
 	}
 }
