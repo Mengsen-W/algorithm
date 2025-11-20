@@ -1,13 +1,12 @@
-/*
- * @Date: 2022-07-22
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-07-22
- * @FilePath: /algorithm/757_intersection_size_two/intersection_size_two.go
- */
-
+// Package main ...
 package main
 
-import "sort"
+import (
+	"sort"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func intersectionSizeTwo(intervals [][]int) (ans int) {
 	sort.Slice(intervals, func(i, j int) bool {
@@ -29,19 +28,15 @@ func intersectionSizeTwo(intervals [][]int) (ans int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		intervals [][]int
+		ans       int
+	}{
+		{[][]int{{1, 3}, {1, 4}, {2, 5}, {3, 5}}, 3},
+		{[][]int{{1, 2}, {2, 3}, {2, 4}, {4, 5}}, 5},
 	}
 
-	{
-		intervals := [][]int{{1, 3}, {1, 4}, {2, 5}, {3, 5}}
-		assert(intersectionSizeTwo(intervals) == 3)
-	}
-
-	{
-		intervals := [][]int{{1, 2}, {2, 3}, {2, 4}, {4, 5}}
-		assert(intersectionSizeTwo(intervals) == 5)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, intersectionSizeTwo(test.intervals), index)
 	}
 }
