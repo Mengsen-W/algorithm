@@ -1,11 +1,6 @@
-/*
- * @Date: 2023-06-19
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-06-19
- * @FilePath: /algorithm/cpp/1262_max_sum_div_three/max_sum_div_three.cpp
- */
-
 #include <cassert>
+#include <climits>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -26,21 +21,13 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> nums{3, 6, 5, 1, 8};
-    int ans = 18;
-    assert(Solution().maxSumDivThree(nums) == ans);
-  }
+  vector<tuple<vector<int>, int>> tests{
+      {{3, 6, 5, 1, 8}, 18},
+      {{4}, 0},
+      {{1, 2, 3, 4, 4}, 12},
+  };
 
-  {
-    vector<int> nums{4};
-    int ans = 0;
-    assert(Solution().maxSumDivThree(nums) == ans);
-  }
-
-  {
-    vector<int> nums{1, 2, 3, 4, 4};
-    int ans = 12;
+  for (auto& [nums, ans] : tests) {
     assert(Solution().maxSumDivThree(nums) == ans);
   }
 }
