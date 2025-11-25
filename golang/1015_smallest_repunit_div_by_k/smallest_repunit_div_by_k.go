@@ -1,12 +1,11 @@
-/*
- * @Date: 2023-05-10
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-05-10
- * @FilePath: /algorithm/golang/1015_smallest_repunit_div_by_k/smallest_repunit_div_by_k.go
- */
-
 // Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func smallestRepunitDivByK(k int) int {
 	// 如果 k 是偶数或者以 5 结尾，那么一定不存在这样的正整数，直接返回 -1。
@@ -27,13 +26,16 @@ func smallestRepunitDivByK(k int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		k   int
+		ans int
+	}{
+		{1, 1},
+		{2, -1},
+		{3, 3},
 	}
 
-	assert(smallestRepunitDivByK(1) == 1)
-	assert(smallestRepunitDivByK(2) == -1)
-	assert(smallestRepunitDivByK(3) == 3)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, smallestRepunitDivByK(test.k), index)
+	}
 }
