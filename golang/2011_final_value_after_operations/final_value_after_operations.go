@@ -1,11 +1,11 @@
-/*
- * @Date: 2022-12-23
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-12-23
- * @FilePath: /algorithm/2011_final_value_after_operations/final_value_after_operations.go
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func finalValueAfterOperations(operations []string) (x int) {
 	for _, op := range operations {
@@ -19,26 +19,16 @@ func finalValueAfterOperations(operations []string) (x int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
-	}
-	{
-		operations := []string{"--X", "X++", "X++"}
-		ans := 1
-		assert(finalValueAfterOperations(operations) == ans)
+	tests := []struct {
+		operations []string
+		ans        int
+	}{
+		{[]string{"--X", "X++", "X++"}, 1},
+		{[]string{"++X", "++X", "X++"}, 3},
+		{[]string{"X++", "++X", "--X", "X--"}, 0},
 	}
 
-	{
-		operations := []string{"++X", "++X", "X++"}
-		ans := 3
-		assert(finalValueAfterOperations(operations) == ans)
-	}
-
-	{
-		operations := []string{"X++", "++X", "--X", "X--"}
-		ans := 0
-		assert(finalValueAfterOperations(operations) == ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, finalValueAfterOperations(test.operations), "case %d", index)
 	}
 }

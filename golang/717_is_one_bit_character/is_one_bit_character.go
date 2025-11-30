@@ -1,11 +1,11 @@
-/*
- * @Date: 2022-02-20 00:38:30
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-02-20 01:09:13
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func isOneBitCharacter(bits []int) bool {
 	n := len(bits)
@@ -17,12 +17,15 @@ func isOneBitCharacter(bits []int) bool {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		bits []int
+		ans  bool
+	}{
+		{bits: []int{1, 0, 0}, ans: true},
+		{bits: []int{1, 1, 1, 0}, ans: false},
 	}
 
-	assert(isOneBitCharacter([]int{1, 0, 0}))
-	assert(!isOneBitCharacter([]int{1, 1, 1, 0}))
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, isOneBitCharacter(test.bits), index)
+	}
 }

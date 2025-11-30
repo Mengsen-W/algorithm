@@ -1,11 +1,5 @@
-/*
- * @Date: 2022-02-20 00:38:22
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-02-20 01:13:38
- */
-
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -29,6 +23,9 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().isOneBitCharacter(vector<int>{1, 0, 0}));
-  assert(!Solution().isOneBitCharacter(vector<int>{1, 1, 1, 0}));
+  vector<tuple<vector<int>, bool>> tests{{{1, 0, 0}, true}, {{1, 1, 1, 0}, false}};
+
+  for (auto& [bits, expect] : tests) {
+    assert(Solution().isOneBitCharacter(bits) == expect);
+  }
 }

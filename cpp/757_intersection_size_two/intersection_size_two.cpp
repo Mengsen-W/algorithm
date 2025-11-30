@@ -1,11 +1,6 @@
-/*
- * @Date: 2022-07-22
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-07-22
- * @FilePath: /algorithm/757_intersection_size_two/intersection_size_two.cpp
- */
-
+#include <algorithm>
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -43,13 +38,12 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<vector<int>> intervals{{1, 3}, {1, 4}, {2, 5}, {3, 5}};
-    assert(Solution().intersectionSizeTwo(intervals) == 3);
-  }
+  vector<tuple<vector<vector<int>>, int>> tests{
+      {{{1, 3}, {1, 4}, {2, 5}, {3, 5}}, 3},
+      {{{1, 2}, {2, 3}, {2, 4}, {4, 5}}, 5},
+  };
 
-  {
-    vector<vector<int>> intervals{{1, 2}, {2, 3}, {2, 4}, {4, 5}};
-    assert(Solution().intersectionSizeTwo(intervals) == 5);
+  for (auto& [intervals, expect] : tests) {
+    assert(Solution().intersectionSizeTwo(intervals) == expect);
   }
 }

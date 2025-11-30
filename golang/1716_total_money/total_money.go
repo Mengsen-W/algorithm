@@ -1,11 +1,11 @@
-/*
- * @Date: 2022-01-15 01:43:32
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-01-15 02:17:01
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func totalMoney(n int) (ans int) {
 	// 所有完整的周存的钱
@@ -22,13 +22,16 @@ func totalMoney(n int) (ans int) {
 }
 
 func main() {
-	assert := func(a, b int) {
-		if a != b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		n   int
+		ans int
+	}{
+		{4, 10},
+		{10, 37},
+		{20, 96},
 	}
 
-	assert(totalMoney(4), 10)
-	assert(totalMoney(10), 37)
-	assert(totalMoney(20), 96)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, totalMoney(test.n), index)
+	}
 }

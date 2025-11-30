@@ -1,11 +1,6 @@
-/*
- * @Date: 2023-05-10
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-05-10
- * @FilePath: /algorithm/cpp/1015_smallest_repunit_div_by_k/smallest_repunit_div_by_k.cpp
- */
-
 #include <cassert>
+#include <tuple>
+#include <vector>
 
 class Solution {
  public:
@@ -28,7 +23,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().smallestRepunitDivByK(1) == 1);
-  assert(Solution().smallestRepunitDivByK(2) == -1);
-  assert(Solution().smallestRepunitDivByK(3) == 3);
+  std::vector<std::tuple<int, int>> tests{
+      {1, 1},
+      {2, -1},
+      {3, 3},
+  };
+
+  for (auto& [k, expect] : tests) {
+    assert(Solution().smallestRepunitDivByK(k) == expect);
+  }
 }

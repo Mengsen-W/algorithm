@@ -1,11 +1,6 @@
-/*
- * @Date: 2022-01-15 01:43:21
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-01-15 02:16:04
- */
-
 #include <cassert>
+#include <tuple>
+#include <vector>
 
 class Solution {
  public:
@@ -25,7 +20,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().totalMoney(4) == 10);
-  assert(Solution().totalMoney(10) == 37);
-  assert(Solution().totalMoney(20) == 96);
+  std::vector<std::tuple<int, int>> tests{
+      {4, 10},
+      {10, 37},
+      {20, 96},
+  };
+
+  for (auto &[n, expect] : tests) {
+    assert(Solution().totalMoney(n) == expect);
+  }
 }

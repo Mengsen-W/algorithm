@@ -1,12 +1,6 @@
-/*
- * @Date: 2022-12-23
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-12-23
- * @FilePath: /algorithm/2011_final_value_after_operations/final_value_after_operations.cpp
- */
-
 #include <cassert>
 #include <string>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -27,21 +21,13 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<string> operations{"--X", "X++", "X++"};
-    int ans = 1;
-    assert(Solution().finalValueAfterOperations(operations) == ans);
-  }
+  vector<tuple<vector<string>, int>> tests{
+      {{"--X", "X++", "X++"}, 1},
+      {{"++X", "++X", "X++"}, 3},
+      {{"X++", "++X", "--X", "X--"}, 0},
+  };
 
-  {
-    vector<string> operations{"++X", "++X", "X++"};
-    int ans = 3;
-    assert(Solution().finalValueAfterOperations(operations) == ans);
-  }
-
-  {
-    vector<string> operations{"X++", "++X", "--X", "X--"};
-    int ans = 0;
-    assert(Solution().finalValueAfterOperations(operations) == ans);
+  for (auto& [operations, expected] : tests) {
+    assert(Solution().finalValueAfterOperations(operations) == expected);
   }
 }
