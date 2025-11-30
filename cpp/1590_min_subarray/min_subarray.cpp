@@ -1,10 +1,3 @@
-/*
- * @Date: 2023-03-10
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-03-10
- * @FilePath: /algorithm/cpp/1590_min_subarray/min_subarray.cpp
- */
-
 #include <cassert>
 #include <unordered_map>
 #include <vector>
@@ -35,38 +28,15 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> nums{3, 1, 4, 2};
-    int p = 6;
-    int ans = 1;
-    assert(Solution().minSubarray(nums, p) == ans);
-  }
+  vector<tuple<vector<int>, int, int>> tests = {
+      {{3, 1, 4, 2}, 6, 1},
+      {{6, 3, 5, 2}, 9, 2},
+      {{1, 2, 3}, 3, 0},
+      {{1, 2, 3}, 7, -1},
+      {{1000000000, 1000000000, 1000000000}, 3, 0},
+  };
 
-  {
-    vector<int> nums{6, 3, 5, 2};
-    int p = 9;
-    int ans = 2;
-    assert(Solution().minSubarray(nums, p) == ans);
-  }
-
-  {
-    vector<int> nums{1, 2, 3};
-    int p = 3;
-    int ans = 0;
-    assert(Solution().minSubarray(nums, p) == ans);
-  }
-
-  {
-    vector<int> nums{1, 2, 3};
-    int p = 7;
-    int ans = -1;
-    assert(Solution().minSubarray(nums, p) == ans);
-  }
-
-  {
-    vector<int> nums{1000000000, 1000000000, 1000000000};
-    int p = 3;
-    int ans = 0;
-    assert(Solution().minSubarray(nums, p) == ans);
+  for (auto& [nums, p, expect] : tests) {
+    assert(Solution().minSubarray(nums, p) == expect);
   }
 }
