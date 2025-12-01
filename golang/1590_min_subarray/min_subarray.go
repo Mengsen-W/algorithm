@@ -1,10 +1,4 @@
-/*
- * @Date: 2023-03-10
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-03-10
- * @FilePath: /algorithm/golang/1590_min_subarray/min_subarray.go
- */
-
+// Package main ...
 package main
 
 func minSubarray(nums []int, p int) int {
