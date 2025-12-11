@@ -1,0 +1,45 @@
+#include <cassert>
+#include <tuple>
+#include <vector>
+
+using namespace std;
+
+class Solution {
+ public:
+  int countCoveredBuildings(int n, vector<vector<int>> &buildings) {
+    vector<int> maxRow(n + 1);
+    vector<int> minRow(n + 1, n + 1);
+    vector<int> maxCol(n + 1);
+    vector<int> minCol(n + 1, n + 1);
+
+    for (auto &p : buildings) {
+      int x = p[0], y = p[1];
+      maxRow[y] = max(maxRow[y], x);
+      minRow[y] = min(minRow[y], x);
+      maxCol[x] = max(maxCol[x], y);
+      minCol[x] = min(minCol[x], y);
+    }
+
+    int res = 0;
+    for (auto &p : buildings) {
+      int x = p[0], y = p[1];
+      if (x > minRow[y] && x < maxRow[y] && y > minCol[x] && y < maxCol[x]) {
+        res++;
+      }
+    }
+
+    return res;
+  }
+};
+
+int main() {
+  vector<tuple<int, vector<vector<int>>, int>> tests{
+      {3, {{1, 2}, {2, 2}, {3, 2}, {2, 1}, {2, 3}}, 1},
+      {3, {{1, 1}, {1, 2}, {2, 1}, {2, 2}}, 0},
+      {5, {{1, 3}, {3, 2}, {3, 3}, {3, 5}, {5, 3}}, 1},
+  };
+
+  for (auto &[n, buildings, ans] : tests) {
+    assert(Solution().countCoveredBuildings(n, buildings) == ans);
+  }
+}
