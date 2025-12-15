@@ -1,10 +1,3 @@
-/*
- * @Date: 2023-06-19
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-06-19
- * @FilePath: /algorithm/golang/1262_max_sum_div_three/max_sum_div_three.go
- */
-
 // Package main ...
 package main
 
@@ -33,21 +26,16 @@ func maxSumDivThree(nums []int) int {
 }
 
 func main() {
-	{
-		nums := []int{3, 6, 5, 1, 8}
-		ans := 18
-		assert.Equal(&testing.B{}, maxSumDivThree(nums), ans)
+	tests := []struct {
+		nums []int
+		ans  int
+	}{
+		{[]int{3, 6, 5, 1, 8}, 18},
+		{[]int{4}, 0},
+		{[]int{1, 2, 3, 4, 4}, 12},
 	}
 
-	{
-		nums := []int{4}
-		ans := 0
-		assert.Equal(&testing.B{}, maxSumDivThree(nums), ans)
-	}
-
-	{
-		nums := []int{1, 2, 3, 4, 4}
-		ans := 12
-		assert.Equal(&testing.B{}, maxSumDivThree(nums), ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, maxSumDivThree(test.nums), index)
 	}
 }
