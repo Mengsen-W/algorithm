@@ -1,12 +1,11 @@
-/*
- * @Date: 2022-05-12 09:30:57
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-05-12 09:41:26
- * @FilePath: /algorithm/944_min_deletion_size/min_deletion_size.go
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func minDeletionSize(strs []string) (ans int) {
 	for j := range strs[0] {
@@ -21,12 +20,16 @@ func minDeletionSize(strs []string) (ans int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		strs []string
+		ans  int
+	}{
+		{[]string{"cba", "daf", "ghi"}, 1},
+		{[]string{"a", "b"}, 0},
+		{[]string{"zyx", "wvu", "tsr"}, 3},
 	}
-	assert(minDeletionSize([]string{"cba", "daf", "ghi"}) == 1)
-	assert(minDeletionSize([]string{"a", "b"}) == 0)
-	assert(minDeletionSize([]string{"zyx", "wvu", "tsr"}) == 3)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, minDeletionSize(test.strs), "test %d", index)
+	}
 }
