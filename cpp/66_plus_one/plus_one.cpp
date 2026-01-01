@@ -1,12 +1,7 @@
-/*
- * @Date: 2021-10-21 01:13:26
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-21 01:28:54
- */
-
 #include <cassert>
+#include <tuple>
 #include <vector>
+
 using namespace std;
 
 class Solution {
@@ -22,14 +17,12 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> digits{1, 2, 3};
-    Solution().plusOne(digits);
-    assert(digits == move(vector<int>{1, 2, 4}));
-  }
-  {
-    vector<int> digits{1, 2, 9};
-    Solution().plusOne(digits);
-    assert(digits == move(vector<int>{1, 3, 0}));
+  vector<tuple<vector<int>, vector<int>>> tests{
+    {{1, 2, 3}, {1, 2, 4}},
+    {{1, 2, 9}, {1, 3, 0}},
+  };
+
+  for (auto& [digits, ans] : tests) {
+    assert(Solution().plusOne(digits) == ans);
   }
 }

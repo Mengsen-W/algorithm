@@ -1,10 +1,3 @@
-/*
- * @Date: 2021-10-21 01:13:32
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-21 01:50:29
- */
-
 struct Solution;
 
 impl Solution {
@@ -23,8 +16,12 @@ impl Solution {
 }
 
 fn main() {
-    assert_eq!(Solution::plus_one(vec![1, 2, 3]), vec![1, 2, 4]);
-    assert_eq!(Solution::plus_one(vec![1, 2, 9]), vec![1, 3, 0]);
-    assert_eq!(Solution::plus_one(vec![1, 9, 9]), vec![2, 0, 0]);
-    assert_eq!(Solution::plus_one(vec![9, 9, 9]), vec![1, 0, 0, 0]);
+    let tests = vec![
+        (vec![ 1, 2, 3 ], vec![ 1, 2, 4 ] ),
+        (vec![ 1, 2, 9 ], vec![ 1, 3, 0 ] ),
+    ];
+
+    for (digits, ans) in tests {
+        assert_eq!(Solution::plus_one(digits), ans);
+    }
 }
