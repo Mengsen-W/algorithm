@@ -1,13 +1,6 @@
-/*
- * @Date: 2022-05-21 21:41:14
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-05-21 21:44:01
- * @FilePath: /algorithm/961_repeated_n_times/repeated_n_times.cpp
- */
-
 #include <cassert>
 #include <random>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -29,7 +22,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().repeatedNTimes({1, 2, 3, 3}) == 3);
-  assert(Solution().repeatedNTimes({2, 1, 2, 5, 3, 2}) == 2);
-  assert(Solution().repeatedNTimes({5, 1, 5, 2, 5, 3, 5, 4}) == 5);
+  vector<tuple<vector<int>, int>> tests{
+      {{1, 2, 3}, 3},
+      {{2, 1, 2, 5, 3, 2}, 2},
+      {{5, 1, 5, 2, 5, 3, 5, 4}, 5},
+  };
+
+  for (auto& [nums, ans] : tests) {
+    assert(Solution().repeatedNTimes(nums) == ans);
+  }
 }
