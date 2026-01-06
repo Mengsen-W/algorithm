@@ -1,10 +1,3 @@
-/*
- * @Date: 2022-07-31
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-07-31
- * @FilePath: /algorithm/1161_max_level_sum/max_level_sum.rs
- */
-
 // Definition for a binary tree node.
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {
@@ -72,37 +65,42 @@ impl Solution {
 }
 
 fn main() {
-    {
-        let root = Some(Rc::new(RefCell::new(TreeNode {
-            val: 1,
-            left: Some(Rc::new(RefCell::new(TreeNode {
-                val: 7,
-                left: Some(Rc::new(RefCell::new(TreeNode::new(7)))),
-                right: Some(Rc::new(RefCell::new(TreeNode::new(-8)))),
-            }))),
-            right: Some(Rc::new(RefCell::new(TreeNode::new(0)))),
-        })));
-        assert_eq!(Solution::max_level_sum(root), 2);
-    }
-
-    {
-        let root = Some(Rc::new(RefCell::new(TreeNode {
-            val: 989,
-            left: None,
-            right: Some(Rc::new(RefCell::new(TreeNode {
-                val: 10250,
+    let tests = vec![
+        (
+            Some(Rc::new(RefCell::new(TreeNode {
+                val: 1,
                 left: Some(Rc::new(RefCell::new(TreeNode {
-                    val: 98693,
-                    left: None,
-                    right: None,
+                    val: 7,
+                    left: Some(Rc::new(RefCell::new(TreeNode::new(7)))),
+                    right: Some(Rc::new(RefCell::new(TreeNode::new(-8)))),
                 }))),
+                right: Some(Rc::new(RefCell::new(TreeNode::new(0)))),
+            }))),
+            2,
+        ),
+        (
+            Some(Rc::new(RefCell::new(TreeNode {
+                val: 989,
+                left: None,
                 right: Some(Rc::new(RefCell::new(TreeNode {
-                    val: -89388,
-                    left: None,
-                    right: Some(Rc::new(RefCell::new(TreeNode::new(-32127)))),
+                    val: 10250,
+                    left: Some(Rc::new(RefCell::new(TreeNode {
+                        val: 98693,
+                        left: None,
+                        right: None,
+                    }))),
+                    right: Some(Rc::new(RefCell::new(TreeNode {
+                        val: -89388,
+                        left: None,
+                        right: Some(Rc::new(RefCell::new(TreeNode::new(-32127)))),
+                    }))),
                 }))),
             }))),
-        })));
-        assert_eq!(Solution::max_level_sum(root), 2);
+            2,
+        ),
+    ];
+
+    for (test, expected) in tests {
+        assert_eq!(Solution::max_level_sum(test), expected);
     }
 }

@@ -1,12 +1,5 @@
-/*
- * @Date: 2022-07-31
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-07-31
- * @FilePath: /algorithm/1161_max_level_sum/max_level_sum.cpp
- */
-
 #include <cassert>
-#include <queue>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -42,20 +35,26 @@ class Solution {
         maxSum = sum;
         ans = level;
       }
-      q = move(nq);
+      q = std::move(nq);
     }
     return ans;
   }
 };
 
 int main() {
-  {
-    TreeNode *root = new TreeNode(1, new TreeNode(7, new TreeNode(7), new TreeNode(-8)), new TreeNode(0));
-    assert(Solution().maxLevelSum(root) == 2);
-  }
-  {
-    TreeNode *root = new TreeNode(
-        989, nullptr, new TreeNode(10250, new TreeNode(98693), new TreeNode(-89388, nullptr, new TreeNode(-32127))));
-    assert(Solution().maxLevelSum(root) == 2);
+  vector<tuple<TreeNode *, int>> tests{
+      {
+          new TreeNode(1, new TreeNode(7, new TreeNode(7), new TreeNode(-8)), new TreeNode(0)),
+          2,
+      },
+      {
+          new TreeNode(989, nullptr,
+                       new TreeNode(10250, new TreeNode(98693), new TreeNode(-89388, nullptr, new TreeNode(-32127)))),
+          2,
+      },
+  };
+
+  for (auto [root, expected] : tests) {
+    assert(Solution().maxLevelSum(root) == expected);
   }
 }
