@@ -1,13 +1,12 @@
-/*
- * @Date: 2021-07-20 14:13:19
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-07-20 14:19:04
- */
-
+// Package main ...
 package main
 
-import "sort"
+import (
+	"sort"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func minPairSum(nums []int) (ans int) {
 	max := func(a, b int) int {
@@ -25,19 +24,15 @@ func minPairSum(nums []int) (ans int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		nums []int
+		ans  int
+	}{
+		{[]int{3, 5, 2, 3}, 7},
+		{[]int{3, 5, 4, 2, 4, 6}, 8},
 	}
-	{
-		nums := []int{3, 5, 2, 3}
-		ans := 7
-		assert(minPairSum(nums) == ans)
-	}
-	{
-		nums := []int{3, 5, 4, 2, 4, 6}
-		ans := 8
-		assert(minPairSum(nums) == ans)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, minPairSum(test.nums), "test %d", index)
 	}
 }

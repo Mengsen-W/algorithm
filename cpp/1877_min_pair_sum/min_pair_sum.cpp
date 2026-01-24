@@ -1,12 +1,6 @@
-/*
- * @Date: 2021-07-20 14:13:12
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-07-20 14:17:20
- */
-
 #include <algorithm>
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -25,14 +19,12 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> nums{3, 5, 2, 3};
-    int ans = 7;
-    assert(Solution{}.minPairSum(nums) == ans);
-  }
-  {
-    vector<int> nums{3, 5, 4, 2, 4, 6};
-    int ans = 8;
-    assert(Solution{}.minPairSum(nums) == ans);
+  vector<tuple<vector<int>, int>> tests{
+      {{3, 5, 2, 3}, 7},
+      {{3, 5, 4, 2, 4, 6}, 8},
+  };
+
+  for (auto [nums, expect] : tests) {
+    assert(Solution().minPairSum(nums) == expect);
   }
 }
