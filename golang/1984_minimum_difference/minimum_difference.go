@@ -1,14 +1,12 @@
-/*
- * @Date: 2022-02-11 00:14:01
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-02-11 00:27:37
- * @FilePath: /algorithm/1984_minimum_difference/minimum_difference.go
- */
-
+// Package main ...
 package main
 
-import "sort"
+import (
+	"sort"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func minimumDifference(nums []int, k int) (ret int) {
 	sort.Ints(nums)
@@ -22,11 +20,16 @@ func minimumDifference(nums []int, k int) (ret int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		nums []int
+		k    int
+		ans  int
+	}{
+		{[]int{90}, 1, 0},
+		{[]int{9, 4, 7, 1}, 2, 2},
 	}
-	assert(minimumDifference([]int{90}, 1) == 0)
-	assert(minimumDifference([]int{9, 4, 7, 1}, 2) == 2)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, minimumDifference(test.nums, test.k), index)
+	}
 }
