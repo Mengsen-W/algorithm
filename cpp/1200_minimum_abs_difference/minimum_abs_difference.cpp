@@ -1,11 +1,7 @@
-/*
- * @Date: 2022-07-04
- * @LastEditors: mengsenwang mengsen_wang@163.com
- * @LastEditTime: 2022-07-04
- * @FilePath: /algorithm/1200_minimum_abs_difference/minimum_abs_difference.cpp
- */
-
+#include <algorithm>
 #include <cassert>
+#include <climits>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -32,21 +28,13 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> arr{4, 2, 1, 3};
-    vector<vector<int>> ans{{1, 2}, {2, 3}, {3, 4}};
-    assert(Solution().minimumAbsDifference(arr) == ans);
-  }
+  vector<tuple<vector<int>, vector<vector<int>>>> tests{
+      {{4, 2, 1, 3}, {{1, 2}, {2, 3}, {3, 4}}},
+      {{1, 3, 6, 10, 15}, {{1, 3}}},
+      {{3, 8, -10, 23, 19, -4, -14, 27}, {{-14, -10}, {19, 23}, {23, 27}}},
+  };
 
-  {
-    vector<int> arr{1, 3, 6, 10, 15};
-    vector<vector<int>> ans{{1, 3}};
-    assert(Solution().minimumAbsDifference(arr) == ans);
-  }
-
-  {
-    vector<int> arr{3, 8, -10, 23, 19, -4, -14, 27};
-    vector<vector<int>> ans{{-14, -10}, {19, 23}, {23, 27}};
-    assert(Solution().minimumAbsDifference(arr) == ans);
+  for (auto [arr, expected] : tests) {
+    assert(Solution().minimumAbsDifference(arr) == expected);
   }
 }

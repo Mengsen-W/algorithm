@@ -1,16 +1,12 @@
-/*
- * @Date: 2022-07-04
- * @LastEditors: mengsenwang mengsen_wang@163.com
- * @LastEditTime: 2022-07-04
- * @FilePath: /algorithm/1200_minimum_abs_difference/minimum_abs_difference.go
- */
-
+// Package main ...
 package main
 
 import (
 	"math"
-	"reflect"
 	"sort"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func minimumAbsDifference(arr []int) (ans [][]int) {
@@ -27,26 +23,16 @@ func minimumAbsDifference(arr []int) (ans [][]int) {
 }
 
 func main() {
-	assert := func(a, b [][]int) {
-		if !reflect.DeepEqual(a, b) {
-			panic("Not Passed")
-		}
-	}
-	{
-		arr := []int{4, 2, 1, 3}
-		ans := [][]int{{1, 2}, {2, 3}, {3, 4}}
-		assert(minimumAbsDifference(arr), ans)
+	tests := []struct {
+		arr []int
+		ans [][]int
+	}{
+		{[]int{4, 2, 1, 3}, [][]int{{1, 2}, {2, 3}, {3, 4}}},
+		{[]int{1, 3, 6, 10, 15}, [][]int{{1, 3}}},
+		{[]int{3, 8, -10, 23, 19, -4, -14, 27}, [][]int{{-14, -10}, {19, 23}, {23, 27}}},
 	}
 
-	{
-		arr := []int{1, 3, 6, 10, 15}
-		ans := [][]int{{1, 3}}
-		assert(minimumAbsDifference(arr), ans)
-	}
-
-	{
-		arr := []int{3, 8, -10, 23, 19, -4, -14, 27}
-		ans := [][]int{{-14, -10}, {19, 23}, {23, 27}}
-		assert(minimumAbsDifference(arr), ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, minimumAbsDifference(test.arr), test.ans, "case %d", index)
 	}
 }
