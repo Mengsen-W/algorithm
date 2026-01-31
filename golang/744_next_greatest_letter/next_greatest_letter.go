@@ -1,14 +1,12 @@
-/*
- * @Date: 2022-04-02 23:34:10
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-04-02 23:38:25
- * @FilePath: /algorithm/744_next_greatest_letter/next_greatest_letter.go
- */
-
+// Package main ...
 package main
 
-import "sort"
+import (
+	"sort"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func nextGreatestLetter(letters []byte, target byte) byte {
 	if target >= letters[len(letters)-1] {
@@ -19,13 +17,17 @@ func nextGreatestLetter(letters []byte, target byte) byte {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		letters []byte
+		target  byte
+		expect  byte
+	}{
+		{[]byte{'c', 'f', 'j'}, 'a', 'c'},
+		{[]byte{'c', 'f', 'j'}, 'c', 'f'},
+		{[]byte{'x', 'x', 'y', 'y'}, 'z', 'x'},
 	}
 
-	assert(nextGreatestLetter([]byte{'c', 'f', 'j'}, 'a') == 'c')
-	assert(nextGreatestLetter([]byte{'c', 'f', 'j'}, 'c') == 'f')
-	assert(nextGreatestLetter([]byte{'c', 'f', 'j'}, 'd') == 'f')
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.expect, nextGreatestLetter(test.letters, test.target), index)
+	}
 }
