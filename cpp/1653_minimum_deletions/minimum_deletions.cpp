@@ -1,12 +1,7 @@
-/*
- * @Date: 2023-03-06
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-03-06
- * @FilePath: /algorithm/cpp/1653_minimum_deletions/minimum_deletions.cpp
- */
-
 #include <cassert>
 #include <string>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -34,15 +29,12 @@ class Solution {
 };
 
 int main() {
-  {
-    string s{"aababbab"};
-    int ans = 2;
-    assert(Solution().minimumDeletions(s) == ans);
-  }
+  vector<tuple<string, int>> tests{
+      {"aababbab", 2},
+      {"bbaaaaabb", 2},
+  };
 
-  {
-    string s{"bbaaaaabb"};
-    int ans = 2;
-    assert(Solution().minimumDeletions(s) == ans);
+  for (auto [s, expected] : tests) {
+    assert(Solution().minimumDeletions(s) == expected);
   }
 }

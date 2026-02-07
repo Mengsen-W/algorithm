@@ -1,11 +1,11 @@
-/*
- * @Date: 2023-03-06
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-03-06
- * @FilePath: /algorithm/golang/1653_minimum_deletions/minimum_deletions.go
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func minimumDeletions(s string) int {
 	min := func(a, b int) int {
@@ -34,21 +34,15 @@ func minimumDeletions(s string) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		s   string
+		res int
+	}{
+		{"aababbab", 2},
+		{"bbaaaaabb", 2},
 	}
 
-	{
-		s := "aababbab"
-		ans := 2
-		assert(minimumDeletions(s) == ans)
-	}
-
-	{
-		s := "bbaaaaabb"
-		ans := 2
-		assert(minimumDeletions(s) == ans)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.res, minimumDeletions(test.s), index)
 	}
 }
