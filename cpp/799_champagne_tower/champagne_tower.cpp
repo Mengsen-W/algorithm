@@ -1,11 +1,5 @@
-/*
- * @Date: 2022-11-20
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-11-20
- * @FilePath: /algorithm/799_champagne_tower/champagne_tower.cpp
- */
-
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -30,7 +24,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().champagneTower(1, 1, 1) == 0.0);
-  assert(Solution().champagneTower(2, 1, 1) == 0.5);
-  assert(Solution().champagneTower(100000009, 33, 17) == 1.0);
+  vector<tuple<int, int, int, double>> tests{
+      {1, 1, 1, 0.0},
+      {2, 1, 1, 0.5},
+      {100000009, 33, 17, 1.0},
+  };
+
+  for (auto& [poured, query_row, query_glass, ans] : tests) {
+    assert(Solution().champagneTower(poured, query_row, query_glass) == ans);
+  }
 }

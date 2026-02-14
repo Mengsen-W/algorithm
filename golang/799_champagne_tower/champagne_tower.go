@@ -1,13 +1,12 @@
-/*
- * @Date: 2022-11-20
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-11-20
- * @FilePath: /algorithm/799_champagne_tower/champagne_tower.go
- */
-
+// Package main ...
 package main
 
-import "math"
+import (
+	"math"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func champagneTower(poured, queryRow, queryGlass int) float64 {
 	row := []float64{float64(poured)}
@@ -25,12 +24,18 @@ func champagneTower(poured, queryRow, queryGlass int) float64 {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		poured     int
+		queryRow   int
+		queryGlass int
+		ans        float64
+	}{
+		{1, 1, 1, 0.0},
+		{2, 1, 1, 0.5},
+		{100000009, 33, 17, 1.0},
 	}
-	assert(champagneTower(1, 1, 1) == 0.0)
-	assert(champagneTower(2, 1, 1) == 0.5)
-	assert(champagneTower(100000009, 33, 17) == 1.0)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, champagneTower(test.poured, test.queryRow, test.queryGlass), index)
+	}
 }
