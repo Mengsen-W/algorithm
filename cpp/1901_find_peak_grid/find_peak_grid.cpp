@@ -1,10 +1,4 @@
-/*
- * @Date: 2023-12-19
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-12-19
- * @FilePath: /algorithm/cpp/1901_find_peak_grid/find_peak_grid.cpp
- */
-
+#include <algorithm>
 #include <cassert>
 #include <tuple>
 #include <vector>

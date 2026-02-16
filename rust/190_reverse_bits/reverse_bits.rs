@@ -1,27 +1,26 @@
-/*
- * @Date: 2021-03-29 08:34:28
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-03-29 08:51:51
- */
+struct Solution;
 
-fn reverse_bits(mut x: u32) -> u32 {
-    x = ((x >> 1) & 0x55555555) | ((x & 0x55555555) << 1);
-    x = ((x >> 2) & 0x33333333) | ((x & 0x33333333) << 2);
-    x = ((x >> 4) & 0x0f0f0f0f) | ((x & 0x0f0f0f0f) << 4);
-    x = ((x >> 8) & 0x00ff00ff) | ((x & 0x00ff00ff) << 8);
-    (x >> 16) | (x << 16)
+impl Solution {
+    pub fn reverse_bits(x: i32) -> i32 {
+        const M1: u32 = 0x55555555; // 01010101010101010101010101010101
+        const M2: u32 = 0x33333333; // 00110011001100110011001100110011
+        const M4: u32 = 0x0f0f0f0f; // 00001111000011110000111100001111
+        const M8: u32 = 0x00ff00ff; // 00000000111111110000000011111111
+
+        let mut n = x as u32;
+
+        n = (n >> 1 & M1) | (n & M1) << 1;
+        n = (n >> 2 & M2) | (n & M2) << 2;
+        n = (n >> 4 & M4) | (n & M4) << 4;
+        n = (n >> 8 & M8) | (n & M8) << 8;
+        (n >> 16 | n << 16) as i32
+    }
 }
 
 fn main() {
-    assert_eq!(
-        reverse_bits(0b00000010100101000001111010011100),
-        0b00111001011110000010100101000000
-    );
-    assert_eq!(reverse_bits(0b00000010100101000001111010011100), 964176192);
-    assert_eq!(
-        reverse_bits(0b11111111111111111111111111111101),
-        0b10111111111111111111111111111111
-    );
-    assert_eq!(reverse_bits(0b11111111111111111111111111111101), 3221225471);
+    let tests = vec![(43261596, 964176192), (2147483644, 1073741822)];
+
+    for (n, ans) in tests {
+        assert_eq!(Solution::reverse_bits(n), ans);
+    }
 }
