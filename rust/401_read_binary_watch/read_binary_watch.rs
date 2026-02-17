@@ -1,10 +1,3 @@
-/*
- * @Date: 2021-06-21 08:30:42
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-06-21 09:01:11
- */
-
 fn read_binary_watch_enum_hourminutes(turned_on: i32) -> Vec<String> {
     let mut ans: Vec<String> = Vec::new();
     for h in 0 as u8..12 {

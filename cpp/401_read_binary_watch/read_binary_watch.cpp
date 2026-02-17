@@ -1,12 +1,4 @@
-/*
- * @Date: 2021-06-21 08:30:29
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-06-21 08:54:13
- */
-
 #include <cassert>
-#include <iostream>
 #include <string>
 #include <vector>
 

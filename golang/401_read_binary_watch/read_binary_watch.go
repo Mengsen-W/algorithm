@@ -1,10 +1,4 @@
-/*
- * @Date: 2021-06-21 08:30:39
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-06-21 08:39:58
- */
-
+// Package main ...
 package main
 
 import (
