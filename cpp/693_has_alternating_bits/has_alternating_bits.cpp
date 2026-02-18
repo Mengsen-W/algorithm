@@ -1,12 +1,8 @@
-/*
- * @Date: 2022-03-28 14:59:25
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-03-28 15:01:33
- * @FilePath: /algorithm/693_has_alternating_bits/has_alternating_bits.cpp
- */
-
 #include <cassert>
+#include <tuple>
+#include <vector>
+
+using namespace std;
 
 class Solution {
  public:
@@ -17,7 +13,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().hasAlternatingBits(5) == true);
-  assert(Solution().hasAlternatingBits(7) == false);
-  assert(Solution().hasAlternatingBits(11) == false);
+  vector<tuple<int, bool>> tests{
+      {5, true},
+      {7, false},
+      {11, false},
+  };
+
+  for (auto& [n, ans] : tests) {
+    assert(Solution().hasAlternatingBits(n) == ans);
+  }
 }

@@ -1,12 +1,11 @@
-/*
- * @Date: 2022-03-28 14:59:32
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-03-28 15:03:46
- * @FilePath: /algorithm/693_has_alternating_bits/has_alternating_bits.go
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func hasAlternatingBits(n int) bool {
 	a := n ^ n>>1
@@ -14,13 +13,16 @@ func hasAlternatingBits(n int) bool {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		n   int
+		ans bool
+	}{
+		{5, true},
+		{7, false},
+		{11, false},
 	}
 
-	assert(hasAlternatingBits(5) == true)
-	assert(hasAlternatingBits(7) == false)
-	assert(hasAlternatingBits(11) == false)
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, hasAlternatingBits(test.n), index)
+	}
 }
