@@ -1,16 +1,12 @@
-/*
- * @Date: 2022-08-08
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-08-08
- * @FilePath: /algorithm/761_make_largest_special/make_largest_special.go
- */
-
+// Package main ...
 package main
 
 import (
-	"reflect"
 	"sort"
 	"strings"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func makeLargestSpecial(s string) string {
@@ -32,9 +28,15 @@ func makeLargestSpecial(s string) string {
 }
 
 func main() {
-	func(a, b string) {
-		if !reflect.DeepEqual(a, b) {
-			panic("Not Passed")
-		}
-	}(makeLargestSpecial("11011000"), "11100100")
+	tests := []struct {
+		s   string
+		ans string
+	}{
+		{"11011000", "11100100"},
+		{"10", "10"},
+	}
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, makeLargestSpecial(test.s), index)
+	}
 }

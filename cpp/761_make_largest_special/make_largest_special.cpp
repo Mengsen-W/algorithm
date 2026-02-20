@@ -1,13 +1,8 @@
-/*
- * @Date: 2022-08-08
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-08-08
- * @FilePath: /algorithm/761_make_largest_special/make_largest_special.cpp
- */
-
+#include <algorithm>
 #include <cassert>
 #include <numeric>
 #include <string>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -39,6 +34,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().makeLargestSpecial("11011000") == "11100100");
+  vector<tuple<string, string>> tests{
+      {"11011000", "11100100"},
+      {"10", "10"},
+  };
+
+  for (auto& [s, ans] : tests) {
+    assert(Solution().makeLargestSpecial(s) == ans);
+  }
   return 0;
 }
