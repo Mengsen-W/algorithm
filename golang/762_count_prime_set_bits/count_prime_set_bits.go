@@ -1,14 +1,12 @@
-/*
- * @Date: 2022-04-05 10:25:35
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-04-05 10:42:12
- * @FilePath: /algorithm/762_count_prime_set_bits/count_prime_set_bits.go
- */
-
+// Package main ...
 package main
 
-import "math/bits"
+import (
+	"math/bits"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func countPrimeSetBits(left, right int) (ans int) {
 	for x := left; x <= right; x++ {
@@ -20,11 +18,16 @@ func countPrimeSetBits(left, right int) (ans int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		left  int
+		right int
+		ans   int
+	}{
+		{6, 10, 4},
+		{10, 15, 5},
 	}
-	assert(countPrimeSetBits(6, 10) == 4)
-	assert(countPrimeSetBits(10, 15) == 5)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, countPrimeSetBits(test.left, test.right), index)
+	}
 }

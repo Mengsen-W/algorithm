@@ -1,12 +1,6 @@
-/*
- * @Date: 2022-04-05 10:25:29
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-04-05 10:30:56
- * @FilePath: /algorithm/762_count_prime_set_bits/count_prime_set_bits.cpp
- */
-
 #include <cassert>
+#include <tuple>
+#include <vector>
 
 class Solution {
  public:
@@ -22,6 +16,12 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().countPrimeSetBits(6, 10) == 4);
-  assert(Solution().countPrimeSetBits(10, 15) == 5);
+  std::vector<std::tuple<int, int, int>> tests{
+      {6, 10, 4},
+      {10, 15, 5},
+  };
+
+  for (auto& [left, right, ans] : tests) {
+    assert(Solution().countPrimeSetBits(left, right) == ans);
+  }
 }
