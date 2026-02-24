@@ -1,11 +1,3 @@
-/*
- * @Date: 2022-05-31 09:44:21
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-05-31 10:00:47
- * @FilePath: /algorithm/1022_sum_root_to_leaf/sum_root_to_leaf.rs
- */
-
 // Definition for a binary tree node.
 #[derive(Debug, PartialEq, Eq)]
 pub struct TreeNode {

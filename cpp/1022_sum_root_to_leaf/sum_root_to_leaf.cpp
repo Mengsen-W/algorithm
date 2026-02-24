@@ -1,11 +1,3 @@
-/*
- * @Date: 2022-05-31 09:44:18
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-05-31 09:53:49
- * @FilePath: /algorithm/1022_sum_root_to_leaf/sum_root_to_leaf.cpp
- */
-
 #include <cassert>
 #include <stack>
 

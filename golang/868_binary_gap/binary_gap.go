@@ -1,12 +1,11 @@
-/*
- * @Date: 2022-04-24 09:47:28
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-04-24 09:56:58
- * @FilePath: /algorithm/868_binary_gap/binary_gap.go
- */
-
+// Package main ...
 package main
+
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func binaryGap(n int) (ans int) {
 	max := func(a, b int) int {
@@ -28,12 +27,16 @@ func binaryGap(n int) (ans int) {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
-		}
+	tests := []struct {
+		n   int
+		ans int
+	}{
+		{22, 2},
+		{8, 0},
+		{5, 2},
 	}
-	assert(binaryGap(22) == 2)
-	assert(binaryGap(8) == 0)
-	assert(binaryGap(5) == 2)
+
+	for index, test := range tests {
+		assert.Equal(&testing.T{}, test.ans, binaryGap(test.n), index)
+	}
 }

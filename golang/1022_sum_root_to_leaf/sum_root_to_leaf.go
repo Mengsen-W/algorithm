@@ -1,14 +1,7 @@
-/*
- * @Date: 2022-05-31 09:44:24
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-05-31 09:56:16
- * @FilePath: /algorithm/1022_sum_root_to_leaf/sum_root_to_leaf.go
- */
-
+// Package main ...
 package main
 
-//  Definition for a binary tree node.
+// TreeNode Definition for a binary tree node.
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
