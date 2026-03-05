@@ -1,10 +1,3 @@
-/*
- * @Date: 2022-09-04
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-09-04
- * @FilePath: /algorithm/1582_num_special/num_special.rs
- */
-
 pub fn num_special(mat: Vec<Vec<i32>>) -> i32 {
     let mut mat = mat;
     let (m, n) = (mat.len(), mat.first().unwrap_or(&vec![]).len());

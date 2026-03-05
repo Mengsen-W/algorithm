@@ -1,12 +1,7 @@
-/*
- * @Date: 2022-11-29
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-11-29
- * @FilePath: /algorithm/1758_min_operations/min_operations.cpp
- */
-
 #include <cassert>
 #include <string>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -25,7 +20,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().minOperations("0100") == 1);
-  assert(Solution().minOperations("10") == 0);
-  assert(Solution().minOperations("1111") == 2);
+  vector<tuple<string, int>> tests{
+      {"0100", 1},
+      {"10", 0},
+      {"1111", 2},
+  };
+
+  for (auto [s, expected] : tests) {
+    assert(Solution().minOperations(s) == expected);
+  }
 }

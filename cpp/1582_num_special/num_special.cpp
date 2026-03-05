@@ -1,10 +1,3 @@
-/*
- * @Date: 2022-09-04
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-09-04
- * @FilePath: /algorithm/1582_num_special/num_special.cpp
- */
-
 #include <cassert>
 #include <vector>
 

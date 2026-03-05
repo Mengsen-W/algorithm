@@ -1,25 +1,24 @@
-/*
- * @Date: 2022-11-29
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-11-29
- * @FilePath: /algorithm/1758_min_operations/min_operations.rs
- */
+struct Solution;
 
-pub fn min_operations(s: String) -> i32 {
-    let mut cnt = 0;
-    let s: Vec<usize> = s.chars().map(|c| c as usize).collect();
-    for i in 0..s.len() {
-        let c = s[i];
-        // 48 == '0'
-        if c != (48 + i % 2) {
-            cnt += 1;
+impl Solution {
+    pub fn min_operations(s: String) -> i32 {
+        let mut cnt = 0;
+        let s: Vec<usize> = s.chars().map(|c| c as usize).collect();
+        for i in 0..s.len() {
+            let c = s[i];
+            // 48 == '0'
+            if c != (48 + i % 2) {
+                cnt += 1;
+            }
         }
+        cnt.min(s.len() as i32 - cnt)
     }
-    cnt.min(s.len() as i32 - cnt)
 }
 
 fn main() {
-    assert_eq!(min_operations(String::from("0100")), 1);
-    assert_eq!(min_operations(String::from("10")), 0);
-    assert_eq!(min_operations(String::from("1111")), 2);
+    let tests = vec![("0100", 1), ("10", 0), ("1111", 2)];
+
+    for (s, expected) in tests {
+        assert_eq!(Solution::min_operations(s.to_string()), expected);
+    }
 }
