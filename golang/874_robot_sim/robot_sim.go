@@ -1,10 +1,3 @@
-/*
- * @Date: 2023-07-19
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-07-19
- * @FilePath: /algorithm/golang/874_robot_sim/robot_sim.go
- */
-
 // Package main ...
 package main
 
