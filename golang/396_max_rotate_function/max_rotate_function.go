@@ -1,11 +1,4 @@
-/*
- * @Date: 2022-04-22 09:20:06
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-04-22 09:26:04
- * @FilePath: /algorithm/396_max_rotate_function/max_rotate_function.go
- */
-
+// Package main ...
 package main
 
 func maxRotateFunction(nums []int) int {

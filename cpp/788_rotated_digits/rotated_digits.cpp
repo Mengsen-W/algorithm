@@ -1,12 +1,5 @@
-/*
- * @Date: 2022-09-25
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-09-25
- * @FilePath: /algorithm/788_rotated_digits/rotated_digits.cpp
- */
-
 #include <assert.h>
-
+#include <cstring>
 #include <functional>
 #include <vector>
 

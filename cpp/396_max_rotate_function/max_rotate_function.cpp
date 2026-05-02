@@ -1,11 +1,3 @@
-/*
- * @Date: 2022-04-22 09:19:59
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-04-22 09:23:44
- * @FilePath: /algorithm/396_max_rotate_function/max_rotate_function.cpp
- */
-
 #include <cassert>
 #include <numeric>
 #include <vector>

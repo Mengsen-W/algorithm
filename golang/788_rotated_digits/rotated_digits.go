@@ -1,17 +1,10 @@
-/*
- * @Date: 2022-09-25
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-09-25
- * @FilePath: /algorithm/788_rotated_digits/rotated_digits.go
- */
-
+// Package main ...
 package main
 
 import "strconv"
 
-var check = [10]int{0, 0, 1, -1, -1, 1, 1, -1, 0, 1}
-
 func rotatedDigits(n int) int {
+	check := [10]int{0, 0, 1, -1, -1, 1, 1, -1, 0, 1}
 	digits := strconv.Itoa(n)
 	memo := [5][2][2]int{}
 	for i := 0; i < 5; i++ {
