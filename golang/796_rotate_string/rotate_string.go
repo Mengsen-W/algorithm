@@ -1,11 +1,4 @@
-/*
- * @Date: 2022-04-07 01:43:34
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-04-07 01:50:13
- * @FilePath: /algorithm/796_rotate_string/rotate_string.go
- */
-
+// Package main...
 package main
 
 import "strings"
