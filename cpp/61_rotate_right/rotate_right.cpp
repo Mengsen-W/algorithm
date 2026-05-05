@@ -15,37 +15,39 @@ struct ListNode {
   ListNode(int x, ListNode* next) : val(x), next(next) {}
 };
 
-ListNode* rotate_right(ListNode* head, int k) {
-  if (head == nullptr || head->next == nullptr) return head;
-  ListNode* last = head;
-  int count = 1;
+class Solution {
+  public:
+  ListNode* rotateRight(ListNode* head, int k) {
+    if (head == nullptr || head->next == nullptr) return head;
+    ListNode* last = head;
+    int count = 1;
 
-  // 计算链表总长
-  while (last->next != nullptr) {
-    last = last->next;
-    ++count;
+    // 计算链表总长
+    while (last->next != nullptr) {
+      last = last->next;
+      ++count;
+    }
+
+    ListNode* front = head;
+    // 必要的优化
+    if (k > count) k %= count;
+
+    // 链表头拼接到末尾
+    while (count - k) {
+      last->next = front;
+      front = front->next;
+      last = last->next;
+      ++k;
+    }
+    last->next = nullptr;
+    return front;
   }
-
-  ListNode* front = head;
-  // 必要的优化
-  if (k > count) k %= count;
-
-  // 链表头拼接到末尾
-  while (count - k) {
-    last->next = front;
-    front = front->next;
-    last = last->next;
-    ++k;
-  }
-  last->next = nullptr;
-  return front;
-}
+};
 
 int main() {
   {
-    ListNode* head_1 = new ListNode(
-        1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-    ListNode* cur = rotate_right(head_1, 2);
+    ListNode* head_1 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
+    ListNode* cur = Solution().rotateRight(head_1, 2);
     while (cur != nullptr) {
       std::cout << cur->val << ", ";
       cur = cur->next;
@@ -55,7 +57,7 @@ int main() {
 
   {
     ListNode* head_2 = new ListNode(0, new ListNode(1, new ListNode(2)));
-    ListNode* cur = rotate_right(head_2, 4);
+    ListNode* cur = Solution().rotateRight(head_2, 4);
     while (cur != nullptr) {
       std::cout << cur->val << ", ";
       cur = cur->next;
