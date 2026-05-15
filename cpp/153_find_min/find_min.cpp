@@ -6,29 +6,36 @@
  */
 
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
 
-int find_min(vector<int>& nums) {
-  int low = 0;
-  int high = nums.size() - 1;
-  while (low < high) {
-    int pivot = low + (high - low) / 2;
-    if (nums[pivot] < nums[high]) {
-      high = pivot;
-    } else {
-      low = pivot + 1;
+class Solution {
+ public:
+  int findMin(vector<int>& nums) {
+    int low = 0;
+    int high = nums.size() - 1;
+    while (low < high) {
+      int pivot = low + (high - low) / 2;
+      if (nums[pivot] < nums[high]) {
+        high = pivot;
+      } else {
+        low = pivot + 1;
+      }
     }
+    return nums[low];
   }
-  return nums[low];
-}
+};
 
 int main() {
-  vector<int> nums{3, 4, 5, 1, 2};
-  assert(find_min(nums) == 1);
-  nums = {4, 5, 6, 7, 0, 1, 2};
-  assert(find_min(nums) == 0);
-  nums = {11, 13, 15, 17};
-  assert(find_min(nums) == 11);
+  vector<tuple<vector<int>, int>> tests{
+      {{3, 4, 5, 1, 2}, 1},
+      {{4, 5, 6, 7, 0, 1, 2}, 0},
+      {{11, 13, 15, 17}, 11},
+  };
+
+  for (auto& [nums, expected] : tests) {
+    assert(Solution().findMin(nums) == expected);
+  }
 }
