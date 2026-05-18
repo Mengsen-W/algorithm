@@ -1,10 +1,4 @@
-/*
- * @Date: 2022-01-22 08:47:55
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-01-22 08:56:19
- */
-
+// Package main ...
 package main
 
 func minJumps(arr []int) int {
@@ -42,15 +36,35 @@ func minJumps(arr []int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
+	tests := []struct {
+		arr []int
+		ans int
+	}{
+		{
+			[]int{100, -23, -23, 404, 100, 23, 23, 23, 3, 404},
+			3,
+		},
+		{
+			[]int{7},
+			0,
+		},
+		{
+			[]int{7, 6, 9, 6, 9, 6, 9, 7},
+			1,
+		},
+		{
+			[]int{6, 1, 9},
+			2,
+		},
+		{
+			[]int{11, 22, 7, 7, 7, 7, 7, 7, 7, 22, 13},
+			3,
+		},
+	}
+
+	for _, test := range tests {
+		if test.ans != minJumps(test.arr) {
 			panic("Not Passed")
 		}
 	}
-	assert(minJumps([]int{100, -23, -23, 404, 100, 23, 23, 23, 3, 404}) ==
-		3)
-	assert(minJumps([]int{7}) == 0)
-	assert(minJumps([]int{7, 6, 9, 6, 9, 6, 9, 7}) == 1)
-	assert(minJumps([]int{6, 1, 9}) == 2)
-	assert(minJumps([]int{11, 22, 7, 7, 7, 7, 7, 7, 7, 22, 13}) == 3)
 }

@@ -1,12 +1,6 @@
-/*
- * @Date: 2022-01-22 08:47:49
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-01-22 09:02:46
- */
-
 #include <cassert>
 #include <queue>
+#include <tuple>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
@@ -55,10 +49,30 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().minJumps({100, -23, -23, 404, 100, 23, 23, 23, 3, 404}) ==
-         3);
-  assert(Solution().minJumps({7}) == 0);
-  assert(Solution().minJumps({7, 6, 9, 6, 9, 6, 9, 7}) == 1);
-  assert(Solution().minJumps({6, 1, 9}) == 2);
-  assert(Solution().minJumps({11, 22, 7, 7, 7, 7, 7, 7, 7, 22, 13}) == 3);
+  vector<tuple<vector<int>, int>> tests{
+      {
+          {100, -23, -23, 404, 100, 23, 23, 23, 3, 404},
+          3,
+      },
+      {
+          {7},
+          0,
+      },
+      {
+          {7, 6, 9, 6, 9, 6, 9, 7},
+          1,
+      },
+      {
+          {6, 1, 9},
+          2,
+      },
+      {
+          {11, 22, 7, 7, 7, 7, 7, 7, 7, 22, 13},
+          3,
+      },
+  };
+
+  for (auto& [arr, expected] : tests) {
+    assert(Solution().minJumps(arr) == expected);
+  }
 }

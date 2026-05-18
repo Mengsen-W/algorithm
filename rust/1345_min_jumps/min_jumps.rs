@@ -1,16 +1,8 @@
-/*
- * @Date: 2022-01-22 08:47:58
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-01-22 09:12:40
- */
-
 struct Solution;
-
-use std::collections::{HashMap, HashSet, VecDeque};
 
 impl Solution {
     pub fn min_jumps(nums: Vec<i32>) -> i32 {
+        use std::collections::{HashMap, HashSet, VecDeque};
         let len_n: usize = nums.len();
         if len_n == 1 {
             return 0;
@@ -57,15 +49,15 @@ impl Solution {
 }
 
 fn main() {
-    assert_eq!(
-        Solution::min_jumps(vec![100, -23, -23, 404, 100, 23, 23, 23, 3, 404]),
-        3
-    );
-    assert_eq!(Solution::min_jumps(vec![7]), 0);
-    assert_eq!(Solution::min_jumps(vec![7, 6, 9, 6, 9, 6, 9, 7]), 1);
-    assert_eq!(Solution::min_jumps(vec![6, 1, 9]), 2);
-    assert_eq!(
-        Solution::min_jumps(vec![11, 22, 7, 7, 7, 7, 7, 7, 7, 22, 13]),
-        3
-    );
+    let tests = vec![
+        (vec![100, -23, -23, 404, 100, 23, 23, 23, 3, 404], 3),
+        (vec![7], 0),
+        (vec![7, 6, 9, 6, 9, 6, 9, 7], 1),
+        (vec![6, 1, 9], 2),
+        (vec![11, 22, 7, 7, 7, 7, 7, 7, 7, 22, 13], 3),
+    ];
+
+    for (nums, expected) in tests {
+        assert_eq!(Solution::min_jumps(nums), expected);
+    }
 }
