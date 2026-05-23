@@ -1,11 +1,5 @@
-/*
- * @Date: 2022-11-27
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-11-27
- * @FilePath: /algorithm/1752_check/check.cpp
- */
-
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -33,18 +27,12 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> nums{3, 4, 5, 1, 2};
-    assert(Solution().check(nums));
-  }
-
-  {
-    vector<int> nums{2, 1, 3, 4};
-    assert(!Solution().check(nums));
-  }
-
-  {
-    vector<int> nums{1, 2, 3};
-    assert(Solution().check(nums));
+  vector<tuple<vector<int>, bool>> tests{
+      {{3, 4, 5, 1, 2}, true},
+      {{2, 1, 3, 4}, false},
+      {{1, 2, 3}, true},
+  };
+  for (auto& [nums, expected] : tests) {
+    assert(Solution().check(nums) == expected);
   }
 }

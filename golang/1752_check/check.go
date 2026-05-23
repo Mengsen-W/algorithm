@@ -1,10 +1,4 @@
-/*
- * @Date: 2022-11-27
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-11-27
- * @FilePath: /algorithm/1752_check/check.go
- */
-
+// Package main ...
 package main
 
 func check(nums []int) bool {
@@ -34,18 +28,16 @@ func main() {
 		}
 	}
 
-	{
-		nums := []int{3, 4, 5, 1, 2}
-		assert(check(nums))
+	tests := []struct {
+		nums []int
+		ans  bool
+	}{
+		{[]int{3, 4, 5, 1, 2}, true},
+		{[]int{2, 1, 3, 4}, false},
+		{[]int{1, 2, 3}, true},
 	}
 
-	{
-		nums := []int{2, 1, 3, 4}
-		assert(!check(nums))
-	}
-
-	{
-		nums := []int{1, 2, 3}
-		assert(check(nums))
+	for _, test := range tests {
+		assert(check(test.nums) == test.ans)
 	}
 }
