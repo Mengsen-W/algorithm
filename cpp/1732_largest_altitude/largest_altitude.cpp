@@ -1,12 +1,6 @@
-/*
- * @Date: 2022-11-19
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-11-19
- * @FilePath: /algorithm/1732_largest_altitude/largest_altitude.cpp
- */
-
 #include <cassert>
 #include <vector>
+#include <tuple>
 
 using namespace std;
 
@@ -23,15 +17,12 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> gain{-5, 1, 5, 0, -7};
-    int ans = 1;
-    assert(Solution().largestAltitude(gain) == ans);
-  }
-
-  {
-    vector<int> gain{-4, -3, -2, -1, 4, 3, 2};
-    int ans = 0;
-    assert(Solution().largestAltitude(gain) == ans);
+  vector<tuple<vector<int>, int>> tests{
+      {{-5, 1, 5, 0, -7}, 1},
+      {{-4, -3, -2, -1, 4, 3, 2}, 0},
+  };
+  
+  for (auto [gain, expected] : tests) {
+    assert(Solution().largestAltitude(gain) == expected);
   }
 }

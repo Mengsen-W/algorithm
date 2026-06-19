@@ -1,10 +1,4 @@
-/*
- * @Date: 2022-11-19
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-11-19
- * @FilePath: /algorithm/1732_largest_altitude/largest_altitude.go
- */
-
+// Package main ...
 package main
 
 func largestAltitude(gain []int) (ans int) {
@@ -29,15 +23,14 @@ func main() {
 		}
 	}
 
-	{
-		gain := []int{-5, 1, 5, 0, -7}
-		ans := 1
-		assert(largestAltitude(gain) == ans)
+	tests := []struct {
+		gain []int
+		ans  int
+	}{
+		{[]int{-5, 1, 5, 0, -7}, 1},
+		{[]int{-4, -3, -2, -1, 4, 3, 2}, 0},
 	}
-
-	{
-		gain := []int{-4, -3, -2, -1, 4, 3, 2}
-		ans := 0
-		assert(largestAltitude(gain) == ans)
+	for _, test := range tests {
+		assert(largestAltitude(test.gain) == test.ans)
 	}
 }
