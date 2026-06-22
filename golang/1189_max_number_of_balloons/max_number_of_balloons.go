@@ -1,10 +1,4 @@
-/*
- * @Date: 2022-02-13 01:07:29
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-02-13 01:31:52
- */
-
+// Package main ...
 package main
 
 func maxNumberOfBalloons(text string) int {
@@ -40,7 +34,16 @@ func main() {
 		}
 	}
 
-	assert(maxNumberOfBalloons("nlaebolko") == 1)
-	assert(maxNumberOfBalloons("loonbalxballpoon") == 2)
-	assert(maxNumberOfBalloons("leetcode") == 0)
+	tests := []struct {
+		text     string
+		expected int
+	}{
+		{"nlaebolko", 1},
+		{"loonbalxballpoon", 2},
+		{"leetcode", 0},
+	}
+
+	for _, test := range tests {
+		assert(maxNumberOfBalloons(test.text) == test.expected)
+	}
 }

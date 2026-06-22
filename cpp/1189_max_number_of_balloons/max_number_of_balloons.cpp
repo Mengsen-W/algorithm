@@ -1,12 +1,7 @@
-/*
- * @Date: 2022-02-13 01:07:23
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-02-13 01:30:51
- */
-
+#include <algorithm>
 #include <cassert>
 #include <string>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -35,7 +30,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().maxNumberOfBalloons("nlaebolko") == 1);
-  assert(Solution().maxNumberOfBalloons("loonbalxballpoon") == 2);
-  assert(Solution().maxNumberOfBalloons("leetcode") == 0);
+  vector<tuple<string, int>> tests{
+      {"nlaebolko", 1},
+      {"loonbalxballpoon", 2},
+      {"leetcode", 0},
+  };
+
+  for (auto& [text, expected] : tests) {
+    assert(Solution().maxNumberOfBalloons(text) == expected);
+  }
 }
