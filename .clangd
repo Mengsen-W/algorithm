@@ -1,0 +1,28 @@
+# .clangd
+
+CompileFlags:
+  Add:
+    - -Wall
+    - -Wextra
+    - -Wshadow
+    - -Wpedantic
+    - -std=c++20
+
+Diagnostics:
+  UnusedIncludes: Strict
+
+  ClangTidy:
+    Add:
+      - bugprone-*
+      - performance-*
+      - modernize-*
+      - readability-*
+      - misc-*
+      - portability-*
+
+    Remove:
+      - readability-identifier-length
+      - bugprone-easily-swappable-parameters
+      - modernize-use-trailing-return-type
+      - readability-convert-member-functions-to-static
+      - readability-magic-numbers
