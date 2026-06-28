@@ -1,10 +1,4 @@
-/*
- * @Date: 2021-07-15 09:17:37
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-07-15 09:25:07
- */
-
+// Package main ...
 package main
 
 func maximumElementAfterDecrementingAndRearranging(arr []int) int {
@@ -36,19 +30,17 @@ func main() {
 			panic("Not Passed")
 		}
 	}
-	{
-		arr := []int{2, 2, 1, 2, 1}
-		ans := 2
-		assert(maximumElementAfterDecrementingAndRearranging(arr) == ans)
+
+	tests := []struct {
+		arr []int
+		ans int
+	}{
+		{[]int{2, 2, 1, 2, 1}, 2},
+		{[]int{100, 1, 1000}, 3},
+		{[]int{1, 2, 3, 4, 5}, 5},
 	}
-	{
-		arr := []int{100, 1, 1000}
-		ans := 3
-		assert(maximumElementAfterDecrementingAndRearranging(arr) == ans)
-	}
-	{
-		arr := []int{1, 2, 3, 4, 5}
-		ans := 5
-		assert(maximumElementAfterDecrementingAndRearranging(arr) == ans)
+
+	for _, test := range tests {
+		assert(maximumElementAfterDecrementingAndRearranging(test.arr) == test.ans)
 	}
 }
