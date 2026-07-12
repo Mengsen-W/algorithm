@@ -1,11 +1,6 @@
-/*
- * @Date: 2022-07-28
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-07-28
- * @FilePath: /algorithm/1331_array_rank_transform/array_rank_transform.cpp
- */
-
+#include <algorithm>
 #include <cassert>
+#include <tuple>
 #include <unordered_map>
 #include <vector>
 
@@ -31,21 +26,13 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> arr{40, 10, 20, 30};
-    vector<int> ans{4, 1, 2, 3};
-    assert(Solution().arrayRankTransform(arr) == ans);
-  }
+  vector<tuple<vector<int>, vector<int>>> tests{
+      {{40, 10, 20, 30}, {4, 1, 2, 3}},
+      {{100, 100, 100}, {1, 1, 1}},
+      {{37, 12, 28, 9, 100, 56, 80, 5, 12}, {5, 3, 4, 2, 8, 6, 7, 1, 3}},
+  };
 
-  {
-    vector<int> arr{100, 100, 100};
-    vector<int> ans{1, 1, 1};
-    assert(Solution().arrayRankTransform(arr) == ans);
-  }
-
-  {
-    vector<int> arr{37, 12, 28, 9, 100, 56, 80, 5, 12};
-    vector<int> ans{5, 3, 4, 2, 8, 6, 7, 1, 3};
+  for (auto& [arr, ans] : tests) {
     assert(Solution().arrayRankTransform(arr) == ans);
   }
 }
