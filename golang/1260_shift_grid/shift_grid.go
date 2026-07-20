@@ -1,13 +1,10 @@
-/*
- * @Date: 2022-07-20
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-07-20
- * @FilePath: /algorithm/1260_shift_grid/shift_grid.go
- */
-
+// Package main ...
 package main
 
-import "reflect"
+import (
+	"fmt"
+	"reflect"
+)
 
 func shiftGrid(grid [][]int, k int) [][]int {
 	m, n := len(grid), len(grid[0])
@@ -25,29 +22,32 @@ func shiftGrid(grid [][]int, k int) [][]int {
 }
 
 func main() {
-	assert := func(a, b [][]int) {
-		if !reflect.DeepEqual(a, b) {
-			panic("Not Passed")
+	tests := []struct {
+		grid [][]int
+		k    int
+		ans  [][]int
+	}{
+		{
+			[][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}},
+			1,
+			[][]int{{9, 1, 2}, {3, 4, 5}, {6, 7, 8}},
+		},
+		{
+			[][]int{{3, 8, 1, 9}, {19, 7, 2, 5}, {4, 6, 11, 10}, {12, 0, 21, 13}},
+			4,
+			[][]int{{12, 0, 21, 13}, {3, 8, 1, 9}, {19, 7, 2, 5}, {4, 6, 11, 10}},
+		},
+		{
+			[][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}},
+			9,
+			[][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}},
+		},
+	}
+
+	for _, test := range tests {
+		ans := shiftGrid(test.grid, test.k)
+		if !reflect.DeepEqual(ans, test.ans) {
+			fmt.Println("test failed", test.grid, test.k, test.ans, ans)
 		}
-	}
-	{
-		grid := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
-		k := 1
-		ans := [][]int{{9, 1, 2}, {3, 4, 5}, {6, 7, 8}}
-		assert(shiftGrid(grid, k), ans)
-	}
-
-	{
-		grid := [][]int{{3, 8, 1, 9}, {19, 7, 2, 5}, {4, 6, 11, 10}, {12, 0, 21, 13}}
-		k := 4
-		ans := [][]int{{12, 0, 21, 13}, {3, 8, 1, 9}, {19, 7, 2, 5}, {4, 6, 11, 10}}
-		assert(shiftGrid(grid, k), ans)
-	}
-
-	{
-		grid := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
-		k := 9
-		ans := [][]int{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}
-		assert(shiftGrid(grid, k), ans)
 	}
 }
