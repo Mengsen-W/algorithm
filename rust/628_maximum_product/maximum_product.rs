@@ -36,9 +36,9 @@ impl Solution {
 
 fn main() {
     let tests = vec![
-      ( vec![ 1, 2, 3 ], 6 ),
-      ( vec![ 1, 2, 3, 4 ], 24 ),
-      ( vec![ -1, -2, -3 ], -6 ),
+        ( vec![ 1, 2, 3 ], 6 ),
+        ( vec![ 1, 2, 3, 4 ], 24 ),
+        ( vec![ -1, -2, -3 ], -6 ),
     ];
 
     for (nums, expected) in tests {

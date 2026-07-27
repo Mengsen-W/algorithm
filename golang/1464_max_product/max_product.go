@@ -1,11 +1,7 @@
-/*
- * @Date: 2022-08-26
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-08-26
- * @FilePath: /algorithm/1464_max_product/max_product.go
- */
-
+// Package main ...
 package main
+
+import "fmt"
 
 func maxProduct(nums []int) int {
 	a, b := nums[0], nums[1]
@@ -23,24 +19,18 @@ func maxProduct(nums []int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
+	tests := []struct {
+		nums []int
+		ans  int
+	}{
+		{[]int{3, 4, 5, 2}, 12},
+		{[]int{1, 5, 4, 5}, 16},
+		{[]int{3, 7}, 12},
+	}
+
+	for index, test := range tests {
+		if maxProduct(test.nums) != test.ans {
+			fmt.Println(index)
 		}
-	}
-	{
-		nums := []int{3, 4, 5, 2}
-		ans := 12
-		assert(maxProduct(nums) == ans)
-	}
-	{
-		nums := []int{1, 5, 4, 5}
-		ans := 16
-		assert(maxProduct(nums) == ans)
-	}
-	{
-		nums := []int{3, 7}
-		ans := 12
-		assert(maxProduct(nums) == ans)
 	}
 }

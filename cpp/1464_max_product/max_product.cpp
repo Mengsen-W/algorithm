@@ -1,11 +1,5 @@
-/*
- * @Date: 2022-08-26
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-08-26
- * @FilePath: /algorithm/1464_max_product/max_product.cpp
- */
-
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -30,19 +24,13 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> nums{3, 4, 5, 2};
-    int ans = 12;
-    assert(Solution().maxProduct(nums) == ans);
-  }
-  {
-    vector<int> nums{1, 5, 4, 5};
-    int ans = 16;
-    assert(Solution().maxProduct(nums) == ans);
-  }
-  {
-    vector<int> nums{3, 7};
-    int ans = 12;
-    assert(Solution().maxProduct(nums) == ans);
+  vector<tuple<vector<int>, int>> tests{
+      {{3, 4, 5, 2}, 12},
+      {{1, 5, 4, 5}, 16},
+      {{3, 7}, 12},
+  };
+
+  for (auto [test, expected] : tests) {
+    assert(Solution().maxProduct(test) == expected);
   }
 }
