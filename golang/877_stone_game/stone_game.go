@@ -1,10 +1,4 @@
-/*
- * @Date: 2021-06-16 09:10:01
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-06-16 09:14:26
- */
-
+// Package main ...
 package main
 
 func stoneGame(piles []int) bool {
@@ -16,10 +10,8 @@ func stoneGame(piles []int) bool {
 	}
 	length := len(piles)
 	dp := make([]int, length)
-	for i := 0; i < length; i++ {
+	for i := length - 1; i >= 0; i-- {
 		dp[i] = piles[i]
-	}
-	for i := length - 2; i >= 0; i-- {
 		for j := i + 1; j < length; j++ {
 			dp[j] = max(piles[i]-dp[j], piles[j]-dp[j-1])
 		}
@@ -33,5 +25,15 @@ func main() {
 			panic("Not Passed!")
 		}
 	}
-	assert(stoneGame([]int{5, 3, 4, 5}))
+	tests := []struct {
+		piles []int
+		ans   bool
+	}{
+		{[]int{5, 3, 4, 5}, true},
+		{[]int{3, 7, 2, 3}, true},
+	}
+
+	for _, test := range tests {
+		assert(stoneGame(test.piles) == test.ans)
+	}
 }
