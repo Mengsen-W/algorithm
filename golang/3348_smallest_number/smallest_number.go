@@ -1,0 +1,108 @@
+// Package main ...
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func smallestNumber(num string, t int64) string {
+	gcd := func(a, b int64) int64 {
+		for b != 0 {
+			a, b = b, a%b
+		}
+		return a
+	}
+
+	max := func(a, b int) int {
+		if a > b {
+			return a
+		}
+		return b
+	}
+	temp := t
+	for i := int64(2); i <= 9; i++ {
+		for temp%i == 0 {
+			temp /= i
+		}
+	}
+	if temp > 1 {
+		return "-1"
+	}
+
+	n := len(num)
+	rem := make([]int64, n+1)
+	rem[0] = t
+	pos := n - 1
+
+	numBytes := []byte(num)
+	for i := 0; i < n; i++ {
+		if numBytes[i] == '0' {
+			pos = i
+			break
+		}
+		rem[i+1] = rem[i] / gcd(rem[i], int64(numBytes[i]-'0'))
+	}
+
+	if rem[n] == 1 {
+		return num
+	}
+
+	for i := pos; i >= 0; i-- {
+		for {
+			numBytes[i]++
+			if numBytes[i] > '9' {
+				break
+			}
+			tNow := rem[i] / gcd(rem[i], int64(numBytes[i]-'0'))
+			k := 9
+			for j := n - 1; j > i; j-- {
+				for tNow%int64(k) != 0 {
+					k--
+				}
+				tNow /= int64(k)
+				numBytes[j] = byte('0' + k)
+			}
+			if tNow == 1 {
+				return string(numBytes)
+			}
+		}
+	}
+
+	var ans strings.Builder
+	t = t
+	for i := 9; i > 1; i-- {
+		for t%int64(i) == 0 {
+			ans.WriteByte(byte('0' + i))
+			t /= int64(i)
+		}
+	}
+
+	ansStr := ans.String()
+	padding := max(n+1-len(ansStr), 0)
+	ansStr += strings.Repeat("1", padding)
+	runes := []rune(ansStr)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+
+	return string(runes)
+}
+
+func main() {
+	tests := []struct {
+		num string
+		t   int64
+		ans string
+	}{
+		{"1234", 256, "1488"},
+		{"12355", 50, "12355"},
+		{"11111", 26, "-1"},
+	}
+
+	for _, test := range tests {
+		if smallestNumber(test.num, test.t) != test.ans {
+			fmt.Printf("Test failed for input (%s, %d): expected %s, got %s\n", test.num, test.t, test.ans, smallestNumber(test.num, test.t))
+		}
+	}
+}
