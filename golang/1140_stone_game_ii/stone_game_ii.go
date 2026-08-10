@@ -1,10 +1,4 @@
-/*
- * @Date: 2023-02-22
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-02-22
- * @FilePath: /algorithm/golang/1140_stone_game_ii/stone_game_ii.go
- */
-
+// Package main ...
 package main
 
 func stoneGameII(piles []int) int {
@@ -46,15 +40,15 @@ func main() {
 		}
 	}
 
-	{
-		piles := []int{2, 7, 9, 4, 4}
-		ans := 10
-		assert(stoneGameII(piles) == ans)
+	tests := []struct {
+		piles []int
+		ans   int
+	}{
+		{[]int{2, 7, 9, 4, 4}, 10},
+		{[]int{1, 2, 3, 4, 5, 100}, 104},
 	}
 
-	{
-		piles := []int{1, 2, 3, 4, 5, 100}
-		ans := 104
-		assert(stoneGameII(piles) == ans)
+	for _, test := range tests {
+		assert(stoneGameII(test.piles) == test.ans)
 	}
 }

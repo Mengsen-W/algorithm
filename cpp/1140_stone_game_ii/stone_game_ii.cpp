@@ -1,12 +1,7 @@
-/*
- * @Date: 2023-02-22
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-02-22
- * @FilePath: /algorithm/cpp/1140_stone_game_ii/stone_game_ii.cpp
- */
-
 #include <cassert>
+#include <cstring>
 #include <functional>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -40,15 +35,13 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> piles{2, 7, 9, 4, 4};
-    int ans = 10;
-    assert(Solution().stoneGameII(piles) == ans);
-  }
+  vector<tuple<vector<int>, int>> tests{
+      {{2, 7, 9, 4, 4}, 10},
+      {{1, 2, 3, 4, 5, 100}, 104},
+  };
 
-  {
-    vector<int> piles{1, 2, 3, 4, 5, 100};
-    int ans = 104;
-    assert(Solution().stoneGameII(piles) == ans);
+  for (auto& [piles, expected] : tests) {
+    assert(Solution().stoneGameII(piles) == expected);
   }
+  return 0;
 }
