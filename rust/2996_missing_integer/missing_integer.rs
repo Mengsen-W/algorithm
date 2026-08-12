@@ -1,9 +1,8 @@
 struct Solution;
 
-use std::collections::HashSet;
-
 impl Solution {
     pub fn missing_integer(nums: Vec<i32>) -> i32 {
+        use std::collections::HashSet;
         let n = nums.len();
         let num_set: HashSet<&i32> = nums.iter().collect();
         let mut prefix_len = 1;
