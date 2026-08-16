@@ -5,6 +5,7 @@
 *.pdb
 tempCode*
 *.dSYM
+.codebuddy
 
 # Added by cargo
 

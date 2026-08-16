@@ -1,11 +1,5 @@
-/*
- * @Date: 2022-01-19 16:15:21
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-01-19 16:23:03
- */
-
 #include <cassert>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -31,7 +25,13 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().stoneGameIX({2, 1}) == true);
-  assert(Solution().stoneGameIX({2}) == false);
-  assert(Solution().stoneGameIX({5, 1, 2, 4, 3}) == false);
+  vector<tuple<vector<int>, bool>> tests{
+      {{2, 1}, true},
+      {{2}, false},
+      {{5, 1, 2, 4, 3}, false},
+  };
+
+  for (auto& [stones, ans] : tests) {
+    assert(Solution().stoneGameIX(stones) == ans);
+  }
 }

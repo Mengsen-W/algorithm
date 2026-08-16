@@ -7,6 +7,13 @@ CompileFlags:
     - -Wshadow
     - -Wpedantic
     - -std=c++20
+    # 让 nix 版 clangd 找到系统 GCC 12 的 libstdc++ 与内部头文件
+    - --stdlib=libstdc++
+    - -isystem/usr/include/c++/12
+    - -isystem/usr/include/c++/12/x86_64-TencentOS-linux
+    - -isystem/usr/include/c++/12/x86_64-unknown-linux-gnu
+    - -isystem/usr/lib/gcc/x86_64-TencentOS-linux/12/include
+    - -isystem/usr/include/x86_64-TencentOS-linux
 
 Diagnostics:
   UnusedIncludes: Strict

@@ -1,10 +1,4 @@
-/*
- * @Date: 2022-01-19 16:15:27
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-01-19 16:19:52
- */
-
+// Package main ...
 package main
 
 func stoneGameIX(stones []int) bool {
@@ -31,7 +25,17 @@ func main() {
 			panic("Not Passed")
 		}
 	}
-	assert(stoneGameIX([]int{2, 1}) == true)
-	assert(stoneGameIX([]int{2}) == false)
-	assert(stoneGameIX([]int{5, 1, 2, 4, 3}) == false)
+
+	tests := []struct {
+		stones []int
+		ans    bool
+	}{
+		{[]int{2, 1}, true},
+		{[]int{2}, false},
+		{[]int{5, 1, 2, 4, 3}, false},
+	}
+
+	for _, test := range tests {
+		assert(stoneGameIX(test.stones) == test.ans)
+	}
 }
