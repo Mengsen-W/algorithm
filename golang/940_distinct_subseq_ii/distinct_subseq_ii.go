@@ -1,10 +1,4 @@
-/*
- * @Date: 2022-10-14
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-10-14
- * @FilePath: /algorithm/940_distinct_subseq_ii/distinct_subseq_ii.go
- */
-
+// Package main ...
 package main
 
 func distinctSubseqII(s string) (ans int) {
@@ -40,7 +34,17 @@ func main() {
 			panic("Not Passed")
 		}
 	}
-	assert(distinctSubseqII("abc") == 7)
-	assert(distinctSubseqII("aba") == 6)
-	assert(distinctSubseqII("aaa") == 3)
+
+	tests := []struct {
+		s   string
+		ans int
+	}{
+		{"abc", 7},
+		{"aba", 6},
+		{"aaa", 3},
+	}
+
+	for _, test := range tests {
+		assert(distinctSubseqII(test.s) == test.ans)
+	}
 }

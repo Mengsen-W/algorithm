@@ -1,12 +1,6 @@
-/*
- * @Date: 2022-10-14
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-10-14
- * @FilePath: /algorithm/940_distinct_subseq_ii/distinct_subseq_ii.cpp
- */
-
 #include <cassert>
 #include <string>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -41,7 +35,15 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().distinctSubseqII("abc") == 7);
-  assert(Solution().distinctSubseqII("aba") == 6);
-  assert(Solution().distinctSubseqII("aaa") == 3);
+  vector<tuple<string, int>> tests{
+      {"abc", 7},
+      {"aba", 6},
+      {"aaa", 3},
+  };
+
+  for (auto& [input, expected] : tests) {
+    assert(Solution().distinctSubseqII(input) == expected);
+  }
+
+  return 0;
 }
