@@ -1,13 +1,8 @@
-/*
- * @Date: 2023-06-25
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-06-25
- * @FilePath: /algorithm/cpp/1401_check_overlap/check_overlap.cpp
- */
-
 #include <algorithm>
 #include <cassert>
 #include <cmath>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -26,18 +21,13 @@ class Solution {
 };
 
 int main() {
-  {
-    int radius = 1, xCenter = 0, yCenter = 0, x1 = 1, y1 = -1, x2 = 3, y2 = 1;
-    assert(Solution().checkOverlap(radius, xCenter, yCenter, x1, y1, x2, y2) == true);
-  }
+  vector<tuple<int, int, int, int, int, int, int, bool>> tests{
+      {1, 0, 0, 1, -1, 3, 1, true},
+      {1, 1, 1, 1, -3, 2, -1, false},
+      {1, 0, 0, -1, 0, 0, 1, true},
+  };
 
-  {
-    int radius = 1, xCenter = 1, yCenter = 1, x1 = 1, y1 = -3, x2 = 2, y2 = -1;
-    assert(Solution().checkOverlap(radius, xCenter, yCenter, x1, y1, x2, y2) == false);
-  }
-
-  {
-    int radius = 1, xCenter = 0, yCenter = 0, x1 = -1, y1 = 0, x2 = 0, y2 = 1;
-    assert(Solution().checkOverlap(radius, xCenter, yCenter, x1, y1, x2, y2) == true);
+  for (auto &[radius, xCenter, yCenter, x1, y1, x2, y2, ans] : tests) {
+    assert(Solution().checkOverlap(radius, xCenter, yCenter, x1, y1, x2, y2) == ans);
   }
 }

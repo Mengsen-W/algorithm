@@ -1,18 +1,7 @@
-/*
- * @Date: 2023-06-25
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-06-25
- * @FilePath: /algorithm/golang/1401_check_overlap/check_overlap.go
- */
-
 // Package main ...
 package main
 
-import (
-	"testing"
-
-	"github.com/stretchr/testify/assert"
-)
+import "fmt"
 
 func checkOverlap(radius int, xCenter int, yCenter int, x1 int, y1 int, x2 int, y2 int) bool {
 	min := func(a int, b int) int {
@@ -32,36 +21,24 @@ func checkOverlap(radius int, xCenter int, yCenter int, x1 int, y1 int, x2 int, 
 }
 
 func main() {
-	{
-		radius := 1
-		xCenter := 0
-		yCenter := 0
-		x1 := 1
-		y1 := -1
-		x2 := 3
-		y2 := 1
-		assert.Equal(&testing.B{}, checkOverlap(radius, xCenter, yCenter, x1, y1, x2, y2), true)
+	tests := []struct {
+		radius  int
+		xCenter int
+		yCenter int
+		x1      int
+		y1      int
+		x2      int
+		y2      int
+		ans     bool
+	}{
+		{1, 0, 0, 1, -1, 3, 1, true},
+		{1, 1, 1, 1, -3, 2, -1, false},
+		{1, 0, 0, -1, 0, 0, 1, true},
 	}
 
-	{
-		radius := 1
-		xCenter := 1
-		yCenter := 1
-		x1 := 1
-		y1 := -3
-		x2 := 2
-		y2 := -1
-		assert.Equal(&testing.B{}, checkOverlap(radius, xCenter, yCenter, x1, y1, x2, y2), false)
-	}
-
-	{
-		radius := 1
-		xCenter := 0
-		yCenter := 0
-		x1 := -1
-		y1 := 0
-		x2 := 0
-		y2 := 1
-		assert.Equal(&testing.B{}, checkOverlap(radius, xCenter, yCenter, x1, y1, x2, y2), true)
+	for index, test := range tests {
+		if checkOverlap(test.radius, test.xCenter, test.yCenter, test.x1, test.y1, test.x2, test.y2) != test.ans {
+			fmt.Println(index)
+		}
 	}
 }
