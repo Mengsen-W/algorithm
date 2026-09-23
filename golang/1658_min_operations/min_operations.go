@@ -1,11 +1,7 @@
-/*
- * @Date: 2023-01-07
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-01-07
- * @FilePath: /algorithm/1658_min_operations/min_operations.go
- */
-
+// Package main ...
 package main
+
+import "fmt"
 
 func minOperations(nums []int, x int) int {
 	min := func(a, b int) int {
@@ -47,30 +43,19 @@ func minOperations(nums []int, x int) int {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
-			panic("Not Passed")
+	tests := []struct {
+		nums []int
+		x    int
+		ans  int
+	}{
+		{[]int{1, 1, 4, 2, 3}, 5, 2},
+		{[]int{5, 6, 7, 8, 9}, 4, -1},
+		{[]int{3, 2, 20, 1, 1, 3}, 10, 5},
+	}
+
+	for index, test := range tests {
+		if test.ans != minOperations(test.nums, test.x) {
+			fmt.Println("Test", index+1, "failed")
 		}
-	}
-
-	{
-		nums := []int{1, 1, 4, 2, 3}
-		x := 5
-		ans := 2
-		assert(minOperations(nums, x) == ans)
-	}
-
-	{
-		nums := []int{5, 6, 7, 8, 9}
-		x := 4
-		ans := -1
-		assert(minOperations(nums, x) == ans)
-	}
-
-	{
-		nums := []int{3, 2, 20, 1, 1, 3}
-		x := 10
-		ans := 5
-		assert(minOperations(nums, x) == ans)
 	}
 }

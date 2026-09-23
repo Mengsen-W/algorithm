@@ -1,13 +1,7 @@
-/*
- * @Date: 2023-01-07
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-01-07
- * @FilePath: /algorithm/1658_min_operations/min_operations.cpp
- */
-
 #include <cassert>
 #include <numeric>
 #include <vector>
+#include <tuple>
 
 using namespace std;
 
@@ -43,24 +37,14 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<int> nums{1, 1, 4, 2, 3};
-    int x = 5;
-    int ans = 2;
-    assert(Solution().minOperations(nums, x) == ans);
+  vector<tuple<vector<int>, int, int>> tests{
+      {{1, 1, 4, 2, 3}, 5, 2},
+      {{5, 6, 7, 8, 9}, 4, -1},
+      {{3, 2, 20, 1, 1, 3}, 10, 5},
+  };
+  for (auto& [nums, x, expected] : tests) {
+    assert(Solution().minOperations(nums, x) == expected);
   }
 
-  {
-    vector<int> nums{5, 6, 7, 8, 9};
-    int x = 4;
-    int ans = -1;
-    assert(Solution().minOperations(nums, x) == ans);
-  }
-
-  {
-    vector<int> nums{3, 2, 20, 1, 1, 3};
-    int x = 10;
-    int ans = 5;
-    assert(Solution().minOperations(nums, x) == ans);
-  }
+  return 0;
 }
