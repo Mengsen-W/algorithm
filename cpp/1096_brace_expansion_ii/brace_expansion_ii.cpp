@@ -1,13 +1,7 @@
-/*
- * @Date: 2023-03-07
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-03-07
- * @FilePath: /algorithm/cpp/1096_brace_expansion_ii/brace_expansion_ii.cpp
- */
-
 #include <cassert>
 #include <set>
 #include <string>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -72,15 +66,12 @@ class Solution {
 };
 
 int main() {
-  {
-    string expression = "{a,b}{c,{d,e}}";
-    vector<string> ans{"ac", "ad", "ae", "bc", "bd", "be"};
-    assert(Solution().braceExpansionII(expression) == ans);
-  }
+  vector<tuple<string, vector<string>>> tests{
+      {"{a,b}{c,{d,e}}", {"ac", "ad", "ae", "bc", "bd", "be"}},
+      {"{{a,z},a{b,c},{ab,z}}", {"a", "ab", "ac", "z"}},
+  };
 
-  {
-    string expression = "{{a,z},a{b,c},{ab,z}}";
-    vector<string> ans{"a", "ab", "ac", "z"};
+  for (auto &[expression, ans] : tests) {
     assert(Solution().braceExpansionII(expression) == ans);
   }
 }

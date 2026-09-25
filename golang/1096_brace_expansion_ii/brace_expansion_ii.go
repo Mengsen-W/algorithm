@@ -1,10 +1,4 @@
-/*
- * @Date: 2023-03-07
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-03-07
- * @FilePath: /algorithm/golang/1096_brace_expansion_ii/brace_expansion_ii.go
- */
-
+// Package main ...
 package main
 
 import (
@@ -56,7 +50,7 @@ func braceExpansionII(expression string) []string {
 	}
 	var dfs func(start, end int) map[string]bool // 去重
 	dfs = func(start, end int) (res map[string]bool) {
-		//fmt.Println(expression[start:end+1])
+		// fmt.Println(expression[start:end+1])
 		// res 表示当前层的集合
 		tmp := []byte{}        // 缓存当前层当前段处理的字符，注 , 为分割符号
 		s := map[string]bool{} // 缓存当前层当前段的集合 注 , 为分割符号
@@ -65,7 +59,7 @@ func braceExpansionII(expression string) []string {
 			switch expression[i] {
 			case ',':
 				res = add(res, string2add(s, string(tmp)))
-				s, tmp = map[string]bool{}, []byte{} //重置
+				s, tmp = map[string]bool{}, []byte{} // 重置
 			case '{':
 				i++
 				t, cnt := i, 1
@@ -105,15 +99,15 @@ func main() {
 		}
 	}
 
-	{
-		expression := "{a,b}{c,{d,e}}"
-		ans := []string{"ac", "ad", "ae", "bc", "bd", "be"}
-		assert(braceExpansionII(expression), ans)
+	tests := []struct {
+		expression string
+		ans        []string
+	}{
+		{"{a,b}{c,{d,e}}", []string{"ac", "ad", "ae", "bc", "bd", "be"}},
+		{"{{a,z},a{b,c},{ab,z}}", []string{"a", "ab", "ac", "z"}},
 	}
 
-	{
-		expression := "{{a,z},a{b,c},{ab,z}}"
-		ans := []string{"a", "ab", "ac", "z"}
-		assert(braceExpansionII(expression), ans)
+	for _, test := range tests {
+		assert(braceExpansionII(test.expression), test.ans)
 	}
 }
