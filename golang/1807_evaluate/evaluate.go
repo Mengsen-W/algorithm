@@ -1,10 +1,4 @@
-/*
- * @Date: 2023-01-12
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-01-12
- * @FilePath: /algorithm/1807_evaluate/evaluate.go
- */
-
+// Package main ...
 package main
 
 import "strings"
@@ -34,30 +28,19 @@ func evaluate(s string, knowledge [][]string) string {
 }
 
 func main() {
-	assert := func(b bool) {
-		if !b {
+	tests := []struct {
+		s         string
+		knowledge [][]string
+		ans       string
+	}{
+		{"(name)is(age)yearsold", [][]string{{"name", "bob"}, {"age", "two"}}, "bobistwoyearsold"},
+		{"hi(name)", [][]string{{"a", "b"}}, "hi?"},
+		{"(a)(a)(a)aaa", [][]string{{"a", "yes"}}, "yesyesyesaaa"},
+	}
+
+	for _, test := range tests {
+		if got := evaluate(test.s, test.knowledge); got != test.ans {
 			panic("Not Passed")
 		}
-	}
-
-	{
-		s := "(name)is(age)yearsold"
-		knowledge := [][]string{{"name", "bob"}, {"age", "two"}}
-		ans := "bobistwoyearsold"
-		assert(evaluate(s, knowledge) == ans)
-	}
-
-	{
-		s := "hi(name)"
-		knowledge := [][]string{{"a", "b"}}
-		ans := "hi?"
-		assert(evaluate(s, knowledge) == ans)
-	}
-
-	{
-		s := "(a)(a)(a)aaa"
-		knowledge := [][]string{{"a", "yes"}}
-		ans := "yesyesyesaaa"
-		assert(evaluate(s, knowledge) == ans)
 	}
 }

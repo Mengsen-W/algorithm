@@ -1,12 +1,7 @@
-/*
- * @Date: 2023-01-12
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-01-12
- * @FilePath: /algorithm/1807_evaluate/evaluate.cpp
- */
-
 #include <cassert>
 #include <string>
+#include <tuple>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -44,24 +39,13 @@ class Solution {
 };
 
 int main() {
-  {
-    string s{"(name)is(age)yearsold"};
-    vector<vector<string>> knowledge{{"name", "bob"}, {"age", "two"}};
-    string ans{"bobistwoyearsold"};
-    assert(Solution().evaluate(s, knowledge) == ans);
-  }
+  vector<tuple<string, vector<vector<string>>, string>> tests{
+      {"(name)is(age)yearsold", {{"name", "bob"}, {"age", "two"}}, "bobistwoyearsold"},
+      {"hi(name)", {{"a", "b"}}, "hi?"},
+      {"(a)(a)(a)aaa", {{"a", "yes"}}, "yesyesyesaaa"},
+  };
 
-  {
-    string s{"hi(name)"};
-    vector<vector<string>> knowledge{{"a", "b"}};
-    string ans{"hi?"};
-    assert(Solution().evaluate(s, knowledge) == ans);
-  }
-
-  {
-    string s{"(a)(a)(a)aaa"};
-    vector<vector<string>> knowledge{{"a","yes"}};
-    string ans{"yesyesyesaaa"};
+  for (auto& [s, knowledge, ans] : tests) {
     assert(Solution().evaluate(s, knowledge) == ans);
   }
 }
