@@ -1,10 +1,4 @@
-/*
- * @Date: 2021-05-26 09:53:17
- * @Author: mengsenwang
- * @LastEditors: mengsenwang
- * @LastEditTime: 2021-05-26 10:01:00
- */
-
+// Package main ...
 package main
 
 func reverseParentheses(s string) string {
@@ -39,8 +33,17 @@ func main() {
 			panic("Not Passed!")
 		}
 	}
-	assert(reverseParentheses("(abcd)") == "dcba")
-	assert(reverseParentheses("(u(love)i)") == "iloveu")
-	assert(reverseParentheses("(ed(et(oc))el)") == "leetcode")
-	assert(reverseParentheses("a(bcdefghijkl(mno)p)q") == "apmnolkjihgfedcbq")
+	tests := []struct {
+		s   string
+		ans string
+	}{
+		{"(abcd)", "dcba"},
+		{"(u(love)i)", "iloveu"},
+		{"(ed(et(oc))el)", "leetcode"},
+		{"a(bcdefghijkl(mno)p)q", "apmnolkjihgfedcbq"},
+	}
+
+	for _, test := range tests {
+		assert(reverseParentheses(test.s) == test.ans)
+	}
 }
