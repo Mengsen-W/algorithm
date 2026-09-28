@@ -1,12 +1,7 @@
-/*
- * @Date: 2022-01-07 01:08:44
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-01-07 01:20:11
- */
-
 #include <cassert>
 #include <string>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -27,8 +22,15 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().maxDepth("(1+(2*3)+((8)/4))+1") == 3);
-  assert(Solution().maxDepth("(1)+((2))+(((3)))") == 3);
-  assert(Solution().maxDepth("1+(2*3)/(2-1)") == 1);
-  assert(Solution().maxDepth("1") == 0);
+  vector<tuple<string, int>> tests{
+      {"(1+(2*3)+((8)/4))+1", 3},
+      {"(1)+((2))+(((3)))", 3},
+      {"1+(2*3)/(2-1)", 1},
+      {"1", 0},
+  };
+
+
+  for (auto& [s, expected] : tests) {
+    assert(Solution().maxDepth(s) == expected);
+  }
 }

@@ -1,10 +1,4 @@
-/*
- * @Date: 2022-01-07 01:08:49
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-01-07 01:23:09
- */
-
+// Package main ...
 package main
 
 func maxDepth(s string) (ans int) {
@@ -28,8 +22,17 @@ func main() {
 			panic("Not Passed")
 		}
 	}
-	assert(maxDepth("(1+(2*3)+((8)/4))+1"), 3)
-	assert(maxDepth("(1)+((2))+(((3)))"), 3)
-	assert(maxDepth("1+(2*3)/(2-1)"), 1)
-	assert(maxDepth("1"), 0)
+	tests := []struct {
+		s   string
+		ans int
+	}{
+		{"(1+(2*3)+((8)/4))+1", 3},
+		{"(1)+((2))+(((3)))", 3},
+		{"1+(2*3)/(2-1)", 1},
+		{"1", 0},
+	}
+
+	for _, test := range tests {
+		assert(maxDepth(test.s), test.ans)
+	}
 }
