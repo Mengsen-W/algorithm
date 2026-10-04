@@ -1,10 +1,4 @@
-/*
- * @Date: 2021-09-12 08:20:03
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-09-12 08:31:05
- */
-
+// Package main ...
 package main
 
 func checkValidString(s string) bool {
@@ -39,16 +33,17 @@ func main() {
 			panic("Not Passed")
 		}
 	}
-	{
-		s := "()"
-		assert(checkValidString(s))
+
+	tests := []struct {
+		s   string
+		ans bool
+	}{
+		{"()", true},
+		{"(*)", true},
+		{"(*))", true},
 	}
-	{
-		s := "(*)"
-		assert(checkValidString(s))
-	}
-	{
-		s := "(*))"
-		assert(checkValidString(s))
+
+	for _, tt := range tests {
+		assert(checkValidString(tt.s) == tt.ans)
 	}
 }

@@ -1,13 +1,8 @@
-/*
- * @Date: 2021-09-12 08:19:57
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-09-12 08:26:03
- */
-
 #include <cassert>
 #include <cmath>
 #include <string>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -35,17 +30,14 @@ class Solution {
 };
 
 int main() {
-  {
-    string s = "()";
-    assert(Solution().checkValidString(s));
-  }
-  {
-    string s = "(*)";
-    assert(Solution().checkValidString(s));
-  }
-  {
-    string s = "(*))";
-    assert(Solution().checkValidString(s));
+  vector<tuple<string, bool>> tests{
+      {"()", true},
+      {"(*)", true},
+      {"(*))", true},
+  };
+
+  for (auto [s, expected] : tests) {
+    assert(Solution().checkValidString(s) == expected);
   }
   return 0;
 }

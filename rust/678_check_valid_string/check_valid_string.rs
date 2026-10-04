@@ -1,10 +1,3 @@
-/*
- * @Date: 2021-09-12 08:20:00
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-09-12 08:39:07
- */
-
 struct Solution;
 
 impl Solution {
@@ -33,16 +26,9 @@ impl Solution {
 }
 
 fn main() {
-    {
-        let s = "()".to_string();
-        assert!(Solution::check_valid_string(s));
-    }
-    {
-        let s = "(*)".to_string();
-        assert!(Solution::check_valid_string(s));
-    }
-    {
-        let s = "(*))".to_string();
-        assert!(Solution::check_valid_string(s));
+    let tests = vec![("()", true), ("(*)", true), ("(*))", true)];
+
+    for (s, expected) in tests {
+        assert_eq!(Solution::check_valid_string(s.to_string()), expected);
     }
 }
