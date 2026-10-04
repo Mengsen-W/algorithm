@@ -1,12 +1,7 @@
-/*
- * @Date: 2022-10-09
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-10-09
- * @FilePath: /algorithm/856_score_of_parentheses/score_of_parentheses.cpp
- */
-
 #include <cassert>
 #include <string>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -25,8 +20,14 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().scoreOfParentheses("()") == 1);
-  assert(Solution().scoreOfParentheses("(())") == 2);
-  assert(Solution().scoreOfParentheses("()()") == 2);
-  assert(Solution().scoreOfParentheses("(()(()))") == 6);
+  vector<tuple<string, int>> tests{
+      {"()", 1},
+      {"(())", 2},
+      {"()()", 2},
+      {"(()(()))", 6},
+  };
+
+  for (auto [s, expected] : tests) {
+    assert(Solution().scoreOfParentheses(s) == expected);
+  }
 }

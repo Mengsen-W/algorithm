@@ -1,10 +1,4 @@
-/*
- * @Date: 2022-10-09
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-10-09
- * @FilePath: /algorithm/856_score_of_parentheses/score_of_parentheses.go
- */
-
+// Package main ...
 package main
 
 func scoreOfParentheses(s string) (ans int) {
@@ -29,8 +23,17 @@ func main() {
 		}
 	}
 
-	assert(scoreOfParentheses("()") == 1)
-	assert(scoreOfParentheses("(())") == 2)
-	assert(scoreOfParentheses("()()") == 2)
-	assert(scoreOfParentheses("(()(()))") == 6)
+	tests := []struct {
+		s   string
+		ans int
+	}{
+		{"()", 1},
+		{"(())", 2},
+		{"()()", 2},
+		{"(()(()))", 6},
+	}
+
+	for _, test := range tests {
+		assert(scoreOfParentheses(test.s) == test.ans)
+	}
 }
