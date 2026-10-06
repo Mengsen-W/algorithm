@@ -1,10 +1,4 @@
-/*
- * @Date: 2022-10-04
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-10-04
- * @FilePath: /algorithm/921_min_add_to_make_valid/min_add_to_make_valid.go
- */
-
+// Package main ...
 package main
 
 func minAddToMakeValid(s string) (ans int) {
@@ -27,6 +21,16 @@ func main() {
 			panic("Not Passed")
 		}
 	}
-	assert(minAddToMakeValid("())") == 1)
-	assert(minAddToMakeValid("(((") == 3)
+
+	tests := []struct {
+		s   string
+		ans int
+	}{
+		{"())", 1},
+		{"(((", 3},
+	}
+
+	for _, test := range tests {
+		assert(minAddToMakeValid(test.s) == test.ans)
+	}
 }

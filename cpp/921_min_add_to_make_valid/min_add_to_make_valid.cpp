@@ -1,12 +1,7 @@
-/*
- * @Date: 2022-10-04
- * @LastEditors: mengsen_wang@163.com
- * @LastEditTime: 2022-10-04
- * @FilePath: /algorithm/921_min_add_to_make_valid/min_add_to_make_valid.cpp
- */
-
 #include <cassert>
 #include <string>
+#include <tuple>
+#include <vector>
 
 class Solution {
  public:
@@ -29,6 +24,12 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().minAddToMakeValid("())") == 1);
-  assert(Solution().minAddToMakeValid("(((") == 3);
+  std::vector<std::tuple<std::string, int>> tests{
+      {"())", 1},
+      {"(((", 3},
+  };
+
+  for (auto &[s, ans] : tests) {
+    assert(Solution().minAddToMakeValid(s) == ans);
+  }
 }
