@@ -1,13 +1,6 @@
-/*
- * @Date: 2021-10-27 01:47:33
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-27 02:42:15
- */
-
 #include <cassert>
-#include <iostream>
 #include <string>
+#include <tuple>
 #include <unordered_set>
 #include <vector>
 
@@ -15,8 +8,7 @@ using namespace std;
 
 class Solution {
  public:
-  bool checkValid(const string& str, int lmask, vector<int>& left, int rmask,
-                  vector<int>& right) {
+  bool checkValid(const string& str, int lmask, vector<int>& left, int rmask, vector<int>& right) {
     int pos1 = 0;
     int pos2 = 0;
     int cnt = 0;
@@ -40,8 +32,7 @@ class Solution {
     return cnt == 0;
   }
 
-  string recoverStr(const string& str, int lmask, vector<int>& left, int rmask,
-                    vector<int>& right) {
+  string recoverStr(const string& str, int lmask, vector<int>& left, int rmask, vector<int>& right) {
     string ans;
     int pos1 = 0;
     int pos2 = 0;
@@ -104,8 +95,7 @@ class Solution {
     }
     for (auto mask1 : maskArr1)
       for (auto mask2 : maskArr2)
-        if (checkValid(s, mask1, left, mask2, right))
-          cnt.insert(recoverStr(s, mask1, left, mask2, right));
+        if (checkValid(s, mask1, left, mask2, right)) cnt.insert(recoverStr(s, mask1, left, mask2, right));
 
     for (auto v : cnt) ans.emplace_back(v);
 
@@ -114,19 +104,13 @@ class Solution {
 };
 
 int main() {
-  {
-    string s = "()())()";
-    vector<string> ans{"()()()", "(())()"};
-    assert(Solution().removeInvalidParentheses(s) == ans);
-  }
-  {
-    string s = "(a)())()";
-    vector<string> ans{"(a)()()", "(a())()"};
-    assert(Solution().removeInvalidParentheses(s) == ans);
-  }
-  {
-    string s = ")(";
-    vector<string> ans{""};
+  vector<tuple<string, vector<string>>> tests{
+      {"()())()", {"()()()", "(())()"}},
+      {"(a)())()", {"(a)()()", "(a())()"}},
+      {")(", {""}},
+  };
+
+  for (auto [s, ans] : tests) {
     assert(Solution().removeInvalidParentheses(s) == ans);
   }
 }

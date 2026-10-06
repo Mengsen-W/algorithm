@@ -1,10 +1,3 @@
-/*
- * @Date: 2021-10-27 02:44:04
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-27 02:50:30
- */
-
 struct Solution;
 
 impl Solution {
@@ -58,18 +51,16 @@ impl Solution {
 }
 
 fn main() {
-    assert_eq!(
-        Solution::remove_invalid_parentheses("()())()".to_string()),
-        vec!["(())()".to_owned(), "()()()".to_owned()]
-    );
+    let tests = vec![
+        ("()())()", vec!["()()()", "(())()"]),
+        ("(a)())()", vec!["(a)()()", "(a())()"]),
+        (")(", vec![""]),
+    ];
 
-    assert_eq!(
-        Solution::remove_invalid_parentheses("(a)())()".to_string()),
-        vec!["(a())()".to_owned(), "(a)()()".to_owned()]
-    );
-
-    assert_eq!(
-        Solution::remove_invalid_parentheses(")(".to_string()),
-        vec!["".to_owned()]
-    );
+    for (s, expected) in tests {
+        assert_eq!(
+            Solution::remove_invalid_parentheses(s.to_string()),
+            expected
+        );
+    }
 }

@@ -1,12 +1,4 @@
-/*
- * @Date: 2021-10-27 01:50:55
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-27 02:37:20
- * @FilePath: /algorithm/301_remove_invalid_parentheses/remove_invalid_parentheses.go
- * @Description: file content
- */
-
+// Package main ...
 package main
 
 import (
@@ -106,19 +98,16 @@ func main() {
 			panic("Not Passed")
 		}
 	}
-	{
-		s := "()())()"
-		ans := []string{"(())()", "()()()"}
-		assert(removeInvalidParentheses(s), ans)
+	tests := []struct {
+		s   string
+		ans []string
+	}{
+		{"()())()", []string{"()()()", "(())()"}},
+		{"(a)())()", []string{"(a)()()", "(a())()"}},
+		{")(", []string{""}},
 	}
-	{
-		s := "(a)())()"
-		ans := []string{"(a())()", "(a)()()"}
-		assert(removeInvalidParentheses(s), ans)
-	}
-	{
-		s := ")("
-		ans := []string{""}
-		assert(removeInvalidParentheses(s), ans)
+
+	for _, test := range tests {
+		assert(removeInvalidParentheses(test.s), test.ans)
 	}
 }
