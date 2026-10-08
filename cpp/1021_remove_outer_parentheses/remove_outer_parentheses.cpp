@@ -1,13 +1,7 @@
-/*
- * @Date: 2022-05-28 10:30:09
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-05-28 10:36:14
- * @FilePath: /algorithm/1021_remove_outer_parentheses/remove_outer_parentheses.cpp
- */
-
 #include <cassert>
 #include <string>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -32,9 +26,14 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().removeOuterParentheses("(()())(())") == "()()()");
-  assert(Solution().removeOuterParentheses("(()())(())(()(()))") == "()()()()(())");
-  assert(Solution().removeOuterParentheses("()()") == "");
+  vector<tuple<string, string>> tests{
+      {"(()())(())", "()()()"},
+      {"(()())(())(()(()))", "()()()()(())"},
+      {"()()", ""},
+  };
 
+  for (auto [s, expected] : tests) {
+    assert(Solution().removeOuterParentheses(s) == expected);
+  }
   return 0;
 }

@@ -1,11 +1,4 @@
-/*
- * @Date: 2022-05-28 10:30:14
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-05-28 10:38:35
- * @FilePath: /algorithm/1021_remove_outer_parentheses/remove_outer_parentheses.go
- */
-
+// Package main ...
 package main
 
 func removeOuterParentheses(s string) string {
@@ -32,7 +25,16 @@ func main() {
 		}
 	}
 
-	assert(removeOuterParentheses("(()())(())") == "()()()")
-	assert(removeOuterParentheses("(()())(())(()(()))") == "()()()()(())")
-	assert(removeOuterParentheses("()()") == "")
+	tests := []struct {
+		s   string
+		ans string
+	}{
+		{"(()())(())", "()()()"},
+		{"(()())(())(()(()))", "()()()()(())"},
+		{"()()", ""},
+	}
+
+	for _, tt := range tests {
+		assert(removeOuterParentheses(tt.s) == tt.ans)
+	}
 }
