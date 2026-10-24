@@ -1,10 +1,3 @@
-/*
- * @Date: 2023-04-17
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-04-17
- * @FilePath: /algorithm/golang/2409_count_days_together/count_days_together.go
- */
-
 // Package main ...
 package main
 
@@ -51,21 +44,18 @@ func main() {
 		}
 	}
 
-	{
-		arriveAlice := "08-15"
-		leaveAlice := "08-18"
-		arriveBob := "08-16"
-		leaveBob := "08-19"
-		ans := 3
-		assert(countDaysTogether(arriveAlice, leaveAlice, arriveBob, leaveBob) == ans)
+	tests := []struct {
+		arriveAlice string
+		leaveAlice  string
+		arriveBob   string
+		leaveBob    string
+		ans         int
+	}{
+		{"08-15", "08-18", "08-16", "08-19", 3},
+		{"10-01", "10-31", "11-01", "12-31", 0},
 	}
 
-	{
-		arriveAlice := "10-01"
-		leaveAlice := "10-31"
-		arriveBob := "11-01"
-		leaveBob := "12-31"
-		ans := 0
-		assert(countDaysTogether(arriveAlice, leaveAlice, arriveBob, leaveBob) == ans)
+	for _, test := range tests {
+		assert(countDaysTogether(test.arriveAlice, test.leaveAlice, test.arriveBob, test.leaveBob) == test.ans)
 	}
 }

@@ -1,12 +1,6 @@
-/*
- * @Date: 2023-04-17
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-04-17
- * @FilePath: /algorithm/cpp/2409_count_days_together/count_days_together.cpp
- */
-
 #include <cassert>
 #include <string>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -27,7 +21,7 @@ class Solution {
     return max(0, min(leaveAliceDay, leaveBobDay) - max(arriveAliceDay, arriveBobDay) + 1);
   }
 
-  int calculateDayOfYear(string day, const vector<int> &prefixSum) {
+  int calculateDayOfYear(string day, const vector<int>& prefixSum) {
     int month = stoi(day.substr(0, 2));
     int date = stoi(day.substr(3));
     return prefixSum[month - 1] + date;
@@ -35,15 +29,12 @@ class Solution {
 };
 
 int main() {
-  {
-    string arriveAlice = "08-15", leaveAlice = "08-18", arriveBob = "08-16", leaveBob = "08-19";
-    int ans = 3;
-    assert(Solution().countDaysTogether(arriveAlice, leaveAlice, arriveBob, leaveBob) == ans);
-  }
+  vector<tuple<string, string, string, string, int>> tests{
+      {"08-15", "08-18", "08-16", "08-19", 3},
+      {"10-01", "10-31", "11-01", "12-31", 0},
+  };
 
-  {
-    string arriveAlice = "10-01", leaveAlice = "10-31", arriveBob = "11-01", leaveBob = "12-31";
-    int ans = 0;
+  for (auto& [arriveAlice, leaveAlice, arriveBob, leaveBob, ans] : tests) {
     assert(Solution().countDaysTogether(arriveAlice, leaveAlice, arriveBob, leaveBob) == ans);
   }
 }
