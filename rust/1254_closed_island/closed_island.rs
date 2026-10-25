@@ -1,10 +1,3 @@
-/*
- * @Date: 2023-06-18
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-06-18
- * @FilePath: /algorithm/rust/1254_closed_island/closed_island.rs
- */
-
 struct Solution;
 
 impl Solution {
@@ -49,44 +42,45 @@ impl Solution {
 }
 
 fn main() {
-    {
-        let grid = [
-            [1, 1, 1, 1, 1, 1, 1, 0],
-            [1, 0, 0, 0, 0, 1, 1, 0],
-            [1, 0, 1, 0, 1, 1, 1, 0],
-            [1, 0, 0, 0, 0, 1, 0, 1],
-            [1, 1, 1, 1, 1, 1, 1, 0],
-        ]
-        .iter()
-        .map(|v| v.to_vec())
-        .collect();
-        let ans = 2;
-        assert_eq!(Solution::closed_island(grid), ans);
-    }
-
-    {
-        let grid = [[0, 0, 1, 0, 0], [0, 1, 0, 1, 0], [0, 1, 1, 1, 0]]
+    let tests = vec![
+        (
+            [
+                [1, 1, 1, 1, 1, 1, 1, 0],
+                [1, 0, 0, 0, 0, 1, 1, 0],
+                [1, 0, 1, 0, 1, 1, 1, 0],
+                [1, 0, 0, 0, 0, 1, 0, 1],
+                [1, 1, 1, 1, 1, 1, 1, 0],
+            ]
             .iter()
             .map(|v| v.to_vec())
-            .collect();
-        let ans = 1;
-        assert_eq!(Solution::closed_island(grid), ans);
-    }
+            .collect(),
+            2,
+        ),
+        (
+            [[0, 0, 1, 0, 0], [0, 1, 0, 1, 0], [0, 1, 1, 1, 0]]
+                .iter()
+                .map(|v| v.to_vec())
+                .collect(),
+            1,
+        ),
+        (
+            [
+                [1, 1, 1, 1, 1, 1, 1],
+                [1, 0, 0, 0, 0, 0, 1],
+                [1, 0, 1, 1, 1, 0, 1],
+                [1, 0, 1, 0, 1, 0, 1],
+                [1, 0, 1, 1, 1, 0, 1],
+                [1, 0, 0, 0, 0, 0, 1],
+                [1, 1, 1, 1, 1, 1, 1],
+            ]
+            .iter()
+            .map(|v| v.to_vec())
+            .collect(),
+            2,
+        ),
+    ];
 
-    {
-        let grid = [
-            [1, 1, 1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 0, 0, 1],
-            [1, 0, 1, 1, 1, 0, 1],
-            [1, 0, 1, 0, 1, 0, 1],
-            [1, 0, 1, 1, 1, 0, 1],
-            [1, 0, 0, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1, 1, 1],
-        ]
-        .iter()
-        .map(|v| v.to_vec())
-        .collect();
-        let ans = 2;
+    for (grid, ans) in tests {
         assert_eq!(Solution::closed_island(grid), ans);
     }
 }

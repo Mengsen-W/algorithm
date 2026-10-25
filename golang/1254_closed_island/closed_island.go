@@ -1,16 +1,9 @@
-/*
- * @Date: 2023-06-18
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-06-18
- * @FilePath: /algorithm/golang/1254_closed_island/closed_island.go
- */
-
+// Package main ...
 package main
 
 import (
-	"testing"
-
-	"github.com/stretchr/testify/assert"
+	"fmt"
+	"reflect"
 )
 
 func closedIsland(grid [][]int) int {
@@ -43,26 +36,31 @@ func closedIsland(grid [][]int) int {
 }
 
 func main() {
-	{
-		grid := [][]int{{1, 1, 1, 1, 1, 1, 1, 0},
+	tests := []struct {
+		grid [][]int
+		ans  int
+	}{
+		{[][]int{
+			{1, 1, 1, 1, 1, 1, 1, 0},
 			{1, 0, 0, 0, 0, 1, 1, 0},
 			{1, 0, 1, 0, 1, 1, 1, 0},
 			{1, 0, 0, 0, 0, 1, 0, 1},
-			{1, 1, 1, 1, 1, 1, 1, 0}}
-		ans := 2
-		assert.Equal(&testing.B{}, closedIsland(grid), ans)
+			{1, 1, 1, 1, 1, 1, 1, 0},
+		}, 2},
+		{[][]int{{0, 0, 1, 0, 0}, {0, 1, 0, 1, 0}, {0, 1, 1, 1, 0}}, 1},
+		{[][]int{
+			{1, 1, 1, 1, 1, 1, 1},
+			{1, 0, 0, 0, 0, 0, 1},
+			{1, 0, 1, 1, 1, 0, 1},
+			{1, 0, 1, 0, 1, 0, 1},
+			{1, 0, 1, 1, 1, 0, 1},
+			{1, 0, 0, 0, 0, 0, 1},
+			{1, 1, 1, 1, 1, 1, 1},
+		}, 2},
 	}
-
-	{
-		grid := [][]int{{0, 0, 1, 0, 0}, {0, 1, 0, 1, 0}, {0, 1, 1, 1, 0}}
-		ans := 1
-		assert.Equal(&testing.B{}, closedIsland(grid), ans)
-	}
-
-	{
-		grid := [][]int{{1, 1, 1, 1, 1, 1, 1}, {1, 0, 0, 0, 0, 0, 1}, {1, 0, 1, 1, 1, 0, 1}, {1, 0, 1, 0, 1, 0, 1},
-			{1, 0, 1, 1, 1, 0, 1}, {1, 0, 0, 0, 0, 0, 1}, {1, 1, 1, 1, 1, 1, 1}}
-		ans := 2
-		assert.Equal(&testing.B{}, closedIsland(grid), ans)
+	for index, test := range tests {
+		if reflect.DeepEqual(closedIsland(test.grid), test.ans) {
+			fmt.Println(index)
+		}
 	}
 }

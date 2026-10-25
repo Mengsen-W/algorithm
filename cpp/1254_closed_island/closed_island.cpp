@@ -1,13 +1,7 @@
-/*
- * @Date: 2023-06-18
- * @LastEditors: 854284842@qq.com
- * @LastEditTime: 2023-06-18
- * @FilePath: /algorithm/cpp/1254_closed_island/closed_island.cpp
- */
-
 #include <cassert>
-#include <vector>
 #include <functional>
+#include <tuple>
+#include <vector>
 
 using namespace std;
 
@@ -45,26 +39,40 @@ class Solution {
 };
 
 int main() {
-  {
-    vector<vector<int>> grid{{1, 1, 1, 1, 1, 1, 1, 0},
-                             {1, 0, 0, 0, 0, 1, 1, 0},
-                             {1, 0, 1, 0, 1, 1, 1, 0},
-                             {1, 0, 0, 0, 0, 1, 0, 1},
-                             {1, 1, 1, 1, 1, 1, 1, 0}};
-    int ans = 2;
-    assert(Solution().closedIsland(grid) == ans);
-  }
+  vector<tuple<vector<vector<int>>, int>> tests{
+      {
+          {
+              {1, 1, 1, 1, 1, 1, 1, 0},
+              {1, 0, 0, 0, 0, 1, 1, 0},
+              {1, 0, 1, 0, 1, 1, 1, 0},
+              {1, 0, 0, 0, 0, 1, 0, 1},
+              {1, 1, 1, 1, 1, 1, 1, 0},
+          },
+          2,
+      },
+      {
+          {
+              {0, 0, 1, 0, 0},
+              {0, 1, 0, 1, 0},
+              {0, 1, 1, 1, 0},
+          },
+          1,
+      },
+      {
+          {
+              {1, 1, 1, 1, 1, 1, 1},
+              {1, 0, 0, 0, 0, 0, 1},
+              {1, 0, 1, 1, 1, 0, 1},
+              {1, 0, 1, 0, 1, 0, 1},
+              {1, 0, 1, 1, 1, 0, 1},
+              {1, 0, 0, 0, 0, 0, 1},
+              {1, 1, 1, 1, 1, 1, 1},
+          },
+          2,
+      },
+  };
 
-  {
-    vector<vector<int>> grid{{0, 0, 1, 0, 0}, {0, 1, 0, 1, 0}, {0, 1, 1, 1, 0}};
-    int ans = 1;
-    assert(Solution().closedIsland(grid) == ans);
-  }
-
-  {
-    vector<vector<int>> grid{{1, 1, 1, 1, 1, 1, 1}, {1, 0, 0, 0, 0, 0, 1}, {1, 0, 1, 1, 1, 0, 1}, {1, 0, 1, 0, 1, 0, 1},
-                             {1, 0, 1, 1, 1, 0, 1}, {1, 0, 0, 0, 0, 0, 1}, {1, 1, 1, 1, 1, 1, 1}};
-    int ans = 2;
+  for (auto& [grid, ans] : tests) {
     assert(Solution().closedIsland(grid) == ans);
   }
 }
