@@ -1,0 +1,63 @@
+#include <cassert>
+#include <climits>
+#include <queue>
+#include <string>
+#include <tuple>
+#include <vector>
+using namespace std;
+
+class Solution {
+ public:
+  int shortestPath(int n, vector<vector<int>>& edges, string labels, int k) {
+    vector<vector<pair<int, int>>> g(n);
+    for (auto& e : edges) {
+      g[e[0]].emplace_back(e[1], e[2]);
+    }
+
+    vector dis(n, vector<long long>(k + 1, INT_MAX));
+    // {最短路长度, 节点编号, 最后连续相同字母个数}
+    priority_queue<tuple<long long, int, int>, vector<tuple<long long, int, int>>, greater<>> pq;
+
+    dis[0][1] = 0;
+    pq.emplace(0, 0, 1);
+
+    while (!pq.empty()) {
+      auto [d, x, cnt] = pq.top();
+      pq.pop();
+
+      if (d > dis[x][cnt]) {
+        continue;
+      }
+      if (x == n - 1) {
+        return d;
+      }
+
+      for (auto [y, w] : g[x]) {
+        int new_cnt = labels[x] == labels[y] ? cnt + 1 : 1;
+        if (new_cnt > k) {
+          continue;
+        }
+
+        long long nd = d + w;
+        if (nd < dis[y][new_cnt]) {
+          dis[y][new_cnt] = nd;
+          pq.emplace(nd, y, new_cnt);
+        }
+      }
+    }
+
+    return -1;
+  }
+};
+
+int main() {
+  vector<tuple<int, vector<vector<int>>, string, int, int>> tests{
+      {3, {{0, 1, 1}, {1, 2, 1}, {0, 2, 3}}, "aab", 1, 3},
+      {3, {{0, 1, 1}, {1, 2, 1}, {0, 2, 3}}, "aab", 2, 2},
+      {3, {{0, 1, 1}, {1, 2, 1}}, "aaa", 2, -1},
+  };
+
+  for (auto [n, edges, labels, k, expected] : tests) {
+    assert(Solution().shortestPath(n, edges, labels, k) == expected);
+  }
+}
