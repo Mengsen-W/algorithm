@@ -1,12 +1,6 @@
-/*
- * @Date: 2021-10-20 12:16:33
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-20 12:19:43
- */
-
+#include <algorithm>
 #include <cassert>
-#include <functional>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -23,6 +17,12 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().minMoves(vector<int>{1, 2, 3}) == 3);
-  assert(Solution().minMoves(vector<int>{1, 1, 1}) == 0);
+  vector<tuple<vector<int>, int>> tests{
+      {{1, 2, 3}, 3},
+      {{1, 1, 1}, 0},
+  };
+
+  for (auto [nums, expected] : tests) {
+    assert(Solution().minMoves(nums) == expected);
+  }
 }

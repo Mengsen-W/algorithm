@@ -1,10 +1,4 @@
-/*
- * @Date: 2021-10-20 12:16:37
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2021-10-20 12:20:49
- */
-
+// Package main ...
 package main
 
 func minMoves(nums []int) (ans int) {
@@ -26,6 +20,14 @@ func main() {
 			panic("Not Passed")
 		}
 	}
-	assert(minMoves([]int{1, 2, 3}) == 3)
-	assert(minMoves([]int{1, 1, 1}) == 0)
+
+	for _, test := range []struct {
+		nums []int
+		ans  int
+	}{
+		{[]int{1, 2, 3}, 2},
+		{[]int{1, 1, 1}, 0},
+	} {
+		assert(minMoves(test.nums) == test.ans)
+	}
 }
