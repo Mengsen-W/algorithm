@@ -1,11 +1,4 @@
-/*
- * @Date: 2022-05-20 21:43:06
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-05-20 21:50:59
- * @FilePath: /algorithm/462_min_moves2/min_moves2.go
- */
-
+// Package main ...
 package main
 
 import (
@@ -65,6 +58,17 @@ func main() {
 			panic("Not Passed")
 		}
 	}
-	assert(minMoves2([]int{1, 2, 3}) == 2)
-	assert(minMoves2([]int{1, 10, 2, 9}) == 16)
+
+	tests := []struct {
+		nums []int
+		ans  int
+	}{
+      {[]int{1, 2, 3}, 2},
+      {[]int{1, 10, 2, 9}, 16},
+	}
+
+	for _, test := range tests {
+		assert(minMoves2(test.nums) == test.ans)
+	}
+
 }

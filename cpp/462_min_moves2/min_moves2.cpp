@@ -1,12 +1,7 @@
-/*
- * @Date: 2022-05-20 21:43:01
- * @Author: Mengsen Wang
- * @LastEditors: Mengsen Wang
- * @LastEditTime: 2022-05-20 21:48:04
- * @FilePath: /algorithm/462_min_moves2/min_moves2.cpp
- */
-
 #include <cassert>
+#include <cstdlib>
+#include <ctime>
+#include <tuple>
 #include <vector>
 
 using namespace std;
@@ -50,6 +45,12 @@ class Solution {
 };
 
 int main() {
-  assert(Solution().minMoves2({1, 2, 3}) == 2);
-  assert(Solution().minMoves2({1, 10, 2, 9}) == 16);
+  vector<tuple<vector<int>, int>> tests{
+      {{1, 2, 3}, 2},
+      {{1, 10, 2, 9}, 16},
+  };
+
+  for (auto [nums, expected] : tests) {
+    assert(Solution().minMoves2(nums) == expected);
+  }
 }
